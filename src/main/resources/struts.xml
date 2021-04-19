@@ -4,25 +4,36 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
-    <constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="true" />
 
-<!-- <package name="default" extends="struts-default">
-        <action name="hello" class="webCondominio.controller.ControllerPago">
-            <result name="success" type="redirect">${urlPago}</result>
-        </action>
-    </package> -->
-    <package name="residente" namespace="/residentes" extends="struts-default">
-        <action name="login" class="webCondominio.controller.ControllerVistas">
-            <result name="success">views/residentes.jsp</result>
-            <result name="error">/</result>
-        </action>
-    </package>
-    
-    <package name="multas" namespace="/multas" extends="struts-default">
-        <action name="multas" class="webCondominio.controller.ControllerVistas" method="multas">
-            <result>multas.jsp</result>
-        </action>
-    </package>
+	<!-- <package name="default" extends="struts-default"> <action name="hello" 
+		class="webCondominio.controller.ControllerPago"> <result name="success" type="redirect">${urlPago}</result> 
+		</action> </package> -->
+	<package name="residente" namespace="/residentes"
+		extends="struts-default">
+		<action name="login"
+			class="webCondominio.controller.ControllerVistas">
+			<result name="success">views/residentes.jsp</result>
+			<result name= "error" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="index" extends="struts-default" namespace="/">
+		<action name="return">
+			<result>index.jsp</result>
+		</action>
+	</package>
+
+	<package name="multas" namespace="/multas"
+		extends="struts-default">
+		<action name="multas"
+			class="webCondominio.controller.ControllerVistas" method="multas">
+			<result>multas.jsp</result>
+		</action>
+	</package>
 
 
 </struts>
