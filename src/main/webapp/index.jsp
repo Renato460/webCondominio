@@ -49,18 +49,18 @@
 <body class="text-center">
 
 	<main class="form-signin">
-		<form action="residentes/login.action">
+		<form action="residentes/login.action" class="needs-validation" novalidate method="post">
 			<img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg"
 				alt="" width="72" height="57">
 			<h1 class="h3 mb-3 fw-normal">Entra tus datos</h1>
 
 			<div class="form-floating">
-				<input type="email" class="form-control" id="floatingInput"
-					placeholder="name@example.com"> <label for="floatingInput">Correo electónico</label>
+				<input name="usuario" type="text" class="form-control" id="floatingInput"
+					placeholder="Usuario" required> <label for="floatingInput">Usuario</label>
 			</div>
 			<div class="form-floating">
-				<input type="password" class="form-control" id="floatingPassword"
-					placeholder="Password"> <label for="floatingPassword">Contraseña</label>
+				<input name="pass" type="password" class="form-control" id="floatingPassword"
+					placeholder="Password" required> <label for="floatingPassword">Contraseña</label>
 			</div>
 
 			<div class="checkbox mb-3">
@@ -75,6 +75,7 @@
 
 
 <script src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${ pageContext.request.contextPath }/assets/js/validate.js"></script>
 
 </body>
 </html>

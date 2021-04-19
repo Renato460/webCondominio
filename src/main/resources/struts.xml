@@ -14,7 +14,15 @@
     <package name="residente" namespace="/residentes" extends="struts-default">
         <action name="login" class="webCondominio.controller.ControllerVistas">
             <result name="success">views/residentes.jsp</result>
+            <result name="error">/</result>
         </action>
     </package>
+    
+    <package name="multas" namespace="/multas" extends="struts-default">
+        <action name="multas" class="webCondominio.controller.ControllerVistas" method="multas">
+            <result>multas.jsp</result>
+        </action>
+    </package>
+
 
 </struts>
