@@ -17,12 +17,16 @@ public class ControllerVistas extends ActionSupport{
 		ControllerConeccion user = new ControllerConeccion();
 		List<ModelUsuario> contra = user.login(usuario);
 		try {
-			if((contra.get(0).getUsuario().equals(usuario))&&(contra.get(0).getPassword().equals(pass))) {
+			if((contra.get(0).getUsuario().equals(usuario))&&(contra.get(0).getPassword().equals(pass))) 
+			{
+				user.cerrarSession();
 				return SUCCESS;
 			}else {
+				user.cerrarSession();
 			return ERROR;
 			}
 		}catch(Exception ex){
+			user.cerrarSession();
 			return ERROR;
 		}
 	}
