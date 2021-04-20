@@ -14,7 +14,7 @@ public class ControllerVistas extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	public String execute() {
-		ControllerConeccion user = new ControllerConeccion();
+		ControllerConexion user = new ControllerConexion();
 		List<ModelUsuario> contra = user.login(usuario);
 		try {
 			if((contra.get(0).getUsuario().equals(usuario))&&(contra.get(0).getPassword().equals(pass))) 
@@ -39,7 +39,18 @@ public class ControllerVistas extends ActionSupport{
 
 	private String usuario;
 	private String pass;
+	private String nombre;
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
 	public String getUsuario() {
 		return usuario;
 	}
