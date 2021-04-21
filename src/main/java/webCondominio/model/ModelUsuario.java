@@ -14,8 +14,7 @@ public class ModelUsuario {
 	public ModelUsuario(){
 		
 	}
-	
-	
+
 	private int id_usuario;
 	
 	@Id

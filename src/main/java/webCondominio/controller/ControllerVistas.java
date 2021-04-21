@@ -3,6 +3,8 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import webCondominio.model.ModelReserva;
+import webCondominio.model.ModelServicio;
 import webCondominio.model.ModelUsuario;
 
 
@@ -31,7 +33,10 @@ public class ControllerVistas extends ActionSupport{
 		}
 	}
 
-	public String reserva() {
+	public String servicios() {
+		ControllerConexion reserva = new ControllerConexion();
+		List<ModelServicio> reservas= reserva.getServicios();
+		System.out.println(reservas.get(0).getNombre_servicio());
 		return SUCCESS;
 	}
 	public String multas() {
@@ -51,7 +56,6 @@ public class ControllerVistas extends ActionSupport{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public String getUsuario() {
 		return usuario;

@@ -12,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.procedure.ProcedureOutputs;
 
+import webCondominio.model.ModelReserva;
+import webCondominio.model.ModelServicio;
 import webCondominio.model.ModelUsuario;
 
 public class ControllerConexion {
@@ -93,5 +95,12 @@ public class ControllerConexion {
 				    
 				}
 	
+	}
+	
+	public List<ModelServicio> getServicios(){
+		List<ModelServicio> reserva = session.createQuery("from ModelServicio").list();
+		
+		System.out.println(reserva.get(0));
+		return reserva;
 	}
 }

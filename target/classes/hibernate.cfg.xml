@@ -13,6 +13,8 @@
     <property name="show_sql">true</property>
          
     <mapping class="webCondominio.model.ModelUsuario" />
+    <mapping class="webCondominio.model.ModelReserva" />
+    <mapping class="webCondominio.model.ModelServicio" />
       
   </session-factory>
 </hibernate-configuration>
