@@ -11,18 +11,26 @@
 		</action> </package> -->
 	<package name="residente" namespace="/residentes"
 		extends="struts-default">
+		
 		<action name="login"
 			class="webCondominio.controller.ControllerVistas">
 			<result name="success">views/residentes.jsp</result>
-			<result name= "error" type="redirectAction">
+			<result name="error" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
 			</result>
 		</action>
+		
 		<action name="multa"
 			class="webCondominio.controller.ControllerVistas" method="multas">
 			<result name="success">views/multas.jsp</result>
 		</action>
+		
+		<action name="reserva"
+			class="webCondominio.controller.ControllerVistas" method="reserva">
+			<result name="success">views/reservas.jsp</result>
+		</action>
+		
 	</package>
 
 	<package name="index" extends="struts-default" namespace="/">
@@ -31,5 +39,5 @@
 		</action>
 	</package>
 
-	
+
 </struts>

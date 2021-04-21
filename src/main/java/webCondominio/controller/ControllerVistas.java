@@ -31,7 +31,9 @@ public class ControllerVistas extends ActionSupport{
 		}
 	}
 
-	
+	public String reserva() {
+		return SUCCESS;
+	}
 	public String multas() {
 		
 		return SUCCESS;
