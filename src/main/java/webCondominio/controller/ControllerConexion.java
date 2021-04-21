@@ -1,6 +1,5 @@
 package webCondominio.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ParameterMode;
@@ -15,12 +14,12 @@ import org.hibernate.procedure.ProcedureOutputs;
 
 import webCondominio.model.ModelUsuario;
 
-public class ControllerConeccion {
+public class ControllerConexion {
 	
 	private SessionFactory factory;
 	private Session session;
 	
-	public ControllerConeccion() {
+	public ControllerConexion() {
 		
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure() // configures settings
 																									// from
@@ -78,12 +77,12 @@ public class ControllerConeccion {
 				try {
 				    query.execute();
 				     
-				    String commentCount = (String) query
+				    String nombre = (String) query
 				    .getOutputParameterValue("p_nombrecompleto");
 				    
 				 
-				    System.out.println(commentCount);
-				    return (commentCount);
+				    System.out.println(nombre);
+				    return (nombre);
 				 
 				}catch(Exception ex){
 					System.out.println(ex);
@@ -93,8 +92,6 @@ public class ControllerConeccion {
 				    .release();
 				    
 				}
-				
-				
-				
+	
 	}
 }
