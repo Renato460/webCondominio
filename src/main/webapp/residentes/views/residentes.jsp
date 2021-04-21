@@ -109,7 +109,9 @@
 					</div>
 				</div>
 
-				<div id="cuerpo" class="cuerpo"></div>
+				<div id="cuerpo" class="cuerpo">
+				
+				</div>
 				
 <div id="modal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

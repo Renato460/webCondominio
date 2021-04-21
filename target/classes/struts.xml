@@ -27,7 +27,7 @@
 		</action>
 		
 		<action name="reserva"
-			class="webCondominio.controller.ControllerVistas" method="reserva">
+			class="webCondominio.controller.ControllerVistas" method="servicios">
 			<result name="success">views/reservas.jsp</result>
 		</action>
 		
