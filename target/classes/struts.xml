@@ -6,9 +6,12 @@
 
 	<constant name="struts.devMode" value="true" />
 
-	<!-- <package name="default" extends="struts-default"> <action name="hello" 
-		class="webCondominio.controller.ControllerPago"> <result name="success" type="redirect">${urlPago}</result> 
-		</action> </package> -->
+	<package name="default" extends="struts-default">
+		<action name="pago"	class="webCondominio.controller.ControllerPago">
+			<result name="success" type="redirect">${urlPago}</result> 
+		</action>
+	</package> 
+	
 	<package name="residente" namespace="/residentes"
 		extends="struts-default">
 		
@@ -30,6 +33,8 @@
 			class="webCondominio.controller.ControllerVistas" method="servicios">
 			<result name="success">views/reservas.jsp</result>
 		</action>
+		
+
 		
 	</package>
 

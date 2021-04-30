@@ -2,7 +2,7 @@
  * 
  */
  function getMenuMultas(){
-	$("#cuerpo").append(' ');
+	$("#cuerpo").empty();
  $.ajax({
 		url: 'multa.action',
 		type: "POST",
