@@ -107,25 +107,9 @@
 
 				<div id="cuerpo" class="cuerpo"></div>
 
-				<div id="modal" class="modal" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Modal title</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p id="modalTexto"></p>
-							</div>
-							<div class="modal-footer"></div>
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
+
+		</main>
+	</div>
 	</div>
 	<script type="text/javascript">
 		$(function() {

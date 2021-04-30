@@ -81,8 +81,6 @@ public class ControllerConexion {
 				     
 				    String nombre = (String) query
 				    .getOutputParameterValue("p_nombrecompleto");
-				    
-				 
 				    System.out.println(nombre);
 				    return (nombre);
 				 
