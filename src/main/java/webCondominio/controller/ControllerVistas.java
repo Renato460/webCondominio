@@ -17,8 +17,8 @@ public class ControllerVistas extends ActionSupport{
 	
 	public String execute() {
 		ControllerConexion user = new ControllerConexion();
-		List<ModelUsuario> contra = user.login(usuario);
-		try {
+		List<String> contra = user.login(usuario, pass);
+		/*try {
 			if((contra.get(0).getUsuario().equals(usuario))&&(contra.get(0).getPassword().equals(pass))) 
 			{
 				user.cerrarSession();
@@ -28,6 +28,24 @@ public class ControllerVistas extends ActionSupport{
 			return ERROR;
 			}
 		}catch(Exception ex){
+			user.cerrarSession();
+			return ERROR;
+		}*/
+		
+		try {
+			if(contra.get(0)!=null) {
+				
+				user.cerrarSession();
+				rut=contra.get(0);
+				nombre=contra.get(1);
+				rol=contra.get(2);
+				return SUCCESS;
+			}else {
+				user.cerrarSession();
+				return ERROR;
+			}
+			
+		}catch(Exception ex ) {
 			user.cerrarSession();
 			return ERROR;
 		}
@@ -47,7 +65,25 @@ public class ControllerVistas extends ActionSupport{
 	private String usuario;
 	private String pass;
 	private String nombre;
+	private String rut;
+	private String rol;
 	
+	public String getRut() {
+		return rut;
+	}
+
+	public void setRut(String rut) {
+		this.rut = rut;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

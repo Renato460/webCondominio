@@ -1,5 +1,6 @@
 package webCondominio.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ParameterMode;
@@ -47,8 +48,8 @@ public class ControllerConexion {
 		factory.close();
 	}
 	
-	public List<ModelUsuario> login(String user){
-		try {
+	public List<String> login(String user, String pass){
+		/*try {
 			List<ModelUsuario> usuario = session.createQuery("from ModelUsuario WHERE usuario="+"'"+user+"'").list();
 			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+user);
 			System.out.println(usuario.get(0).getUsuario());
@@ -56,7 +57,59 @@ public class ControllerConexion {
 		return usuario;
 		}catch(Exception ex) {
 		return null;
-		}
+		}*/
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_usuarios.getusuario")
+				.registerStoredProcedureParameter(
+					"p_usuario",
+				    String.class,
+				    ParameterMode.IN
+				)
+				.registerStoredProcedureParameter(
+						"p_password",
+					    String.class,
+					    ParameterMode.IN
+					)
+				.registerStoredProcedureParameter(
+				    "p_run",
+				    String.class,
+				    ParameterMode.OUT
+				)
+				.registerStoredProcedureParameter(
+					    "p_nombre",
+					    String.class,
+					    ParameterMode.OUT
+					)
+				.registerStoredProcedureParameter(
+					    "p_rol",
+					    String.class,
+					    ParameterMode.OUT
+					)
+				.setParameter("p_usuario",user).setParameter("p_password", pass);
+				 
+				try {
+				    query.execute();
+				     
+				    String run = (String) query.getOutputParameterValue("p_run");
+				    String nombre = (String) query.getOutputParameterValue("p_nombre");
+				    String rol = (String) query.getOutputParameterValue("p_rol");
+				    List<String> usuario= new ArrayList<String>();
+				    usuario.add(run);
+				    usuario.add(nombre);
+				    usuario.add(rol);
+				    System.out.println(run);
+				    System.out.println(nombre);
+				    System.out.println(rol);
+				    return (usuario);
+				 
+				}catch(Exception ex){
+					System.out.println(ex);
+					return (null);
+				} finally {
+				    query.unwrap(ProcedureOutputs.class)
+				    .release();
+				    
+				}
 	}
 	
 	public String perfil() {
