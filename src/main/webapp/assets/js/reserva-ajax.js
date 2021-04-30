@@ -2,7 +2,7 @@
  * 
  */
  function getMenuReservas(){
-	$("#cuerpo").append(' ');
+	$("#cuerpo").empty();
  $.ajax({
 		url: 'reserva.action',
 		type: "POST",
@@ -19,4 +19,5 @@
 	    	$("#cuerpo").append(data);
 	    }
 	});
+	
 }

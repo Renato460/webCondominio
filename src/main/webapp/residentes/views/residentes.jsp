@@ -18,24 +18,17 @@
 
 
 <!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link
 	href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css"
+	rel="stylesheet" />
 
 <!-- Favicons -->
-<link rel="apple-touch-icon"
-	href="/docs/5.0/assets/img/favicons/apple-touch-icon.png"
-	sizes="180x180">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png"
-	sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png"
-	sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
-<link rel="mask-icon"
-	href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg"
-	color="#7952b3">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
+
 
 
 <style>
@@ -86,9 +79,12 @@
 					<ul class="nav flex-column">
 						<li class="nav-item"><s:a class="nav-link multa"
 								aria-current="page" onclick="getMenuMultas()" href="#">Multas</s:a>
+						</li>
 						<li class="nav-item"><s:a class="nav-link reserva"
 								aria-current="page" onclick="getMenuReservas()" href="#">Reservas</s:a>
 						</li>
+						<li class="nav-item"><s:a class="nav-link reserva"
+								aria-current="page" action="pago">Pagar</s:a></li>
 					</ul>
 				</div>
 			</nav>
@@ -109,35 +105,46 @@
 					</div>
 				</div>
 
-				<div id="cuerpo" class="cuerpo">
-				
-				</div>
-				
-<div id="modal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p id="modalTexto"></p>
-      </div>
-      <div class="modal-footer">
+				<div id="cuerpo" class="cuerpo"></div>
 
+				<div id="modal" class="modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p id="modalTexto"></p>
+							</div>
+							<div class="modal-footer"></div>
+						</div>
+					</div>
+				</div>
 			</main>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		$(function() {
+			$('#datetimepicker2').datetimepicker();
+		});
+	</script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/reserva-ajax.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/multa-ajax.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
@@ -147,6 +154,9 @@
 		src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
 		integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
 		crossorigin="anonymous"></script>
-	<script src="dashboard.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
