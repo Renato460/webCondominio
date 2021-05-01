@@ -66,7 +66,7 @@
 		</button>
 		<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
 		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap"><s:a class="nav-link">Salir</s:a>
+			<li class="nav-item text-nowrap"><s:a class="nav-link" href="logout.action">Salir</s:a>
 			</li>
 		</ul>
 	</header>
@@ -105,33 +105,17 @@
 					</div>
 				</div>
 
-				<div id="cuerpo" class="cuerpo"></div>
-
-				<div id="modal" class="modal" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Modal title</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p id="modalTexto"></p>
-							</div>
-							<div class="modal-footer"></div>
-						</div>
-					</div>
+				<div id="cuerpo" class="cuerpo">
+				
+				<h3>hello <s:property value="#session['user'].usuario" /></h3>
+				
 				</div>
-			</main>
-		</div>
+
+
+		</main>
 	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('#datetimepicker2').datetimepicker();
-		});
-	</script>
+	</div>
+
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>

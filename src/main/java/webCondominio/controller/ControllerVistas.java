@@ -1,37 +1,74 @@
 package webCondominio.controller;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
-import webCondominio.model.ModelReserva;
+import webCondominio.model.ModelLoginUsuario;
 import webCondominio.model.ModelServicio;
-import webCondominio.model.ModelUsuario;
 
 
-public class ControllerVistas extends ActionSupport{
+
+public class ControllerVistas extends ActionSupport implements SessionAware{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2319678465301617196L;
+
+	/**
+	 * 
+	 */
 	
+	private Map<String,Object> session;
+	public Map<String, Object> getSession() {
+		return session;
+	}
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+	@Override
 	public String execute() {
-		ControllerConexion user = new ControllerConexion();
-		List<ModelUsuario> contra = user.login(usuario);
-		try {
-			if((contra.get(0).getUsuario().equals(usuario))&&(contra.get(0).getPassword().equals(pass))) 
-			{
-				user.cerrarSession();
+	
+		ModelLoginUsuario userLogin = (ModelLoginUsuario)session.get("user");
+		if(userLogin!=null) {
+			return SUCCESS;
+		}else {
+			ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass);
+			if(isValid(nuevoUsuario)){
+				session.put("user", nuevoUsuario);
 				return SUCCESS;
-			}else {
-				user.cerrarSession();
-			return ERROR;
 			}
-		}catch(Exception ex){
-			user.cerrarSession();
-			return ERROR;
+			return INPUT;
 		}
 	}
+	
+	public boolean isValid(ModelLoginUsuario usuarioLogin) {
+		ControllerConexion user = new ControllerConexion();
+		List<String> contra = user.login(usuarioLogin.getUsuario(), usuarioLogin.getPassword());
+		
+		try {
+			if(contra.get(0)!=null) {
+				
+				user.cerrarSession();
+				rut=contra.get(0);
+				nombre=contra.get(1);
+				rol=contra.get(2);
+				return true;
+				
+			}else {
+				user.cerrarSession();
+				return false;
+			}
+			
+		}catch(Exception ex ) {
+			user.cerrarSession();
+			return false;
+		}
+	}
+	
 
 	public String servicios() {
 		ControllerConexion reserva = new ControllerConexion();
@@ -47,7 +84,25 @@ public class ControllerVistas extends ActionSupport{
 	private String usuario;
 	private String pass;
 	private String nombre;
+	private String rut;
+	private String rol;
 	
+	public String getRut() {
+		return rut;
+	}
+
+	public void setRut(String rut) {
+		this.rut = rut;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

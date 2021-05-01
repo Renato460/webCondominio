@@ -20,8 +20,7 @@
 	    	console.log(data);
 			
 	    	$("#cuerpo").append(data);
-			$("#modal").modal('show');
-			$("#modalTexto").text('Bienvenido al modulo de multas');
+
 	    }
 	});
 }
