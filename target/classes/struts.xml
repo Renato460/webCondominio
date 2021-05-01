@@ -4,38 +4,83 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 
 	<package name="default" extends="struts-default">
-		<action name="pago"	class="webCondominio.controller.ControllerPago">
-			<result name="success" type="redirect">${urlPago}</result> 
+		<action name="pago"
+			class="webCondominio.controller.ControllerPago">
+			<result name="success" type="redirect">${urlPago}</result>
 		</action>
-	</package> 
-	
+	</package>
+
 	<package name="residente" namespace="/residentes"
 		extends="struts-default">
-		
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+				class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+
+		</interceptors>
+
+		<!-- <action name="login" class="webCondominio.controller.ControllerVistas"> 
+			<result name="success">views/residentes.jsp</result> <result name="error" 
+			type="redirectAction"> <param name="actionName">return</param> <param name="namespace">/</param> 
+			</result> </action> -->
+
 		<action name="login"
 			class="webCondominio.controller.ControllerVistas">
-			<result name="success">views/residentes.jsp</result>
-			<result name="error" type="redirectAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">residente</param>
+				<param name="namespace">/residentes</param>
+			</result>
+			<result name="input" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
 			</result>
 		</action>
-		
+
+		<action name="logout"
+			class="webCondominio.controller.LogoutAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="residente">
+			<interceptor-ref name="secureStack" />
+			<result>views/residentes.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
 		<action name="multa"
 			class="webCondominio.controller.ControllerVistas" method="multas">
+			<interceptor-ref name="secureStack" />
 			<result name="success">views/multas.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
 		</action>
-		
+
 		<action name="reserva"
 			class="webCondominio.controller.ControllerVistas" method="servicios">
+			<interceptor-ref name="secureStack" />
 			<result name="success">views/reservas.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
 		</action>
-		
 
-		
+
+
 	</package>
 
 	<package name="index" extends="struts-default" namespace="/">

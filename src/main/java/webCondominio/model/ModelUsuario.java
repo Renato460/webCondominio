@@ -11,9 +11,7 @@ import javax.persistence.Table;
 public class ModelUsuario {
 
 	
-	public ModelUsuario(){
-		
-	}
+	public ModelUsuario() {}
 
 	private int id_usuario;
 	

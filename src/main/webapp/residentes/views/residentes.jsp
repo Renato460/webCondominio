@@ -66,7 +66,7 @@
 		</button>
 		<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
 		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap"><s:a class="nav-link">Salir</s:a>
+			<li class="nav-item text-nowrap"><s:a class="nav-link" href="logout.action">Salir</s:a>
 			</li>
 		</ul>
 	</header>
@@ -105,17 +105,17 @@
 					</div>
 				</div>
 
-				<div id="cuerpo" class="cuerpo"></div>
+				<div id="cuerpo" class="cuerpo">
+				
+				<h3>hello <s:property value="#session['user'].usuario" /></h3>
+				
+				</div>
 
 
 		</main>
 	</div>
 	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('#datetimepicker2').datetimepicker();
-		});
-	</script>
+
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
