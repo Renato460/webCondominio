@@ -1,5 +1,6 @@
 package webCondominio.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,9 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.procedure.ProcedureOutputs;
 
-
+import webCondominio.model.ModelMulta;
 import webCondominio.model.ModelServicio;
-import webCondominio.model.ModelUsuario;
+
 
 public class ControllerConexion {
 	
@@ -47,6 +48,43 @@ public class ControllerConexion {
 		session.close();
 		factory.close();
 	}
+	
+	public List<Object[]> multas(String rut){
+		System.out.println("-------------------->Entroooooo");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_multas.getmultas")
+				.registerStoredProcedureParameter(
+					"p_rut",
+				    String.class,
+				    ParameterMode.IN
+				)
+				.registerStoredProcedureParameter(
+				    "p_cursormultas",
+				    Class.class,
+				    ParameterMode.REF_CURSOR
+				)
+				.setParameter("p_rut", rut);
+				 
+				try {
+				    query.execute();
+				     
+				    List<Object[]> cursorMultas = query.getResultList();
+				    System.out.println(cursorMultas.get(0)[0].getClass());
+				    //System.out.println("---------->"+idmulta);
+				    //ModelMulta multa = new ModelMulta(cursorMultas.get(0).getId_multa(),cursorMultas.get(0).getFecha(),cursorMultas.get(0).getDescripcion(),cursorMultas.get(0).getMonto());
+				    //List<ModelMulta> multas = new ArrayList<ModelMulta>();
+				    //System.out.println("------------>"+cursorMultas.getDescripcion());
+				    //System.out.println(cursorMultas.get(0)[0]);
+				    //cursorMultas.forEach(System.out::println);
+				    return cursorMultas;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return null;
+				} 
+	}
+	
+	
+	
 	
 	public List<String> login(String user, String pass){
 		/*try {

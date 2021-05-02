@@ -8,7 +8,7 @@
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 bd-highlight"><h5>Quincho</h5></div>
 			<div class="p-2 col-4 bd-highlight"><h5>Costo: $10.000</h5></div>
-			<div class="p-2 col-4 bd-highlight"><button type="button" id="buttonQuincho" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="QUINCHO" onclick="modalFormulario()">Reserva</button></div>
+			<div class="p-2 col-4 bd-highlight"><button type="button" id="buttonQuincho" class="btn btn-primary buttonQuincho" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="QUINCHO" onclick="modalFormulario(buttonQuincho)">Reserva</button></div>
 		</div>
 		
 		
@@ -16,14 +16,14 @@
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 bd-highlight"><h5 class=>Multicancha</h5></div>
 			<div class="p-2 col-4 bd-highlight"><h5 class=>Costo: $8.000</h5></div>
-			<div class="p-2 col-4 bd-highlight"><button type="button" id="buttonQuincho" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="MULTICANCHA" onclick="modalFormulario()">Reserva</button></div>
+			<div class="p-2 col-4 bd-highlight"><button type="button" id="buttonMulticancha" class="btn btn-primary buttonMulticancha" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="MULTICANCHA" onclick="modalFormulario(buttonMulticancha)">Reserva</button></div>
 		</div>			
 	</a> 
 	<a href="#" class="list-group-item list-group-item-action">
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 flex-fill bd-highlight"><h5 class="mx-auto">Sala de Eventos</h5></div>
 			<div class="p-2 col-4 flex-fill bd-highlight"><h5>Costo: $20.000</h5></div>
-			<div class="p-2 col-4 flex-fill bd-highlight"><button type="button" id="buttonQuincho" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="SALA DE EVENTOS" onclick="modalFormulario()">Reserva</button></div>
+			<div class="p-2 col-4 flex-fill bd-highlight"><button type="button" id="buttonEvento" class="btn btn-primary buttonEvento" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="SALA DE EVENTOS" onclick="modalFormulario(buttonEvento)">Reserva</button></div>
 		</div>
 		
 			
@@ -31,7 +31,7 @@
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 flex-fill bd-highlight"><h5>Estacionamiento</h5></div>
 			<div class="p-2 col-4 flex-fill bd-highlight"><h5>Costo: $1.000</h5></div>
-			<div class="p-2 col-4 flex-fill bd-highlight"><button type="button" id="buttonQuincho" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="ESTACIONAMIENTO" onclick="modalFormulario()">Reserva</button></div>
+			<div class="p-2 col-4 flex-fill bd-highlight"><button type="button" id="buttonEstacionamiento" class="btn btn-primary buttonEstacionamiento" data-bs-toggle="modal" data-bs-target="#datosResidente" data-bs-whatever="ESTACIONAMIENTO" onclick="modalFormulario(buttonEstacionamiento)">Reserva</button></div>
 		</div>
 		
 			
