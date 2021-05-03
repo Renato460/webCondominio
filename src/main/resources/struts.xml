@@ -13,6 +13,13 @@
 		</action>
 	</package>
 
+	<package name="pago" extends="json-default" namespace="/">
+		<action name="getPagoAction"
+			class="webCondominio.action.ActionPago">
+			<result type="json" />
+		</action>
+	</package>
+
 	<package name="residente" namespace="/residentes"
 		extends="struts-default">
 		<interceptors>
@@ -59,8 +66,7 @@
 			</result>
 		</action>
 
-		<action name="multa"
-			class="webCondominio.controller.ControllerVistas" method="multas">
+		<action name="multa" class="webCondominio.action.ActionMulta">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/multas.jsp</result>
 			<result name="login" type="redirectAction">
@@ -80,7 +86,7 @@
 		</action>
 
 		<action name="anuncio"
-			class="webCondominio.controller.ControllerVistas" method="anuncios">
+			class="webCondominio.action.ActionAnuncio">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/anuncios.jsp</result>
 			<result name="login" type="redirectAction">
@@ -89,9 +95,7 @@
 			</result>
 		</action>
 
-<action name="getPagoAction" class="webCondominio.controller.ControllerVistas" method="getPago">
-	<result type="JSON"/>
-</action>
+
 
 
 	</package>

@@ -54,7 +54,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	
 	public boolean isValid(String usuario, String pass) {
 		ControllerConexion user = new ControllerConexion();
-		anunciosLista= user.anuncios();
+		//anunciosLista= user.anuncios();
 		
 		List<String> contra = user.login(usuario, pass);
 		
@@ -65,7 +65,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 				rut=contra.get(0);
 				nombre=contra.get(1);
 				rol=contra.get(2);
-				System.out.println("-------------->>>>>>>>"+anunciosLista.get(0).getDescripcion());
+				//System.out.println("-------------->>>>>>>>"+anunciosLista.get(0).getDescripcion());
 				return true;
 				
 			}else {
@@ -89,43 +89,23 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	}
 	
 	
-	public String multas() {
+	/*public String multas() {
 		ControllerConexion multas = new ControllerConexion();
 		System.out.println("rut--------->"+((ModelLoginUsuario)session.get("user")).getRut());
 		numeroMultas = multas.multas(((ModelLoginUsuario)session.get("user")).getRut());
 		multas.cerrarSession();
 		
 		return SUCCESS;
-	}
-	
-	public String anuncios() {
-		ControllerConexion anuncios = new ControllerConexion();
-		anunciosLista= anuncios.anuncios();
-		anuncios.cerrarSession();
-		return SUCCESS;
-	}
-	
+	}*/
 
 	private String usuario;
 	private String pass;
 	private String nombre;
 	private String rut;
 	private String rol;
-	private ArrayList<ModelMulta> numeroMultas;
-	private ArrayList<ModelAnuncios> anunciosLista;
 	
-	public ArrayList<ModelAnuncios> getAnunciosLista() {
-		return anunciosLista;
-	}
-	public void setAnunciosLista(ArrayList<ModelAnuncios> anunciosLista) {
-		this.anunciosLista = anunciosLista;
-	}
-	public ArrayList<ModelMulta> getNumeroMultas() {
-		return numeroMultas;
-	}
-	public void setNumeroMultas(ArrayList<ModelMulta> numeroMultas) {
-		this.numeroMultas = numeroMultas;
-	}
+	
+
 	public String getRut() {
 		return rut;
 	}
@@ -163,6 +143,4 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
-
 }
