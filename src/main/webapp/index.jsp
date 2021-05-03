@@ -50,7 +50,7 @@
 
 	<main class="form-signin">
 		<form action="residentes/login.action" class="needs-validation" novalidate method="post">
-			<img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg"
+			<img class="mb-4" src="${ pageContext.request.contextPath }/assets/img/logo_condo.jpg"
 				alt="" width="72" height="57">
 			<h1 class="h3 mb-3 fw-normal">Entra tus datos</h1>
 

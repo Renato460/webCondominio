@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 
 	<package name="default" extends="struts-default">
 		<action name="pago"
@@ -79,6 +79,19 @@
 			</result>
 		</action>
 
+		<action name="anuncio"
+			class="webCondominio.controller.ControllerVistas" method="anuncios">
+			<interceptor-ref name="secureStack" />
+			<result name="success">views/anuncios.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+<action name="getPagoAction" class="webCondominio.controller.ControllerVistas" method="getPago">
+	<result type="JSON"/>
+</action>
 
 
 	</package>

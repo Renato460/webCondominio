@@ -1,5 +1,7 @@
 package webCondominio.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +15,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.procedure.ProcedureOutputs;
 
-
+import webCondominio.model.ModelAnuncios;
+import webCondominio.model.ModelMulta;
 import webCondominio.model.ModelServicio;
-import webCondominio.model.ModelUsuario;
+
 
 public class ControllerConexion {
 	
@@ -47,6 +50,84 @@ public class ControllerConexion {
 		session.close();
 		factory.close();
 	}
+	
+	public ArrayList<ModelMulta> multas(String rut){
+		System.out.println("-------------------->Entroooooo");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_multas.getmultas")
+				.registerStoredProcedureParameter(
+					"p_rut",
+				    String.class,
+				    ParameterMode.IN
+				)
+				.registerStoredProcedureParameter(
+				    "p_cursormultas",
+				    Class.class,
+				    ParameterMode.REF_CURSOR
+				)
+				.setParameter("p_rut", rut);
+				 
+				try {
+				    query.execute();
+				     
+				    List<Object[]> cursorMultas = query.getResultList();
+				    ArrayList<ModelMulta> multas = new ArrayList<ModelMulta>();
+				    for(Object[] obj:cursorMultas){
+				    	
+				    	int idMulta = Integer.parseInt(obj[0].toString());
+				    	SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd hh:mm:ss");
+				    	java.util.Date date = sdf.parse(obj[3].toString());
+				    	Date fecha = new Date(date.getTime());
+				    	
+				    	String descripcion = obj[1].toString();
+				    	
+				    	int monto = Integer.parseInt(obj[2].toString());
+				    	
+				    	ModelMulta multa = new ModelMulta(idMulta, fecha, descripcion, monto);
+				    	multas.add(multa);
+				    	
+				    }
+
+				    return multas;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return null;
+				} 
+	}
+	
+	public ArrayList<ModelAnuncios> anuncios(){
+		
+		System.out.println("-------------------->Anuncios");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_anuncios.getanuncios")
+				.registerStoredProcedureParameter(
+				    "p_cursoranuncios",
+				    Class.class,
+				    ParameterMode.REF_CURSOR);
+								 
+				try {
+				    query.execute();
+				     
+				    List<Object[]> anunciosQuery = query.getResultList();
+				    
+				    ArrayList<ModelAnuncios> anuncios = new ArrayList<ModelAnuncios>();
+				    for(Object[] obj:anunciosQuery){
+				    	
+				    	int idAnuncio = Integer.parseInt(obj[0].toString());
+				    	String descripcion = obj[1].toString();
+				    	System.out.println(descripcion);
+				    	String url = obj[2].toString();
+				    	System.out.println(url);
+				    	ModelAnuncios anuncio = new ModelAnuncios(idAnuncio,descripcion,url);
+				    	anuncios.add(anuncio);
+				    }
+				    return anuncios;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return null;
+				} 
+	};
+	
 	
 	public List<String> login(String user, String pass){
 		/*try {

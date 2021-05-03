@@ -1,30 +1,31 @@
-<div class="mt-5 mb-3">
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="mt-2 mb-3">
 	<h4>Revisa tus Multas</h4>
 </div>
 
-<h5>Ingresa tus datos</h5>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Id Multa</th>
+			<th scope="col">Descripción</th>
+			<th scope="col">Monto</th>
+			<th scope="col">Fecha</th>
+		</tr>
+	</thead>
+	<tbody>
 
-<form action="/action_page.php">
-	<div class="container">
-		<div class="row">
-			<div class='col-sm-6'>
-				<h6>Nombre:</h6>
-				<input type="text" id="fname" name="fname"><br>
-				<br>
-				<h6>Apellido:</h6>
-				<input type="text" id="lname" name="lname"><br>
-				<br>
-				<h6>RUT:</h6>
-				<input type="text" id="rut" name="rut"><br>
-				<br>
-
-				<div class="mt-3 mb-3">
-					<button type="button" id="bmultas" name="bmultas"
-						class="btn btn-primary btn-lg">Buscar Multas</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>
+		<s:iterator value="numeroMultas" var="cant" status="status">
+			<tr>
+				<td><s:property value="#cant.getId_multa()" /></td>
+				<td><s:property value="#cant.getDescripcion()" /></td>
+				<td><s:property value="#cant.getMonto()" /></td>
+				<td><s:property value="#cant.getFecha()" /></td>
+			</tr>
+		</s:iterator>
 
 
+
+	</tbody>
+</table>
