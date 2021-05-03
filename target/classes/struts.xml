@@ -89,6 +89,11 @@
 			</result>
 		</action>
 
+<action name="getPagoAction" class="webCondominio.controller.ControllerVistas" method="getPago">
+	<result type="JSON"/>
+</action>
+
+
 	</package>
 
 	<package name="index" extends="struts-default" namespace="/">
