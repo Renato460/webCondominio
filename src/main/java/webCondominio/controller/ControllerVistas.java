@@ -1,10 +1,12 @@
 package webCondominio.controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
+import webCondominio.model.ModelAnuncios;
 import webCondominio.model.ModelLoginUsuario;
 import webCondominio.model.ModelMulta;
 import webCondominio.model.ModelServicio;
@@ -43,6 +45,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 				ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 				session.put("user", nuevoUsuario);
 				System.out.println(((ModelLoginUsuario)session.get("user")).getPassword());
+				
 				return SUCCESS;
 			}
 			return INPUT;
@@ -51,6 +54,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	
 	public boolean isValid(String usuario, String pass) {
 		ControllerConexion user = new ControllerConexion();
+		anunciosLista= user.anuncios();
 		
 		List<String> contra = user.login(usuario, pass);
 		
@@ -61,6 +65,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 				rut=contra.get(0);
 				nombre=contra.get(1);
 				rol=contra.get(2);
+				System.out.println("-------------->>>>>>>>"+anunciosLista.get(0).getDescripcion());
 				return true;
 				
 			}else {
@@ -88,11 +93,17 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 		ControllerConexion multas = new ControllerConexion();
 		System.out.println("rut--------->"+((ModelLoginUsuario)session.get("user")).getRut());
 		numeroMultas = multas.multas(((ModelLoginUsuario)session.get("user")).getRut());
+		multas.cerrarSession();
 		
 		return SUCCESS;
 	}
 	
-	
+	public String anuncios() {
+		ControllerConexion anuncios = new ControllerConexion();
+		anunciosLista= anuncios.anuncios();
+		anuncios.cerrarSession();
+		return SUCCESS;
+	}
 	
 
 	private String usuario;
@@ -100,12 +111,19 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	private String nombre;
 	private String rut;
 	private String rol;
-	private List<Object[]> numeroMultas;
+	private ArrayList<ModelMulta> numeroMultas;
+	private ArrayList<ModelAnuncios> anunciosLista;
 	
-	public List<Object[]> getNumeroMultas() {
+	public ArrayList<ModelAnuncios> getAnunciosLista() {
+		return anunciosLista;
+	}
+	public void setAnunciosLista(ArrayList<ModelAnuncios> anunciosLista) {
+		this.anunciosLista = anunciosLista;
+	}
+	public ArrayList<ModelMulta> getNumeroMultas() {
 		return numeroMultas;
 	}
-	public void setNumeroMultas(List<Object[]> numeroMultas) {
+	public void setNumeroMultas(ArrayList<ModelMulta> numeroMultas) {
 		this.numeroMultas = numeroMultas;
 	}
 	public String getRut() {

@@ -1,27 +1,31 @@
-<div class="mt-5 mb-3">
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="mt-2 mb-3">
 	<h4>Revisa tus Multas</h4>
 </div>
 
-<table class="table table-success table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Id Multa</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Monto</th>
-      <th scope="col">Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    
-      <td></td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-     
-    </tr>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Id Multa</th>
+			<th scope="col">DescripciÃ³n</th>
+			<th scope="col">Monto</th>
+			<th scope="col">Fecha</th>
+		</tr>
+	</thead>
+	<tbody>
 
-  </tbody>
+		<s:iterator value="numeroMultas" var="cant" status="status">
+			<tr>
+				<td><s:property value="#cant.getId_multa()" /></td>
+				<td><s:property value="#cant.getDescripcion()" /></td>
+				<td><s:property value="#cant.getMonto()" /></td>
+				<td><s:property value="#cant.getFecha()" /></td>
+			</tr>
+		</s:iterator>
+
+
+
+	</tbody>
 </table>
-
-

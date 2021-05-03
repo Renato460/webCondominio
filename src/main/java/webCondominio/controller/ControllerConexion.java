@@ -1,6 +1,7 @@
 package webCondominio.controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.procedure.ProcedureOutputs;
 
+import webCondominio.model.ModelAnuncios;
 import webCondominio.model.ModelMulta;
 import webCondominio.model.ModelServicio;
 
@@ -49,7 +51,7 @@ public class ControllerConexion {
 		factory.close();
 	}
 	
-	public List<Object[]> multas(String rut){
+	public ArrayList<ModelMulta> multas(String rut){
 		System.out.println("-------------------->Entroooooo");
 		StoredProcedureQuery query = session
 				.createStoredProcedureQuery("pkg_multas.getmultas")
@@ -69,21 +71,62 @@ public class ControllerConexion {
 				    query.execute();
 				     
 				    List<Object[]> cursorMultas = query.getResultList();
-				    System.out.println(cursorMultas.get(0)[0].getClass());
-				    //System.out.println("---------->"+idmulta);
-				    //ModelMulta multa = new ModelMulta(cursorMultas.get(0).getId_multa(),cursorMultas.get(0).getFecha(),cursorMultas.get(0).getDescripcion(),cursorMultas.get(0).getMonto());
-				    //List<ModelMulta> multas = new ArrayList<ModelMulta>();
-				    //System.out.println("------------>"+cursorMultas.getDescripcion());
-				    //System.out.println(cursorMultas.get(0)[0]);
-				    //cursorMultas.forEach(System.out::println);
-				    return cursorMultas;
+				    ArrayList<ModelMulta> multas = new ArrayList<ModelMulta>();
+				    for(Object[] obj:cursorMultas){
+				    	
+				    	int idMulta = Integer.parseInt(obj[0].toString());
+				    	SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd hh:mm:ss");
+				    	java.util.Date date = sdf.parse(obj[3].toString());
+				    	Date fecha = new Date(date.getTime());
+				    	
+				    	String descripcion = obj[1].toString();
+				    	
+				    	int monto = Integer.parseInt(obj[2].toString());
+				    	
+				    	ModelMulta multa = new ModelMulta(idMulta, fecha, descripcion, monto);
+				    	multas.add(multa);
+				    	
+				    }
+
+				    return multas;
 				}catch(Exception ex){
 					System.out.println(ex);
 					return null;
 				} 
 	}
 	
-	
+	public ArrayList<ModelAnuncios> anuncios(){
+		
+		System.out.println("-------------------->Anuncios");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_anuncios.getanuncios")
+				.registerStoredProcedureParameter(
+				    "p_cursoranuncios",
+				    Class.class,
+				    ParameterMode.REF_CURSOR);
+								 
+				try {
+				    query.execute();
+				     
+				    List<Object[]> anunciosQuery = query.getResultList();
+				    
+				    ArrayList<ModelAnuncios> anuncios = new ArrayList<ModelAnuncios>();
+				    for(Object[] obj:anunciosQuery){
+				    	
+				    	int idAnuncio = Integer.parseInt(obj[0].toString());
+				    	String descripcion = obj[1].toString();
+				    	System.out.println(descripcion);
+				    	String url = obj[2].toString();
+				    	System.out.println(url);
+				    	ModelAnuncios anuncio = new ModelAnuncios(idAnuncio,descripcion,url);
+				    	anuncios.add(anuncio);
+				    }
+				    return anuncios;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return null;
+				} 
+	};
 	
 	
 	public List<String> login(String user, String pass){
