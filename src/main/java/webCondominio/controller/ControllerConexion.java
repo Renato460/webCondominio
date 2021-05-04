@@ -51,6 +51,82 @@ public class ControllerConexion {
 		factory.close();
 	}
 	
+	public boolean setReservaUsuario(Date fecha,String runUsuario, Integer idServicio, Integer idHorario) {
+		
+		System.out.println("-------------------->Seteando reserva");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_reservas.setreserva")
+				.registerStoredProcedureParameter(
+					"p_fecha",
+				    Date.class,
+				    ParameterMode.IN
+				).registerStoredProcedureParameter(
+						"p_runusuario",
+					    String.class,
+					    ParameterMode.IN
+					).registerStoredProcedureParameter(
+							"p_idservicio",
+							Integer.class,
+						    ParameterMode.IN
+						).registerStoredProcedureParameter(
+								"p_idhorario",
+							    Integer.class,
+							    ParameterMode.IN
+							).registerStoredProcedureParameter(
+									"p_confirm",
+								    Boolean.class,
+								    ParameterMode.OUT
+								).setParameter("p_fecha", fecha )
+									.setParameter("p_runusuario", runUsuario )
+									.setParameter("p_idservicio", idServicio )
+									.setParameter("p_idhorario", idHorario );
+				 
+				try {
+					query.execute();
+				     
+				    Boolean exito = (Boolean) query.getOutputParameterValue("p_confirm");
+				     
+				    return exito;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return false;
+				} 
+	}
+	
+	public ArrayList<String> getDisponibilidad(Date fecha, Integer idServicio) {
+		
+		System.out.println("-------------------->get dispo");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_reservas.getdisponibilidad")
+				.registerStoredProcedureParameter(
+							"p_fecha",
+							Date.class,
+						    ParameterMode.IN
+						).registerStoredProcedureParameter(
+								"p_idservicio",
+							    Integer.class,
+							    ParameterMode.IN
+							).registerStoredProcedureParameter(
+									"p_horariosdisp",
+								    Class.class,
+								    ParameterMode.REF_CURSOR
+								).setParameter("p_fecha", fecha )
+								.setParameter("p_idservicio", idServicio );
+				try {
+					query.execute();
+					List<Object[]> cursorHorarios = query.getResultList();
+				    ArrayList<String> horarios = new ArrayList<String>();
+				    for(Object[] obj:cursorHorarios){
+				    	String horario = obj[1].toString();
+				    	System.out.println(horario);
+				    	horarios.add(horario);	
+				    }
+				    return horarios;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return null;
+				} 
+	}
 	public ArrayList<ModelMulta> multas(String rut){
 		System.out.println("-------------------->Entroooooo");
 		StoredProcedureQuery query = session
@@ -128,17 +204,8 @@ public class ControllerConexion {
 				} 
 	};
 	
-	
 	public List<String> login(String user, String pass){
-		/*try {
-			List<ModelUsuario> usuario = session.createQuery("from ModelUsuario WHERE usuario="+"'"+user+"'").list();
-			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"+user);
-			System.out.println(usuario.get(0).getUsuario());
 
-		return usuario;
-		}catch(Exception ex) {
-		return null;
-		}*/
 		StoredProcedureQuery query = session
 				.createStoredProcedureQuery("pkg_usuarios.getusuario")
 				.registerStoredProcedureParameter(

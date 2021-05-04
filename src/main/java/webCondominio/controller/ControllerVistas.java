@@ -1,15 +1,10 @@
 package webCondominio.controller;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
-
-import webCondominio.model.ModelAnuncios;
 import webCondominio.model.ModelLoginUsuario;
-import webCondominio.model.ModelMulta;
-import webCondominio.model.ModelServicio;
+
 
 
 
@@ -40,7 +35,6 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 		if(userLogin!=null) {
 			return SUCCESS;
 		}else {
-			//ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 			if(isValid(usuario, pass)){
 				ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 				session.put("user", nuevoUsuario);
@@ -54,10 +48,8 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	
 	public boolean isValid(String usuario, String pass) {
 		ControllerConexion user = new ControllerConexion();
-		anunciosLista= user.anuncios();
-		
 		List<String> contra = user.login(usuario, pass);
-		
+
 		try {
 			if(contra.get(0)!=null) {
 				
@@ -65,7 +57,6 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 				rut=contra.get(0);
 				nombre=contra.get(1);
 				rol=contra.get(2);
-				System.out.println("-------------->>>>>>>>"+anunciosLista.get(0).getDescripcion());
 				return true;
 				
 			}else {
@@ -78,54 +69,13 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 			return false;
 		}
 	}
-	
-
-	public String servicios() {
-		ControllerConexion reserva = new ControllerConexion();
-		List<ModelServicio> reservas= reserva.getServicios();
-		reserva.cerrarSession();
-		System.out.println(reservas.get(0).getNombre_servicio());
-		return SUCCESS;
-	}
-	
-	
-	public String multas() {
-		ControllerConexion multas = new ControllerConexion();
-		System.out.println("rut--------->"+((ModelLoginUsuario)session.get("user")).getRut());
-		numeroMultas = multas.multas(((ModelLoginUsuario)session.get("user")).getRut());
-		multas.cerrarSession();
-		
-		return SUCCESS;
-	}
-	
-	public String anuncios() {
-		ControllerConexion anuncios = new ControllerConexion();
-		anunciosLista= anuncios.anuncios();
-		anuncios.cerrarSession();
-		return SUCCESS;
-	}
-	
 
 	private String usuario;
 	private String pass;
 	private String nombre;
 	private String rut;
 	private String rol;
-	private ArrayList<ModelMulta> numeroMultas;
-	private ArrayList<ModelAnuncios> anunciosLista;
 	
-	public ArrayList<ModelAnuncios> getAnunciosLista() {
-		return anunciosLista;
-	}
-	public void setAnunciosLista(ArrayList<ModelAnuncios> anunciosLista) {
-		this.anunciosLista = anunciosLista;
-	}
-	public ArrayList<ModelMulta> getNumeroMultas() {
-		return numeroMultas;
-	}
-	public void setNumeroMultas(ArrayList<ModelMulta> numeroMultas) {
-		this.numeroMultas = numeroMultas;
-	}
 	public String getRut() {
 		return rut;
 	}
@@ -146,7 +96,6 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -163,6 +112,4 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
-
 }

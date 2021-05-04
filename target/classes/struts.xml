@@ -13,8 +13,15 @@
 		</action>
 	</package>
 
+	<package name="pagoJson" extends="json-default" namespace="/">
+		<action name="getPagoActionJason"
+			class="webCondominio.action.ActionPago">
+			<result type="json" />
+		</action>
+	</package>
+
 	<package name="residente" namespace="/residentes"
-		extends="struts-default">
+		extends="struts-default, json-default">
 		<interceptors>
 			<interceptor name="authenticationInterceptor"
 				class="webCondominio.controller.AuthenticationInterceptor" />
@@ -22,7 +29,6 @@
 				<interceptor-ref name="authenticationInterceptor" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
-
 		</interceptors>
 
 		<!-- <action name="login" class="webCondominio.controller.ControllerVistas"> 
@@ -49,7 +55,14 @@
 				<param name="namespace">/</param>
 			</result>
 		</action>
-
+		
+		<action name="getPagoAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">getPagoActionJason</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
 		<action name="residente">
 			<interceptor-ref name="secureStack" />
 			<result>views/residentes.jsp</result>
@@ -59,8 +72,7 @@
 			</result>
 		</action>
 
-		<action name="multa"
-			class="webCondominio.controller.ControllerVistas" method="multas">
+		<action name="multa" class="webCondominio.action.ActionMulta">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/multas.jsp</result>
 			<result name="login" type="redirectAction">
@@ -70,7 +82,7 @@
 		</action>
 
 		<action name="reserva"
-			class="webCondominio.controller.ControllerVistas" method="servicios">
+			class="webCondominio.action.ActionServicio">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/reservas.jsp</result>
 			<result name="login" type="redirectAction">
@@ -80,7 +92,7 @@
 		</action>
 
 		<action name="anuncio"
-			class="webCondominio.controller.ControllerVistas" method="anuncios">
+			class="webCondominio.action.ActionAnuncio">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/anuncios.jsp</result>
 			<result name="login" type="redirectAction">
@@ -88,11 +100,12 @@
 				<param name="namespace">/</param>
 			</result>
 		</action>
-
-<action name="getPagoAction" class="webCondominio.controller.ControllerVistas" method="getPago">
-	<result type="JSON"/>
-</action>
-
+		
+		<action name="dispo"
+			class="webCondominio.action.ActionDisponibilidad">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+		</action>
 
 	</package>
 
