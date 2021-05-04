@@ -87,6 +87,8 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
+				
+				<!-- FORMULARIO DE RESERVA -->
 				<form action="/action_page.php">
 					<div class="container">
 						<div class="row">
@@ -94,16 +96,8 @@
 							<div class='col-lg-12'>
 								<div class="input-group mb-2 reservaNombre">
 									<span class="input-group-text" id="basic-addon1">Reserva</span>
-									<input type="text" class="form-control reserva"
+									<input type="text" class="form-control reservaId" name="reserva"
 										aria-label="Reserva" aria-describedby="basic-addon1" disabled>
-								</div>
-
-								<div class="input-group mb-2">
-									<span class="input-group-text">Nombre y Apellido</span> <input
-										type="text" aria-label="First name" class="form-control"
-										placeholder="Nombre"> <input type="text"
-										aria-label="Last name" class="form-control"
-										placeholder="Apellido">
 								</div>
 
 								<div class="input-group mb-2">
@@ -113,10 +107,12 @@
 								</div>
 
 								<div class="input-group mb-2">
-									<span class="input-group-text" id="basic-addon1">Fecha
-										de Reserva</span> <input type="date" class="form-control"
+									<span class="input-group-text col-4" id="basic-addon1">Fecha
+										de Reserva</span> <input type="date" class="form-control fechaReserva col-5"
 										placeholder="dd-mm-aaaa" aria-label="FechaReserva"
 										aria-describedby="basic-addon1">
+										<a onclick="getHorario()" href="#" class=" col-3 btn btn-primary" role="button">Horarios</a>
+										
 								</div>
 
 								<div class="input-group mb-2">
@@ -136,6 +132,9 @@
 						</div>
 					</div>
 				</form>
+				
+				
+				<!-- FINAL FORMULARIO DE RESERVA -->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary"

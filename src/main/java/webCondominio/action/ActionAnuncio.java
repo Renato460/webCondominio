@@ -13,6 +13,7 @@ public class ActionAnuncio extends ActionSupport{
 	 */
 	private static final long serialVersionUID = -9125303765801040100L;
 
+	@Override
 	public String execute() {
 		ControllerConexion anuncios = new ControllerConexion();
 		anunciosLista= anuncios.anuncios();

@@ -21,9 +21,6 @@ public class ActionMulta extends ActionSupport implements SessionAware{
 	public String execute() {
 		ControllerConexion multas = new ControllerConexion();
 		System.out.println("---->>>>"+((ModelLoginUsuario)session.get("user")).getRut());
-		//System.out.println("rut--------->"+((ModelLoginUsuario)session.get("user")).getRut());
-		//numeroMultas = multas.multas(((ModelLoginUsuario)session.get("user")).getRut());
-		
 		String rutMultas = ((ModelLoginUsuario)session.get("user")).getRut();
 		numeroMultas = multas.multas(rutMultas);
 		multas.cerrarSession();
@@ -31,15 +28,9 @@ public class ActionMulta extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	private ArrayList<ModelMulta> numeroMultas;
-	private String rutUsuario;
+
 	private Map<String, Object> session;
 	
-	public String getRutUsuario() {
-		return rutUsuario;
-	}
-	public void setRutUsuario(String rutUsuario) {
-		this.rutUsuario = rutUsuario;
-	}
 	public ArrayList<ModelMulta> getNumeroMultas() {
 		return numeroMultas;
 	}
