@@ -117,7 +117,7 @@
 
 								<div class="input-group mb-2">
 									<span class="input-group-text" id="basic-addon1">Horario</span>
-									<select class="form-select" aria-label="Default select example">
+									<select id="horarios" class="form-select horarios" aria-label="Default select example">
 										<option selected>Open this select menu</option>
 										<option value="1">One</option>
 										<option value="2">Two</option>

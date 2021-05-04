@@ -17,7 +17,7 @@
                 },
             dataType:"json",
             beforeSend: function (xhr){
-            
+            	$( "#horarios" ).empty();
                 console.log('He entrado al sistema ');
             },complete: function (data) {
                 console.log('Se ha completado la peticion');
@@ -27,7 +27,17 @@
             },
             success: function(data){
             console.log(data);
-                
+                let time = data;
+                console.log(time.dispo[0]);
+                let i;
+                let arrayTime = time.dispo;
+                let val = 0;
+                	console.log(arrayTime.length);
+				for (i = 0; i < arrayTime.length; i++) {
+				val=i+0;
+					$( "#horarios" ).append( "<option value="+val+">"+time.dispo[i]+"</option>" );
+  					console.log("#horarios");
+				}
             }
         });
  
@@ -65,5 +75,4 @@ function modalFormulario(idButton){
 	let recipient = idButton.getAttribute('data-bs-whatever');
 	datosResidente.querySelector('.reservaId').placeholder = recipient;
 	datosResidente.querySelector('.reservaId').value = recipient;
-	datosResidente.querySelector('.reservaId').setAttribute("value", recipient);
 };

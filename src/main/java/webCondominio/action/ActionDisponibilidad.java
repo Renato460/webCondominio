@@ -1,12 +1,16 @@
 package webCondominio.action;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import webCondominio.controller.ControllerConexion;
 
 public class ActionDisponibilidad extends ActionSupport implements ServletRequestAware {
 
@@ -15,27 +19,36 @@ public class ActionDisponibilidad extends ActionSupport implements ServletReques
 	 */
 
 	public String execute() {
-		this.fecha = request.getParameter("fecha");
-		String servicioNombre = request.getParameter("servicio");
+		try {
+			this.fecha = request.getParameter("fecha");
+			String servicioNombre = request.getParameter("servicio");
 
-		switch (servicioNombre) {
-		case "QUINCHO":
-			idServicio = 1;
-			break;
-		case "ESTACIONAMIENTO":
-			idServicio = 2;
-			break;
-		case "SALE EVENTOS":
-			idServicio = 3;
-			break;
-		case "MULTICANCHA":
-			idServicio = 4;
-			break;
+			switch (servicioNombre) {
+			case "QUINCHO":
+				idServicio = 1;
+				break;
+			case "ESTACIONAMIENTO":
+				idServicio = 2;
+				break;
+			case "SALE EVENTOS":
+				idServicio = 3;
+				break;
+			case "MULTICANCHA":
+				idServicio = 4;
+				break;
 
+			};
+			SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd");
+	    	java.util.Date date = sdf.parse(fecha);
+	    	Date fechaDisp = new Date(date.getTime());
+	    	
+			ControllerConexion horarios = new ControllerConexion();
+			this.dispo = horarios.getDisponibilidad(fechaDisp,idServicio); 
+			return SUCCESS;			
+		}catch(Exception ex) {
+			System.out.println(ex);
+			return ERROR;
 		}
-		;
-		
-		return SUCCESS;
 	}
 
 	private static final long serialVersionUID = -8825604381551501047L;
@@ -45,6 +58,18 @@ public class ActionDisponibilidad extends ActionSupport implements ServletReques
 	private String fecha;
 	private Integer idServicio;
 	private String servicio;
+	private ArrayList<String> dispo;
+
+
+	public ArrayList<String> getDispo() {
+		return dispo;
+	}
+
+
+
+	public void setDispo(ArrayList<String> dispo) {
+		this.dispo = dispo;
+	}
 
 
 

@@ -93,6 +93,40 @@ public class ControllerConexion {
 				} 
 	}
 	
+	public ArrayList<String> getDisponibilidad(Date fecha, Integer idServicio) {
+		
+		System.out.println("-------------------->get dispo");
+		StoredProcedureQuery query = session
+				.createStoredProcedureQuery("pkg_reservas.getdisponibilidad")
+				.registerStoredProcedureParameter(
+							"p_fecha",
+							Date.class,
+						    ParameterMode.IN
+						).registerStoredProcedureParameter(
+								"p_idservicio",
+							    Integer.class,
+							    ParameterMode.IN
+							).registerStoredProcedureParameter(
+									"p_horariosdisp",
+								    Class.class,
+								    ParameterMode.REF_CURSOR
+								).setParameter("p_fecha", fecha )
+								.setParameter("p_idservicio", idServicio );
+				try {
+					query.execute();
+					List<Object[]> cursorHorarios = query.getResultList();
+				    ArrayList<String> horarios = new ArrayList<String>();
+				    for(Object[] obj:cursorHorarios){
+				    	String horario = obj[1].toString();
+				    	System.out.println(horario);
+				    	horarios.add(horario);	
+				    }
+				    return horarios;
+				}catch(Exception ex){
+					System.out.println(ex);
+					return null;
+				} 
+	}
 	public ArrayList<ModelMulta> multas(String rut){
 		System.out.println("-------------------->Entroooooo");
 		StoredProcedureQuery query = session
