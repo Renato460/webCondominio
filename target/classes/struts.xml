@@ -6,12 +6,6 @@
 
 	<constant name="struts.devMode" value="true" />
 
-	<package name="default" extends="struts-default">
-		<action name="pago"
-			class="webCondominio.controller.ControllerPago">
-			<result name="success" type="redirect">${urlPago}</result>
-		</action>
-	</package>
 
 	<package name="residente" namespace="/residentes"
 		extends="struts-default, json-default">
@@ -28,7 +22,11 @@
 			<result name="success">views/residentes.jsp</result> <result name="error" 
 			type="redirectAction"> <param name="actionName">return</param> <param name="namespace">/</param> 
 			</result> </action> -->
-
+		<action name="pago"
+			class="webCondominio.controller.ControllerPago">
+			<result name="success" type="redirect">${urlPago}</result>
+		</action>
+		
 		<action name="login"
 			class="webCondominio.controller.ControllerVistas">
 			<result name="success" type="redirectAction">
@@ -51,12 +49,11 @@
 
 		<action name="getPagoDatos"
 			class="webCondominio.action.ActionPago" method="listaJson">
-			<interceptor-ref name="secureStack" />
 			<result type="json" />
 		</action>
 
 		<action name="getPagoView"
-			class="webCondominio.action.ActionPago">
+			class="webCondominio.action.ActionPago" method="execute">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/pago.jsp</result>
 			<result name="login" type="redirectAction">

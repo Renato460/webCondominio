@@ -18,13 +18,13 @@
 
 
 <!-- Bootstrap core CSS -->
-<link
-	href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <link
 	href="${ pageContext.request.contextPath }/assets/css/adminlte.min.css"
 	rel="stylesheet">
-
+<link
+	href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Favicons -->
 
@@ -76,17 +76,17 @@
 				class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
 				<div class="position-sticky pt-3">
 					<ul class="nav nav-pills nav-sidebar flex-column">
-						<li class="nav-item"><d:a class="nav-link multa"
+						<li class="nav-item"><d:a class="nav-link home" id="home"
 								aria-current="page" onclick="getAnuncios()" href="#">Home</d:a>
 						</li>
-						<li class="nav-item"><d:a class="nav-link multa"
+						<li class="nav-item"><d:a class="nav-link multa" id="multa"
 								aria-current="page" onclick="getMenuMultas()" href="#">Multas</d:a>
 						</li>
-						<li class="nav-item"><d:a class="nav-link reserva"
+						<li class="nav-item"><d:a class="nav-link reserva" id="reserva"
 								aria-current="page" onclick="getMenuReservas()" href="#">Reservas</d:a>
 						</li>
-						<li class="nav-item"><d:a class="nav-link reserva"
-								aria-current="page" action="pago">Pagar</d:a></li>
+						<li class="nav-item"><d:a class="nav-link pago" id="pago"
+								aria-current="page" onclick="getPago()">Pagar</d:a></li>
 					</ul>
 				</div>
 			</nav>
@@ -95,16 +95,7 @@
 				<div
 					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Dashboard</h1>
-					<div class="btn-toolbar mb-2 mb-md-0">
-						<div class="btn-group me-2">
-							<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-							<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-						</div>
-						<button type="button"
-							class="btn btn-sm btn-outline-secondary dropdown-toggle">
-							<span data-feather="calendar"></span> This week
-						</button>
-					</div>
+
 				</div>
 
 
@@ -186,9 +177,14 @@
 							</div>
 							<!-- ./col -->
 						</div>
+						
+						
 						<div class="row">
-							<div id="cuerpo" class="cuerpo"></div>
+							<div id="cuerpo" class="cuerpo"><span class="visually-hidden">Loading...</span></div>
 						</div>
+						
+						
+						
 					</div>
 					<!-- /.row -->
 					<!-- Main row -->
@@ -205,15 +201,23 @@
 		</div>
 	</div>
 
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script> -->
+	 <script
+		src="${ pageContext.request.contextPath }/assets/js/jquery.js"></script>
+	<script
+		src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
+	<script
+		src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/residentes-ajax.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/reserva-ajax.js"></script>
+	<script
+		src="${ pageContext.request.contextPath }/assets/js/form-reserva-ajax.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/multa-ajax.js"></script>
 	<script
