@@ -4,9 +4,6 @@
 <div class="mt-2 mb-3">
 	<h4>Revisa tus Multas</h4>
 </div>
-<s:bean name="webCondominio.model.modelLoginUsuario" var="rut">
-    <s:param name="rut" value="##session['user'].usuario"></s:param>
-</s:bean>
 
 <table class="table table-striped">
 	<thead>
@@ -23,7 +20,7 @@
 			<tr>
 				<td><s:property value="#cant.getId_multa()" /></td>
 				<td><s:property value="#cant.getDescripcion()" /></td>
-				<td><s:property value="#cant.getMonto()" /></td>
+				<td>$<s:number name="#cant.getMonto()" minimumFractionDigits="0"/></td>
 				<td><s:property value="#cant.getFecha()" /></td>
 			</tr>
 		</s:iterator>

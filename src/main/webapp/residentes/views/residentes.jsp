@@ -86,7 +86,7 @@
 								aria-current="page" onclick="getMenuReservas()" href="#">Reservas</d:a>
 						</li>
 						<li class="nav-item"><d:a class="nav-link pago" id="pago"
-								aria-current="page" onclick="getPago()">Pagar</d:a></li>
+								aria-current="page" onclick="getPago()" href="#">Pagar</d:a></li>
 					</ul>
 				</div>
 			</nav>
@@ -180,7 +180,7 @@
 						
 						
 						<div class="row">
-							<div id="cuerpo" class="cuerpo"><span class="visually-hidden">Loading...</span></div>
+							<div id="cuerpo" class="cuerpo col-sm-12"><span class="visually-hidden">Loading...</span></div>
 						</div>
 						
 						
@@ -204,8 +204,6 @@
 	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script> -->
 	 <script
 		src="${ pageContext.request.contextPath }/assets/js/jquery.js"></script>
-	<script
-		src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
 	<script

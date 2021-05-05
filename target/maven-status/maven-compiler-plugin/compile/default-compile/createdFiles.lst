@@ -3,12 +3,17 @@ webCondominio\controller\LogoutAction.class
 webCondominio\model\ModelServicio.class
 webCondominio\action\ActionAnuncio.class
 webCondominio\controller\ControllerVistas.class
+webCondominio\action\ActionDisponibilidad.class
 webCondominio\model\ModelUsuario.class
 webCondominio\controller\ControllerConexion.class
 webCondominio\model\ModelReserva.class
+webCondominio\model\ModelHorario.class
+webCondominio\action\ActionServicio.class
 webCondominio\controller\ControllerPago.class
+webCondominio\model\ModelPago.class
 webCondominio\action\ActionPago.class
 webCondominio\model\ModelMulta.class
 webCondominio\controller\AuthenticationInterceptor.class
 webCondominio\model\ModelLoginUsuario.class
 webCondominio\model\ModelAnuncios.class
+webCondominio\action\ActionReserva.class
