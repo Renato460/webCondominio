@@ -17,10 +17,20 @@ public class ActionServicio extends ActionSupport {
 
 	@Override
 	public String execute() {
-		/*ControllerConexion reserva = new ControllerConexion();
-		List<ModelServicio> reservas= reserva.getServicios();
+		ControllerConexion reserva = new ControllerConexion();
+		reservas= reserva.getServicios();
 		reserva.cerrarSession();
-		System.out.println(reservas.get(0).getNombre_servicio());*/
+		System.out.println(reservas.get(0).getNombre_servicio());
 		return SUCCESS;
+	}
+	
+	private List<ModelServicio> reservas;
+
+	public List<ModelServicio> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<ModelServicio> reservas) {
+		this.reservas = reservas;
 	}
 }

@@ -22,25 +22,7 @@ public class ActionReserva extends ActionSupport implements ServletRequestAware{
 	public String execute() {
 		try {
 			ControllerConexion setReserva = new ControllerConexion();
-			
-			/*this.fecha = request.getParameter("fecha");
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd");
-	    	java.util.Date date = sdf.parse(this.fecha);
-	    	Date fechaConv = new Date(date.getTime());
-			System.out.println(fechaConv.toString());
-			
-			String servicioNombre = this.servicio;request.getParameter("servicio");
-			System.out.println(servicioNombre);
-			
-			String rutPersona = this.rut;request.getParameter("rut");
-			System.out.println(rutPersona);
-			
-			Integer idHorario = Integer.parseInt(this.horario);request.getParameter("horarios")
-			System.out.println(idHorario);*/
-			
-			
-			
+		
 			this.fecha = request.getParameter("fecha");
 					
 			Date fechaConv = Date.valueOf(fecha);
@@ -53,8 +35,10 @@ public class ActionReserva extends ActionSupport implements ServletRequestAware{
 			System.out.println(rutPersona);
 			
 			Integer idHorario = Integer.parseInt(request.getParameter("horarios"));
+			
 			System.out.println(idHorario);
-	    	Integer idServicio;
+	    	
+			Integer idServicio;
 			switch (servicioNombre) {
 			case "QUINCHO":
 				idServicio = 1;

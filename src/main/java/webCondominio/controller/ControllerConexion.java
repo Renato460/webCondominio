@@ -18,6 +18,7 @@ import org.hibernate.procedure.ProcedureOutputs;
 import webCondominio.model.ModelAnuncios;
 import webCondominio.model.ModelHorario;
 import webCondominio.model.ModelMulta;
+import webCondominio.model.ModelPago;
 import webCondominio.model.ModelServicio;
 
 
@@ -52,7 +53,54 @@ public class ControllerConexion {
 		factory.close();
 	}
 	
-	public boolean setReservaUsuario(Date fecha,String runUsuario, Integer idServicio, Integer idHorario) {
+	public ArrayList<ModelPago> getPagos(Date fecha, String rut){
+		
+
+                StoredProcedureQuery query = session
+				.createStoredProcedureQuery("PKG_PAGO_GC.getpagomensual")
+				.registerStoredProcedureParameter(
+					"p_fecha",
+				    Date.class,
+				    ParameterMode.IN
+				).registerStoredProcedureParameter(
+						"p_run",
+					    String.class,
+					    ParameterMode.IN
+					).registerStoredProcedureParameter(
+							"p_totalgastoscomunes",
+							Integer.class,
+						    ParameterMode.OUT
+						).registerStoredProcedureParameter(
+								"p_totalmultas",
+							    Integer.class,
+							    ParameterMode.OUT
+							).registerStoredProcedureParameter(
+									"p_totalreservas",
+								    Integer.class,
+								    ParameterMode.OUT
+								).setParameter("p_fecha", fecha )
+							.setParameter("p_runusuario", fecha )
+							.setParameter("p_idservicio", rut );
+		
+                Integer gastComun = (Integer) query.getOutputParameterValue("p_totalgastoscomunes");
+                Integer multa = (Integer) query.getOutputParameterValue("p_totalmultas");
+                Integer reserva = (Integer) query.getOutputParameterValue("p_totalreservas");
+                
+                ModelPago pagosModel = new ModelPago(gastComun, multa, reserva);
+                try {
+                	query.execute();
+                	
+                	ArrayList<ModelPago> pagos = new ArrayList<ModelPago>();
+                	pagos.add(pagosModel);
+                	return pagos;
+                	
+                }catch(Exception ex) {
+                	return null;
+                }
+	} 
+	
+	
+ 	public boolean setReservaUsuario(Date fecha,String runUsuario, Integer idServicio, Integer idHorario) {
 		
 		System.out.println("-------------------->Seteando reserva");
 		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ID HORARIO: "+fecha);

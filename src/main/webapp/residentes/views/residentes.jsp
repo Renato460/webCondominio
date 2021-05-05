@@ -18,13 +18,13 @@
 
 
 <!-- Bootstrap core CSS -->
-<link
-	href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <link
 	href="${ pageContext.request.contextPath }/assets/css/adminlte.min.css"
 	rel="stylesheet">
-
+<link
+	href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Favicons -->
 
