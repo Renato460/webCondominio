@@ -13,13 +13,6 @@
 		</action>
 	</package>
 
-	<package name="pagoJson" extends="json-default" namespace="/">
-		<action name="getPagoActionJason"
-			class="webCondominio.action.ActionPago">
-			<result type="json" />
-		</action>
-	</package>
-
 	<package name="residente" namespace="/residentes"
 		extends="struts-default, json-default">
 		<interceptors>
@@ -55,14 +48,23 @@
 				<param name="namespace">/</param>
 			</result>
 		</action>
-		
-		<action name="getPagoAction">
-			<result name="success" type="redirectAction">
-				<param name="actionName">getPagoActionJason</param>
+
+		<action name="getPagoDatos"
+			class="webCondominio.action.ActionPago" method="listaJson">
+			<interceptor-ref name="secureStack" />
+			<result type="json" />
+		</action>
+
+		<action name="getPagoView"
+			class="webCondominio.action.ActionPago">
+			<interceptor-ref name="secureStack" />
+			<result name="success">views/pago.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
 				<param name="namespace">/</param>
 			</result>
 		</action>
-		
+
 		<action name="residente">
 			<interceptor-ref name="secureStack" />
 			<result>views/residentes.jsp</result>
@@ -91,6 +93,12 @@
 			</result>
 		</action>
 
+		<action name="listaReserva"
+			class="webCondominio.action.ActionServicio" method="listaJson">
+			<interceptor-ref name="secureStack" />
+			<result type="json"></result>
+		</action>
+
 		<action name="anuncio"
 			class="webCondominio.action.ActionAnuncio">
 			<interceptor-ref name="secureStack" />
@@ -100,18 +108,18 @@
 				<param name="namespace">/</param>
 			</result>
 		</action>
-		
+
 		<action name="dispo"
 			class="webCondominio.action.ActionDisponibilidad">
 			<interceptor-ref name="secureStack" />
-			<result type="json"/>
+			<result type="json" />
 		</action>
-		
+
 		<action name="setReserva"
 			class="webCondominio.action.ActionReserva">
 			<interceptor-ref name="secureStack" />
-			<result type="json"/>
-			
+			<result type="json" />
+
 		</action>
 
 	</package>
