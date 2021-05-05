@@ -201,7 +201,11 @@
 		</div>
 	</div>
 
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script> -->
+	 <script
+		src="${ pageContext.request.contextPath }/assets/js/jquery.js"></script>
+	<script
+		src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
 	<script
@@ -212,6 +216,8 @@
 		src="${ pageContext.request.contextPath }/assets/js/residentes-ajax.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/reserva-ajax.js"></script>
+	<script
+		src="${ pageContext.request.contextPath }/assets/js/form-reserva-ajax.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/assets/js/multa-ajax.js"></script>
 	<script

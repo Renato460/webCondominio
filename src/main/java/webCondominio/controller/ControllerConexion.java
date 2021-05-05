@@ -16,6 +16,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.procedure.ProcedureOutputs;
 
 import webCondominio.model.ModelAnuncios;
+import webCondominio.model.ModelHorario;
 import webCondominio.model.ModelMulta;
 import webCondominio.model.ModelServicio;
 
@@ -54,6 +55,7 @@ public class ControllerConexion {
 	public boolean setReservaUsuario(Date fecha,String runUsuario, Integer idServicio, Integer idHorario) {
 		
 		System.out.println("-------------------->Seteando reserva");
+		System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ID HORARIO: "+fecha);
 		StoredProcedureQuery query = session
 				.createStoredProcedureQuery("pkg_reservas.setreserva")
 				.registerStoredProcedureParameter(
@@ -74,26 +76,27 @@ public class ControllerConexion {
 							    ParameterMode.IN
 							).registerStoredProcedureParameter(
 									"p_confirm",
-								    Boolean.class,
+								    Integer.class,
 								    ParameterMode.OUT
 								).setParameter("p_fecha", fecha )
-									.setParameter("p_runusuario", runUsuario )
-									.setParameter("p_idservicio", idServicio )
-									.setParameter("p_idhorario", idHorario );
+							.setParameter("p_runusuario", runUsuario )
+							.setParameter("p_idservicio", idServicio )
+							.setParameter("p_idhorario", idHorario );
 				 
 				try {
 					query.execute();
 				     
-				    Boolean exito = (Boolean) query.getOutputParameterValue("p_confirm");
-				     
-				    return exito;
+					Integer exito = (Integer) query.getOutputParameterValue("p_confirm");
+				    System.out.println(exito);
+				     if(exito==0) {return true;}else {return false;}
+				    
 				}catch(Exception ex){
 					System.out.println(ex);
 					return false;
 				} 
 	}
 	
-	public ArrayList<String> getDisponibilidad(Date fecha, Integer idServicio) {
+	public ArrayList<ModelHorario> getDisponibilidad(Date fecha, Integer idServicio) {
 		
 		System.out.println("-------------------->get dispo");
 		StoredProcedureQuery query = session
@@ -115,10 +118,14 @@ public class ControllerConexion {
 				try {
 					query.execute();
 					List<Object[]> cursorHorarios = query.getResultList();
-				    ArrayList<String> horarios = new ArrayList<String>();
+				    ArrayList<ModelHorario> horarios = new ArrayList<ModelHorario>();
 				    for(Object[] obj:cursorHorarios){
-				    	String horario = obj[1].toString();
-				    	System.out.println(horario);
+				    	Integer idHorario = Integer.parseInt(obj[0].toString());
+				    	System.out.println(idHorario);
+				    	String hora = obj[1].toString();
+				    	System.out.println(hora);
+				    	ModelHorario horario = new ModelHorario(idHorario, hora);
+				    	
 				    	horarios.add(horario);	
 				    }
 				    return horarios;
@@ -127,6 +134,7 @@ public class ControllerConexion {
 					return null;
 				} 
 	}
+	
 	public ArrayList<ModelMulta> multas(String rut){
 		System.out.println("-------------------->Entroooooo");
 		StoredProcedureQuery query = session

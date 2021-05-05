@@ -49,7 +49,7 @@
 			<div class="p-2 col-4 flex-fill bd-highlight">
 				<button type="button" id="buttonEvento"
 					class="btn btn-primary buttonEvento" data-bs-toggle="modal"
-					data-bs-target="#datosResidente" data-bs-whatever="SALA DE EVENTOS"
+					data-bs-target="#datosResidente" data-bs-whatever="SALA EVENTOS"
 					onclick="modalFormulario(buttonEvento)">Reserva</button>
 			</div>
 		</div>
@@ -89,27 +89,27 @@
 			<div class="modal-body">
 				
 				<!-- FORMULARIO DE RESERVA -->
-				<form action="/action_page.php">
+				<div id="form_reserva">
 					<div class="container">
 						<div class="row">
 
 							<div class='col-lg-12'>
 								<div class="input-group mb-2 reservaNombre">
 									<span class="input-group-text" id="basic-addon1">Reserva</span>
-									<input type="text" class="form-control reservaId" name="reserva"
-										aria-label="Reserva" aria-describedby="basic-addon1" disabled>
+									<input type="text" class="form-control reservaId" name="servicio"
+										aria-label="Reserva" aria-describedby="basic-addon1">
 								</div>
 
 								<div class="input-group mb-2">
 									<span class="input-group-text" id="basic-addon1">RUN</span> <input
-										type="text" class="form-control" placeholder="12345678-9"
+										type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
 										aria-label="Rut" aria-describedby="basic-addon1">
 								</div>
 
 								<div class="input-group mb-2">
 									<span class="input-group-text col-4" id="basic-addon1">Fecha
 										de Reserva</span> <input type="date" class="form-control fechaReserva col-5"
-										placeholder="dd-mm-aaaa" aria-label="FechaReserva"
+										placeholder="dd-mm-aaaa" aria-label="FechaReserva" name="fecha"
 										aria-describedby="basic-addon1">
 										<a onclick="getHorario()" href="#" class=" col-3 btn btn-primary" role="button">Horarios</a>
 										
@@ -117,7 +117,7 @@
 
 								<div class="input-group mb-2">
 									<span class="input-group-text" id="basic-addon1">Horario</span>
-									<select id="horarios" class="form-select horarios" aria-label="Default select example">
+									<select name="horarios" id="horarios" class="form-select horarios" aria-label="Default select example">
 										<option selected>Open this select menu</option>
 										<option value="1">One</option>
 										<option value="2">Two</option>
@@ -125,13 +125,13 @@
 									</select>
 
 								</div>
-
-								<button type="submit" class="btn btn-primary btn-lg">Confirmar
+								<div id="spin" class="col-12"></div>
+								<button id="btn" class="btn btn-primary btn-lg" onclick="formButton()">Confirmar
 									Reserva</button>
 							</div>
 						</div>
 					</div>
-				</form>
+				</div>
 				
 				
 				<!-- FINAL FORMULARIO DE RESERVA -->

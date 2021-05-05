@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import webCondominio.controller.ControllerConexion;
+import webCondominio.model.ModelHorario;
 
 public class ActionDisponibilidad extends ActionSupport implements ServletRequestAware {
 
@@ -30,7 +31,7 @@ public class ActionDisponibilidad extends ActionSupport implements ServletReques
 			case "ESTACIONAMIENTO":
 				idServicio = 2;
 				break;
-			case "SALE EVENTOS":
+			case "SALA EVENTOS":
 				idServicio = 3;
 				break;
 			case "MULTICANCHA":
@@ -38,12 +39,11 @@ public class ActionDisponibilidad extends ActionSupport implements ServletReques
 				break;
 
 			};
-			SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd");
-	    	java.util.Date date = sdf.parse(fecha);
-	    	Date fechaDisp = new Date(date.getTime());
-	    	
+		
+	    	Date fechaDisp = Date.valueOf(fecha);
 			ControllerConexion horarios = new ControllerConexion();
 			this.dispo = horarios.getDisponibilidad(fechaDisp,idServicio); 
+			horarios.cerrarSession();
 			return SUCCESS;			
 		}catch(Exception ex) {
 			System.out.println(ex);
@@ -58,16 +58,16 @@ public class ActionDisponibilidad extends ActionSupport implements ServletReques
 	private String fecha;
 	private Integer idServicio;
 	private String servicio;
-	private ArrayList<String> dispo;
+	private ArrayList<ModelHorario> dispo;
 
 
-	public ArrayList<String> getDispo() {
+	public ArrayList<ModelHorario> getDispo() {
 		return dispo;
 	}
 
 
 
-	public void setDispo(ArrayList<String> dispo) {
+	public void setDispo(ArrayList<ModelHorario> dispo) {
 		this.dispo = dispo;
 	}
 
