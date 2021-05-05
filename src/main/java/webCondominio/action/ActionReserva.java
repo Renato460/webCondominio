@@ -1,15 +1,17 @@
 package webCondominio.action;
 
 import java.sql.Date;
-import java.util.Map;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ActionReserva extends ActionSupport implements SessionAware{
+import webCondominio.controller.ControllerConexion;
+
+public class ActionReserva extends ActionSupport implements ServletRequestAware{
 	/**
 	 * 
 	 */
@@ -18,20 +20,142 @@ public class ActionReserva extends ActionSupport implements SessionAware{
 	
 	@Override
 	public String execute() {
-		
-		return SUCCESS;
+		try {
+			ControllerConexion setReserva = new ControllerConexion();
+			
+			/*this.fecha = request.getParameter("fecha");
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd");
+	    	java.util.Date date = sdf.parse(this.fecha);
+	    	Date fechaConv = new Date(date.getTime());
+			System.out.println(fechaConv.toString());
+			
+			String servicioNombre = this.servicio;request.getParameter("servicio");
+			System.out.println(servicioNombre);
+			
+			String rutPersona = this.rut;request.getParameter("rut");
+			System.out.println(rutPersona);
+			
+			Integer idHorario = Integer.parseInt(this.horario);request.getParameter("horarios")
+			System.out.println(idHorario);*/
+			
+			
+			
+			this.fecha = request.getParameter("fecha");
+					
+			Date fechaConv = Date.valueOf(fecha);
+			System.out.println(fechaConv.toString());
+			
+			String servicioNombre = request.getParameter("servicio");
+			System.out.println(servicioNombre);
+			
+			String rutPersona = request.getParameter("rut");
+			System.out.println(rutPersona);
+			
+			Integer idHorario = Integer.parseInt(request.getParameter("horarios"));
+			System.out.println(idHorario);
+	    	Integer idServicio;
+			switch (servicioNombre) {
+			case "QUINCHO":
+				idServicio = 1;
+				break;
+			case "ESTACIONAMIENTO":
+				idServicio = 2;
+				break;
+			case "SALE EVENTOS":
+				idServicio = 3;
+				break;
+			case "MULTICANCHA":
+				idServicio = 4;
+				break;
+			default: idServicio =0;break;
+			};
+			
+			exito = setReserva.setReservaUsuario(fechaConv, rutPersona, idServicio , idHorario);
+			setReserva.cerrarSession();
+			System.out.println();
+			
+			return SUCCESS;
+		}catch(Exception ex) {
+			System.out.println(ex);
+			return ERROR;
+		}
 	}
 
-	@Override
-	public void setSession(Map<String, Object> session) {
-		// TODO Auto-generated method stub
-		this.session=session;
-	}
-	private Map<String, Object> session;
 	
 	private String fecha;
 	private String rut;
 	private String servicio;
-	private String horario;	
+	private String horarios;
+	private boolean exito;
+	private HttpServletRequest request;
+
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
+	public String getRut() {
+		return rut;
+	}
+
+
+
+	public void setRut(String rut) {
+		this.rut = rut;
+	}
+
+
+
+	public String getServicio() {
+		return servicio;
+	}
+
+
+
+	public void setServicio(String servicio) {
+		this.servicio = servicio;
+	}
+
+
+
+	public String getHorarios() {
+		return horarios;
+	}
+
+
+
+	public void setHorarios(String horarios) {
+		this.horarios = horarios;
+	}
+
+
+
+	public boolean isExito() {
+		return exito;
+	}
+
+
+
+	public void setExito(boolean exito) {
+		this.exito = exito;
+	}
+
+
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		this.request = request;
+	}
 
 }

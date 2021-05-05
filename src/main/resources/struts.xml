@@ -106,6 +106,13 @@
 			<interceptor-ref name="secureStack" />
 			<result type="json"/>
 		</action>
+		
+		<action name="setReserva"
+			class="webCondominio.action.ActionReserva">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			
+		</action>
 
 	</package>
 

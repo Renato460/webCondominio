@@ -20,7 +20,7 @@
 			<tr>
 				<td><s:property value="#cant.getId_multa()" /></td>
 				<td><s:property value="#cant.getDescripcion()" /></td>
-				<td><s:property value="#cant.getMonto()" /></td>
+				<td>$<s:number name="#cant.getMonto()" minimumFractionDigits="0"/></td>
 				<td><s:property value="#cant.getFecha()" /></td>
 			</tr>
 		</s:iterator>

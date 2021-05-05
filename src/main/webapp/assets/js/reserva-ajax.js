@@ -1,7 +1,7 @@
 /**
  * 
  */
- 
+
  function getHorario(){
  	let fecha = $(".fechaReserva").val();
  	let servicio = $(".reservaId").attr("placeholder");
@@ -34,8 +34,8 @@
                 let val = 0;
                 	console.log(arrayTime.length);
 				for (i = 0; i < arrayTime.length; i++) {
-				val=i+0;
-					$( "#horarios" ).append( "<option value="+val+">"+time.dispo[i]+"</option>" );
+				val=i+1;
+					$( "#horarios" ).append( "<option value="+time.dispo[i].idHorario+">"+time.dispo[i].horario+"</option>" );
   					console.log("#horarios");
 				}
             }
