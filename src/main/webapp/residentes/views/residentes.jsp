@@ -101,7 +101,7 @@
 
 				<h3>
 					Bienvenido
-					<d:property value="#session['user'].usuario" />
+					<d:property value="#session['user'].nombre" />
 				</h3>
 
 				<!-- SECCION -->

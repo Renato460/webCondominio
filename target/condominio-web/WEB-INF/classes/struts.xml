@@ -6,12 +6,6 @@
 
 	<constant name="struts.devMode" value="true" />
 
-	<package name="default" extends="struts-default">
-		<action name="pago"
-			class="webCondominio.controller.ControllerPago">
-			<result name="success" type="redirect">${urlPago}</result>
-		</action>
-	</package>
 
 	<package name="residente" namespace="/residentes"
 		extends="struts-default, json-default">
@@ -24,16 +18,20 @@
 			</interceptor-stack>
 		</interceptors>
 
-		<!-- <action name="login" class="webCondominio.controller.ControllerVistas"> 
-			<result name="success">views/residentes.jsp</result> <result name="error" 
-			type="redirectAction"> <param name="actionName">return</param> <param name="namespace">/</param> 
-			</result> </action> -->
-
+		<action name="pago"
+			class="webCondominio.controller.ControllerPago">
+			<result name="success" type="redirect">${urlPago}</result>
+		</action>
+		
 		<action name="login"
 			class="webCondominio.controller.ControllerVistas">
-			<result name="success" type="redirectAction">
+			<result name="residente" type="redirectAction">
 				<param name="actionName">residente</param>
 				<param name="namespace">/residentes</param>
+			</result>
+			<result name="directiva" type="redirectAction">
+				<param name="actionName">directiva</param>
+				<param name="namespace">/directiva</param>
 			</result>
 			<result name="input" type="redirectAction">
 				<param name="actionName">return</param>
@@ -51,12 +49,11 @@
 
 		<action name="getPagoDatos"
 			class="webCondominio.action.ActionPago" method="listaJson">
-			<interceptor-ref name="secureStack" />
 			<result type="json" />
 		</action>
 
 		<action name="getPagoView"
-			class="webCondominio.action.ActionPago">
+			class="webCondominio.action.ActionPago" method="execute">
 			<interceptor-ref name="secureStack" />
 			<result name="success">views/pago.jsp</result>
 			<result name="login" type="redirectAction">
@@ -96,7 +93,7 @@
 		<action name="listaReserva"
 			class="webCondominio.action.ActionServicio" method="listaJson">
 			<interceptor-ref name="secureStack" />
-			<result type="json"></result>
+			<result type="json"/>
 		</action>
 
 		<action name="anuncio"
@@ -124,10 +121,32 @@
 
 	</package>
 
-	<package name="index" extends="struts-default" namespace="/">
-		<action name="return">
-			<result>index.jsp</result>
+	<package name="directiva" extends="struts-default" namespace="/directiva">
+		<action name="directiva">
+			<result>views/directiva.jsp</result>
 		</action>
+
+	</package>
+
+	<package name="index" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+						 class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="return">
+			<interceptor-ref name="secureStack" />
+			<result>index.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
 	</package>
 
 
