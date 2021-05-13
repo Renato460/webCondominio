@@ -23,30 +23,47 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	public Map<String, Object> getSession() {
 		return session;
 	}
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
 	@Override
 	public String execute() {
 	
 		ModelLoginUsuario userLogin = (ModelLoginUsuario)session.get("user");
 		
 		if(userLogin!=null) {
-			return SUCCESS;
+			return vistasRoles(((ModelLoginUsuario)session.get("user")).getRol());
 		}else {
 			if(isValid(usuario, pass)){
 				ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 				session.put("user", nuevoUsuario);
 				System.out.println(((ModelLoginUsuario)session.get("user")).getPassword());
 				
-				return SUCCESS;
+				return vistasRoles(this.rol);
 			}
 			return INPUT;
 		}
 	}
+
+	private String vistasRoles(String rol){
+		switch (rol){
+			case "1":
+				return "admin";
+			case "2":
+				return "conserje";
+			case "3":
+				return "directiva";
+			case "4":
+				return "residente";
+			default:
+				return "INPUT";
+		}
+	}
 	
-	public boolean isValid(String usuario, String pass) {
+	private boolean isValid(String usuario, String pass) {
 		ControllerConexion user = new ControllerConexion();
 		List<String> contra = user.login(usuario, pass);
 
