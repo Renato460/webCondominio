@@ -33,6 +33,10 @@
 				<param name="actionName">directiva</param>
 				<param name="namespace">/directiva</param>
 			</result>
+			<result name="admin" type="redirectAction">
+				<param name="actionName">admin</param>
+				<param name="namespace">/administracion</param>
+			</result>
 			<result name="input" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
@@ -124,6 +128,13 @@
 	<package name="directiva" extends="struts-default" namespace="/directiva">
 		<action name="directiva">
 			<result>views/directiva.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="pkgAdmin" extends="struts-default" namespace="/administracion">
+		<action name="admin">
+			<result>views/admin.jsp</result>
 		</action>
 
 	</package>

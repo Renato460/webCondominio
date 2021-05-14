@@ -31,21 +31,18 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 
 	@Override
 	public String execute() {
-	
-		ModelLoginUsuario userLogin = (ModelLoginUsuario)session.get("user");
-		
-		if(userLogin!=null) {
-			return vistasRoles(((ModelLoginUsuario)session.get("user")).getRol());
-		}else {
+			session.remove("user");
 			if(isValid(usuario, pass)){
 				ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 				session.put("user", nuevoUsuario);
 				System.out.println(((ModelLoginUsuario)session.get("user")).getPassword());
 				
 				return vistasRoles(this.rol);
+			}else{
+				return INPUT;
 			}
-			return INPUT;
-		}
+
+
 	}
 
 	private String vistasRoles(String rol){
