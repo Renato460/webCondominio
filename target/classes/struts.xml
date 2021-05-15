@@ -132,7 +132,7 @@
 
 	</package>
 
-	<package name="pkgAdmin" extends="struts-default" namespace="/administracion">
+	<package name="pkgAdmin" extends="struts-default, json-default" namespace="/administracion">
 		<action name="admin">
 			<result>views/admin.jsp</result>
 		</action>
