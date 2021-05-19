@@ -27,12 +27,18 @@ Coded by www.creative-tim.com
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="${ pageContext.request.contextPath }/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
-    <link href="${ pageContext.request.contextPath }/assets/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/paper-dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"/>
+    <!--<link href="${ pageContext.request.contextPath }/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />-->
+    <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/fontawesome/css/all.min.css"/>
     <!-- CSS Files -->
-    <link href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="${ pageContext.request.contextPath }/assets/css/paper-dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/main.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/css/jquery.dataTables.min.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/css/buttons.dataTables.min.css"/>-->
+    <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/css/buttons.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/css/dataTables.bootstrap5.min.css"/>
+
     <!-- CSS Just for demo purpose, don't include it in your project <link href="../assets/demo/demo.css" rel="stylesheet" />-->
 
 </head>
@@ -63,9 +69,9 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
-                    <a href="./icons.html">
-                        <i class="nc-icon nc-diamond"></i>
-                        <p>Icons</p>
+                    <a href="javascript:setTabla()">
+                        <i class="nc-icon nc-circle-10"></i>
+                        <p>Residentes</p>
                     </a>
                 </li>
                 <li>
@@ -119,7 +125,7 @@ Coded by www.creative-tim.com
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="javascript:;">Paper Dashboard 2</a>
+                    <a class="navbar-brand" href="javascript:;">Dashboard</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -127,44 +133,10 @@ Coded by www.creative-tim.com
                     <span class="navbar-toggler-bar navbar-kebab"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                    <form>
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link btn-magnify" href="javascript:;">
-                                <i class="nc-icon nc-layout-11"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item btn-rotate dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="nc-icon nc-bell-55"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Some Actions</span>
-                                </p>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-rotate" href="javascript:;">
-                                <i class="nc-icon nc-settings-gear-65"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Account</span>
-                                </p>
+                            <a class="navbar-brand" href="javascript:;">
+                                Salir
                             </a>
                         </li>
                     </ul>
@@ -281,66 +253,8 @@ Coded by www.creative-tim.com
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h5 class="card-title">Users Behavior</h5>
-                            <p class="card-category">24 Hours performance</p>
-                        </div>
-                        <div class="card-body ">
-                            <canvas id=chartHours width="400" height="100"></canvas>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-history"></i> Updated 3 minutes ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h5 class="card-title">Email Statistics</h5>
-                            <p class="card-category">Last Campaign Performance</p>
-                        </div>
-                        <div class="card-body ">
-                            <canvas id="chartEmail"></canvas>
-                        </div>
-                        <div class="card-footer ">
-                            <div class="legend">
-                                <i class="fa fa-circle text-primary"></i> Opened
-                                <i class="fa fa-circle text-warning"></i> Read
-                                <i class="fa fa-circle text-danger"></i> Deleted
-                                <i class="fa fa-circle text-gray"></i> Unopened
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-calendar"></i> Number of emails sent
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card card-chart">
-                        <div class="card-header">
-                            <h5 class="card-title">NASDAQ: AAPL</h5>
-                            <p class="card-category">Line Chart with Points</p>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="speedChart" width="400" height="100"></canvas>
-                        </div>
-                        <div class="card-footer">
-                            <div class="chart-legend">
-                                <i class="fa fa-circle text-info"></i> Tesla Model S
-                                <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                            </div>
-                            <hr />
-                            <div class="card-stats">
-                                <i class="fa fa-check"></i> Data information certified
-                            </div>
-                        </div>
+                    <div class="card" id="cuerpo">
+
                     </div>
                 </div>
             </div>
@@ -373,16 +287,29 @@ Coded by www.creative-tim.com
 <script
         src="${ pageContext.request.contextPath }/assets/js/popper.min.js" type="text/javascript"></script>
 <script
-        src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/listaResidente.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.print.min.js"></script>
 <!--  Notifications Plugin    -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/paper-dashboard.min.js" type="text/javascript"></script>
+
+
 
 <!-- Paper Dashboard DEMO methods, don't include it in your project! <script src="../assets/demo/demo.js"></script>
 <script>

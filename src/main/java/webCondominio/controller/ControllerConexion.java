@@ -15,11 +15,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.procedure.ProcedureOutputs;
 
-import webCondominio.model.ModelAnuncios;
-import webCondominio.model.ModelHorario;
-import webCondominio.model.ModelMulta;
-import webCondominio.model.ModelPago;
-import webCondominio.model.ModelServicio;
+import webCondominio.model.*;
 
 public class ControllerConexion {
 
@@ -51,6 +47,34 @@ public class ControllerConexion {
 		factory.close();
 	}
 
+	public ArrayList<ModelPerfilUsuario> getResidentes(){
+
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_USUARIOS.GET_LISTA_USUARIOS")
+				.registerStoredProcedureParameter("l_cursor", Class.class, ParameterMode.REF_CURSOR);
+
+		try {
+			query.execute();
+			List<Object[]> queryResidentes = query.getResultList();
+			System.out.println(queryResidentes.toString());
+			ArrayList<ModelPerfilUsuario> listaResidentes = new ArrayList<>();
+			for (Object[] obj: queryResidentes) {
+				String nombre = obj[0].toString();
+				String aPaterno = obj[1].toString();
+				String aMaterno = obj[2].toString();
+				String run = obj[3].toString();
+				String nacionalidad = obj[4].toString();
+				String telefono = obj[5].toString();
+				String correo = obj[6].toString();
+				int cantMultas = Integer.parseInt(obj[7].toString());
+				ModelPerfilUsuario residente = new ModelPerfilUsuario(nombre,aPaterno,aMaterno,run,nacionalidad,telefono,correo,cantMultas);
+				listaResidentes.add(residente);
+			}
+			return listaResidentes;
+		}catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+	}
 	public ArrayList<ModelPago> getPagos(Date fecha, String rut) {
 
 		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.getpagomensual")
