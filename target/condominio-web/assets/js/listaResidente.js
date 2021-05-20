@@ -28,6 +28,7 @@ function getAjax(){
 };*/
 
 function setTabla() {
+    console.log("entramos");
     $('#cuerpo').append("<div class='card-header'><h5 class='card-title'>Residentes</h5><p class='card-category'>Información residentes</p></div>"+
     "<div class='card-body residenteLista'></div>"+"<div class='card-footer '><hr></div>");
     $('.residenteLista').append("<div class='table-responsive row'><table class=' col-12 table table-striped tablaResidentes' id='tablaResidentes' style='width: 100%'></table></div>");
@@ -106,7 +107,7 @@ function getDatos(){
             {"data": "telefono"},
             {"data": "correo"},
             {"data": "cantidad_multas"},
-            {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info'><i class='fas fa-search'></i></button></div>"}
+            {"defaultContent": "<div class='text-center'><button type='button' data-bs-toggle='modal' data-bs-target='#residenteMultas' class='btn btn-info btnBuscar'><i class='fas fa-search'></i></button></div>"}
         ]
     });
 };
