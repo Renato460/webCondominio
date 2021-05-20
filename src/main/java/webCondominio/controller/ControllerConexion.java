@@ -22,6 +22,7 @@ public class ControllerConexion {
 	private SessionFactory factory;
 	private Session session;
 
+
 	public ControllerConexion() {
 
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure() // configures settings

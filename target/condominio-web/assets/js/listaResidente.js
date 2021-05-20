@@ -39,6 +39,7 @@ function setTabla() {
         "<th scope='col'>Telefono</th>" +
         "<th scope='col'>Correo</th>" +
         "<th scope='col'>Cantidad Multas</th>" +
+        "<th scope='col'>Acciones</th>" +
         "</tr>" + "</thead>");
     $('.tablaResidentes').append("<tbody></tbody>")
 
@@ -104,7 +105,8 @@ function getDatos(){
             {"data": "nacionalidad"},
             {"data": "telefono"},
             {"data": "correo"},
-            {"data": "cantidad_multas"}
+            {"data": "cantidad_multas"},
+            {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info'><i class='fas fa-search'></i></button></div>"}
         ]
     });
 };
