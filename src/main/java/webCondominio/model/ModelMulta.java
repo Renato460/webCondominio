@@ -10,13 +10,18 @@ import javax.persistence.Table;
 @Table(name="MULTAS")
 public class ModelMulta {
 
-	public ModelMulta(int id_multa, Date fecha, String descripcion, int monto) {
+	public ModelMulta(int id_multa, Date fechaIng, String descripcion, int monto) {
 		
 		this.id_multa = id_multa;
-		this.fecha = fecha;
+		this.fechaIng = fechaIng;
 		this.descripcion = descripcion;
 		this.monto = monto;
 	}
+
+	public ModelMulta() {
+
+	}
+
 	@Id
 	public int getId_multa() {
 		return id_multa;
@@ -24,11 +29,11 @@ public class ModelMulta {
 	public void setId_multa(int id_multa) {
 		this.id_multa = id_multa;
 	}
-	public Date getFecha() {
-		return fecha;
+	public Date getFechaIng() {
+		return fechaIng;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaIng(Date fecha) {
+		this.fechaIng = fecha;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -55,7 +60,7 @@ public class ModelMulta {
 		this.id_periodo = id_periodo;
 	}
 	private int id_multa;
-	private Date fecha;
+	private Date fechaIng;
 	private String descripcion;
 	private int monto;
 	private int id_vivienda;

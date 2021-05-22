@@ -3,6 +3,7 @@ package webCondominio.action;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -11,7 +12,9 @@ import webCondominio.controller.ControllerConexion;
 import webCondominio.model.ModelLoginUsuario;
 import webCondominio.model.ModelMulta;
 
-public class ActionMulta extends ActionSupport implements SessionAware{
+import javax.servlet.http.HttpServletRequest;
+
+public class ActionMulta extends ActionSupport implements SessionAware, ServletRequestAware {
 	/**
 	 * 
 	 */
@@ -27,8 +30,19 @@ public class ActionMulta extends ActionSupport implements SessionAware{
 		
 		return SUCCESS;
 	}
-	private ArrayList<ModelMulta> numeroMultas;
 
+
+	public String multa(){
+		ControllerConexion muta = new ControllerConexion();
+		String rut = request.getParameter("rut");
+		System.out.println(rut);
+		numeroMultas = muta.multas(rut);
+		muta.cerrarSession();
+		return SUCCESS;
+	}
+
+	private ArrayList<ModelMulta> numeroMultas;
+	private HttpServletRequest request;
 	private Map<String, Object> session;
 	
 	public ArrayList<ModelMulta> getNumeroMultas() {
@@ -41,5 +55,10 @@ public class ActionMulta extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
 		this.session=session;
+	}
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		this.request = request;
 	}
 }

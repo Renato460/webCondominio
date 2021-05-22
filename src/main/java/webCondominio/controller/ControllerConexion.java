@@ -188,7 +188,7 @@ public class ControllerConexion {
 				multas.add(multa);
 
 			}
-
+			System.out.println(multas);
 			return multas;
 		} catch (Exception ex) {
 			System.out.println(ex);

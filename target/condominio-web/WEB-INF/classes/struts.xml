@@ -135,6 +135,10 @@
 			<result type="json"/>
 		</action>
 
+		<action name="getMulta" class="webCondominio.action.ActionMulta" method="multa">
+			<result type="json"/>
+		</action>
+
 	</package>
 
 	<package name="pkgAdmin" extends="struts-default, json-default" namespace="/administracion">

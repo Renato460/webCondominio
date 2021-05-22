@@ -278,6 +278,58 @@ Coded by www.creative-tim.com
         </footer>
     </div>
 </div>
+
+
+<!--Modal-->
+
+<div class="modal fade" id="residenteMultas" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Multas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- FORMULARIO DE RESERVA -->
+                <div id="tablaMulta">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+                                <div class="input-group mb-2 reservaNombre">
+                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                    <input type="text" class="form-control reservaId" name="nombre"
+                                           aria-label="Nombre" aria-describedby="basic-addon1" id="nombreResidente">
+                                </div>
+
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon2">RUN</span>
+                                    <input type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
+                                        aria-label="Rut" aria-describedby="basic-addon2" id="rutResidente">
+                                </div>
+
+                                <div id="cuerpoMulta"></div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- FINAL FORMULARIO DE RESERVA -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--   Core JS Files   -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/jquery.js" type="text/javascript"></script>
@@ -289,6 +341,8 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/listaResidente.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/multasEdi.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
