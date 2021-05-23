@@ -66,8 +66,10 @@ public class ControllerConexion {
 				String nacionalidad = obj[4].toString();
 				String telefono = obj[5].toString();
 				String correo = obj[6].toString();
-				int cantMultas = Integer.parseInt(obj[7].toString());
-				ModelPerfilUsuario residente = new ModelPerfilUsuario(nombre,aPaterno,aMaterno,run,nacionalidad,telefono,correo,cantMultas);
+				String fechai = obj[7].toString();
+				System.out.println(fechai);
+				int cantMultas = Integer.parseInt(obj[8].toString());
+				ModelPerfilUsuario residente = new ModelPerfilUsuario(nombre,aPaterno,aMaterno,run,nacionalidad,telefono,correo,cantMultas,fechai);
 				listaResidentes.add(residente);
 			}
 			return listaResidentes;
@@ -282,11 +284,65 @@ public class ControllerConexion {
 
 		}
 	}
+	public int setPerfil(String usuario,String password,int idrol,String nombre, String apaterno,String amaterno, String run,String nacionalidad, int telefono,String correo, int idvivienda, int idcondominio){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.setusuario")
+				.registerStoredProcedureParameter("p_usuario", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_password", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_idrol", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_nombre", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_apaterno", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_amaterno", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_run", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_nacionalidad", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_telefono", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_correo", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_idvivienda", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_idcondominio", Integer.class,ParameterMode.IN )
+				.setParameter("p_usuario",usuario)
+				.setParameter("p_password",password)
+				.setParameter("p_idrol",idrol)
+				.setParameter("p_nombre",nombre)
+				.setParameter("p_apaterno",apaterno)
+				.setParameter("p_amaterno",amaterno)
+				.setParameter("p_run",run)
+				.setParameter("p_nacionalidad",nacionalidad)
+				.setParameter("p_telefono",telefono)
+				.setParameter("p_correo",correo)
+				.setParameter("p_idvivienda",idvivienda)
+				.setParameter("p_idcondominio",idcondominio);
 
+		try{
+			query.execute();
+			return 1;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
 	public List<ModelServicio> getServicios() {
 		List<ModelServicio> reserva = session.createQuery("from ModelServicio").list();
 
 		System.out.println(reserva.get(0));
 		return reserva;
+	}
+	public ArrayList <ModelCondominio> getCondominios(){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("paq_condominios.getcondominios")
+				.registerStoredProcedureParameter("p_condocur",Class.class,ParameterMode.REF_CURSOR);
+		try{
+			query.execute();
+			List <Object[]> condominios= query.getResultList();
+			ArrayList <ModelCondominio> condos = new ArrayList<>();
+			for (Object[] obj: condominios) {
+				int idCondominio = Integer.parseInt(obj[0].toString());
+				String Nombre = obj[1].toString();
+				ModelCondominio condom = new ModelCondominio(idCondominio,Nombre);
+				condos.add(condom);
+			}
+			return condos;
+		}
+		catch(Exception ex){
+			return null;
+		}
+
 	}
 }

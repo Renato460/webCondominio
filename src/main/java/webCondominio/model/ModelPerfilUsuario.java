@@ -10,9 +10,10 @@ public class ModelPerfilUsuario {
     private String nacionalidad;
     private String telefono;
     private String correo;
+    private String fechai;
     private int cantidad_multas;
 
-    public ModelPerfilUsuario(String nombre, String aPaterno, String aMaterno, String run, String nacionalidad, String telefono, String correo, int cantidad_multas) {
+    public ModelPerfilUsuario(String nombre, String aPaterno, String aMaterno, String run, String nacionalidad, String telefono, String correo, int cantidad_multas,String fechai) {
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -21,6 +22,7 @@ public class ModelPerfilUsuario {
         this.telefono = telefono;
         this.correo = correo;
         this.cantidad_multas = cantidad_multas;
+        this.fechai= fechai;
     }
 
     public String getNombre() {
@@ -85,5 +87,13 @@ public class ModelPerfilUsuario {
 
     public void setCantidad_multas(int cantidad_multas) {
         this.cantidad_multas = cantidad_multas;
+    }
+
+    public String getFechai() {
+        return fechai;
+    }
+
+    public void setFechai(String fechai) {
+        this.fechai = fechai;
     }
 }
