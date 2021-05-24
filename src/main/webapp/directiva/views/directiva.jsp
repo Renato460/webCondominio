@@ -65,16 +65,16 @@ Coded by www.creative-tim.com
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
+                <li id="opcResidentes">
                     <a href="javascript:setTabla()">
                         <i class="nc-icon nc-circle-10"></i>
                         <p>Residentes</p>
                     </a>
                 </li>
-                <li>
-                    <a href="./map.html">
+                <li id="opcMultas">
+                    <a href="javascript:setMultas()">
                         <i class="nc-icon nc-pin-3"></i>
-                        <p>Maps</p>
+                        <p>Multas</p>
                     </a>
                 </li>
                 <li>
@@ -248,6 +248,8 @@ Coded by www.creative-tim.com
                     </div>
                 </div>
             </div>
+
+            <!-- CUERPO-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" id="cuerpo">
@@ -255,6 +257,16 @@ Coded by www.creative-tim.com
                     </div>
                 </div>
             </div>
+            <!--CUERPO-->
+            <!--Cuerpo2-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" id="cuerpo2">
+
+                    </div>
+                </div>
+            </div>
+            <!--Cuerpo2-->
         </div>
         <footer class="footer footer-black  footer-white ">
             <div class="container-fluid">
@@ -282,37 +294,44 @@ Coded by www.creative-tim.com
 
 <!--Modal-->
 
-<div class="modal fade" id="residenteMultas" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="residenteMultas" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content card card-user">
+            <div class="modal-header card-header">
                 <h5 class="modal-title" id="exampleModalLabel">Multas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body card-body">
 
                 <!-- FORMULARIO DE RESERVA -->
-                <div id="tablaMulta">
+                <div id="formMulta">
                     <div class="container">
                         <div class="row">
-
                             <div class='col-lg-12'>
-                                <div class="input-group mb-2 reservaNombre">
-                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                <div class="form-group">
+                                    <label for="nombreResidente">Nombre Residente</label>
                                     <input type="text" class="form-control reservaId" name="nombre"
-                                           aria-label="Nombre" aria-describedby="basic-addon1" id="nombreResidente">
+                                           aria-label="Nombre" aria-describedby="basic-addon1" id="nombreResidente" disabled>
                                 </div>
 
-                                <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon2">RUN</span>
+                                <div class="form-group">
+                                    <label for="rutResidente">Rut Residente</label>
                                     <input type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
-                                        aria-label="Rut" aria-describedby="basic-addon2" id="rutResidente">
+                                        aria-label="Rut" aria-describedby="basic-addon2" id="rutResidente" disabled>
                                 </div>
 
-                                <div id="cuerpoMulta"></div>
-
+                                <div class="form-group">
+                                    <label for="descMulta">Descripción de la multa</label>
+                                    <textarea type="text" class="form-control rutP" placeholder="Descrpción de la Multa" name="descMult"
+                                              aria-label="Descripción" aria-describedby="basic-addon2" id="descMulta"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="montoMulta">Monto de la multa</label>
+                                    <input type="number" class="form-control rutP" placeholder="Monto de la Multa" name="descMult"
+                                              aria-label="Multa" aria-describedby="basic-addon2" id="montoMulta">
+                                </div>
+                                <div class="d-flex justify-content-center"><button class="btn btn-primary btn-round btnEnviarForma">Ingresar Multa</button></div>
 
 
                             </div>
@@ -322,10 +341,6 @@ Coded by www.creative-tim.com
 
 
                 <!-- FINAL FORMULARIO DE RESERVA -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -343,6 +358,8 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/listaResidente.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/multasEdi.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/setMulta.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>

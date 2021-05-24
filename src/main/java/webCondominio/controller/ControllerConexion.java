@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -50,6 +51,27 @@ public class ControllerConexion {
 		factory.close();
 	}
 	//*******
+
+	//Setear Multas
+	public int setMulta(String rut, String descripcion, Integer monto){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_multas.setmulta")
+				.registerStoredProcedureParameter("p_rut", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_descripcion", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_monto", Integer.class, ParameterMode.IN)
+				.setParameter("p_rut", rut)
+				.setParameter("p_descripcion", descripcion)
+				.setParameter("p_monto", monto);
+		try {
+			query.execute();
+			return 1;
+		}catch (Exception e){
+			System.out.println("<<<<<<<"+e);
+			return 0;
+		}
+
+	}
+	//********
+
 	//Listas de residentes y usuarios
 	public ArrayList<ModelPerfilUsuario> getResidentes(Integer idRol){
 		System.out.println(idRol);

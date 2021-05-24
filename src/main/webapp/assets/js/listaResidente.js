@@ -2,7 +2,7 @@
 function setTabla(){
     $('#cuerpo').load("../directiva/views/tablaResidente.html", function () {
         console.log("Entramos a datatable")
-        $('#tablaResidentes').DataTable({
+        tabaResidentes =$('#tablaResidentes').DataTable({
             "language":{
                 "decimal":        ",",
                 "emptyTable":     "Sin datos",
@@ -60,7 +60,8 @@ function setTabla(){
                 {"data": "telefono"},
                 {"data": "correo"},
                 {"data": "cantidad_multas"},
-                {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnBuscar'><i class='fas fa-search'></i></button></div>"}
+                {"defaultContent": "<div class='btn-group-sm' role='group'><button type='button' class='btn btn-info btnBuscar' title='Información Multas'><i class='fas fa-search'></i></button>" +
+                        "<button type='button' class='btn btn-warning btnAgregar' title='Agregar Multa'><i class='fas fa-plus'></i></button></div>"}
             ]
         });
     });
