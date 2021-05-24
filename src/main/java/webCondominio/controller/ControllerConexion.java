@@ -22,7 +22,7 @@ public class ControllerConexion {
 	private SessionFactory factory;
 	private Session session;
 
-
+	//Controlador de conexión a base de datos
 	public ControllerConexion() {
 
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure() // configures settings
@@ -42,12 +42,15 @@ public class ControllerConexion {
 			System.out.println("<<<<<<<<<<<<<<<<<<<<<<" + ex + "<<<<<<<<<<<<<<<<<<<<<<");
 		}
 	}
+	//*******
 
+	//Cerrar sesión
 	public void cerrarSession() {
 		session.close();
 		factory.close();
 	}
-
+	//*******
+	//Listas de residentes y usuarios
 	public ArrayList<ModelPerfilUsuario> getResidentes(Integer idRol){
 		System.out.println(idRol);
 		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_USUARIOS.GET_LISTA_USUARIOS")
@@ -80,6 +83,8 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+	//*******
+	//Retorna la lista del total de pagos Gastos Comunes + Multas + Reservas
 	public ArrayList<ModelPago> getPagos(Date fecha, String rut) {
 
 		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.getpagomensual")
@@ -106,7 +111,9 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+	//*******
 
+	//genera una reserva de servicio del Usuario
 	public boolean setReservaUsuario(Date fecha, String runUsuario, Integer idServicio, Integer idHorario) {
 
 		System.out.println("-------------------->Seteando reserva");
@@ -136,7 +143,9 @@ public class ControllerConexion {
 			return false;
 		}
 	}
+	//*******
 
+	//Retorna la disponibilidad de horario para una reserva
 	public ArrayList<ModelHorario> getDisponibilidad(Date fecha, Integer idServicio) {
 
 		System.out.println("-------------------->get dispo");
@@ -164,7 +173,9 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+	//*******
 
+	//Retorna la lista de multas de un usuario Residente
 	public ArrayList<ModelMulta> multas(String rut) {
 		System.out.println("-------------------->Entroooooo");
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_multas.getmultas")
@@ -199,7 +210,9 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+	//*******
 
+	//Retorna los anuncios creados por el Administrador o Directiva
 	public ArrayList<ModelAnuncios> anuncios() {
 
 		System.out.println("-------------------->Anuncios");
@@ -228,7 +241,9 @@ public class ControllerConexion {
 			return null;
 		}
 	};
+	//*******
 
+	//Retorna Los datos de un usuario si se encuentra registrado
 	public List<String> login(String user, String pass) {
 
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.getusuario")
@@ -262,7 +277,9 @@ public class ControllerConexion {
 
 		}
 	}
+	//*******
 
+	//TODO por hacer perfil
 	public String perfil() {
 		System.out.println("ENTRAMOS al PERFIL<<<<<<<<<<<<<<<<<<<<<<<");
 
@@ -286,6 +303,9 @@ public class ControllerConexion {
 
 		}
 	}
+	//*******
+
+	//Crea un perfil de usuario
 	public int setPerfil(String usuario,String password,int idrol,String nombre, String apaterno,String amaterno, String run,String nacionalidad, int telefono,String correo, int idvivienda, int idcondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.setusuario")
 				.registerStoredProcedureParameter("p_usuario", String.class,ParameterMode.IN )
@@ -321,12 +341,18 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
+	//*******
+
+	//Retorna los servicios que ofrece el condominio
 	public List<ModelServicio> getServicios() {
 		List<ModelServicio> reserva = session.createQuery("from ModelServicio").list();
 
 		System.out.println(reserva.get(0));
 		return reserva;
 	}
+	//*******
+
+	//Retorna la lista de condominios
 	public ArrayList <ModelCondominio> getCondominios(){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("paq_condominios.getcondominios")
 				.registerStoredProcedureParameter("p_condocur",Class.class,ParameterMode.REF_CURSOR);
