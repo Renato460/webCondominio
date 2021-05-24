@@ -25,7 +25,7 @@ function setTabla(){
             },
             responsive: "true",
             "ajax": {
-                "url":    'getListaResidentes.action',
+                "url":    'getResidentes.action',
                 "type":   'POST',
                 "dataSrc": "listaResidentes"
             },

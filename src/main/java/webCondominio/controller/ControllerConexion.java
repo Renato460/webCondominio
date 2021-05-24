@@ -48,10 +48,12 @@ public class ControllerConexion {
 		factory.close();
 	}
 
-	public ArrayList<ModelPerfilUsuario> getResidentes(){
-
+	public ArrayList<ModelPerfilUsuario> getResidentes(Integer idRol){
+		System.out.println(idRol);
 		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_USUARIOS.GET_LISTA_USUARIOS")
-				.registerStoredProcedureParameter("l_cursor", Class.class, ParameterMode.REF_CURSOR);
+				.registerStoredProcedureParameter("p_idrol", Integer.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("l_cursor", Class.class, ParameterMode.REF_CURSOR)
+				.setParameter("p_idrol", idRol);
 
 		try {
 			query.execute();

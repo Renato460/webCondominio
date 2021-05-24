@@ -131,7 +131,7 @@
 			<result>views/directiva.jsp</result>
 		</action>
 
-		<action name="getListaResidentes" class="webCondominio.action.ActionResidentes">
+		<action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
 			<result type="json"/>
 		</action>
 
