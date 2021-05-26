@@ -33,19 +33,19 @@ function setTabla(){
             buttons: [
                 {
                     extend:     'excelHtml5',
-                    text:       '<i class="far fa-file-excel"></i>',
+                    text:       '<i class="fs-4 far fa-file-excel"></i>',
                     titleAttr:  'Exportar a Excel',
                     className:  'btn btn-success'
                 },
                 {
                     extend:     'pdfHtml5',
-                    text:       '<i class="far fa-file-pdf"></i>',
+                    text:       '<i class="fs-4 far fa-file-pdf"></i>',
                     titleAttr:  'Exportar a PDF',
                     className:  'btn btn-danger'
                 },
                 {
                     extend:     'print',
-                    text:       '<i class="fas fa-print"></i>',
+                    text:       '<i class="fs-4 fas fa-print"></i>',
                     titleAttr:  'Imprimir',
                     className:  'btn btn-info'
                 }
@@ -60,8 +60,8 @@ function setTabla(){
                 {"data": "telefono"},
                 {"data": "correo"},
                 {"data": "cantidad_multas"},
-                {"defaultContent": "<div class='btn-group-sm' role='group'><button type='button' class='btn btn-info btnBuscar' title='Información Multas'><i class='fas fa-search'></i></button>" +
-                        "<button type='button' class='btn btn-warning btnAgregar' title='Agregar Multa'><i class='fas fa-plus'></i></button></div>"}
+                {"defaultContent": "<div class='btn-group-sm' role='group'><button type='button' class='btn btn-info btnBuscar fs-4' title='Información Multas'><i class='fas fa-search imgMostrar'></i></button>" +
+                        "<button type='button' class='btn btn-warning btnAgregar fs-4' title='Agregar Multa'><i class='fas fa-plus imgIngMulta'></i></button></div>"}
             ]
         });
     });
