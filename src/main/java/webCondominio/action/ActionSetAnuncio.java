@@ -1,17 +1,15 @@
 package webCondominio.action;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.struts2.interceptor.ServletRequestAware;
 
-import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.io.IOUtils;
+import webCondominio.controller.ControllerConexion;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class ActionSetAnuncio extends ActionSupport {
 
@@ -19,13 +17,13 @@ public class ActionSetAnuncio extends ActionSupport {
     public String execute() throws Exception {
 
         String file_dirs_path = "C:\\Users\\rerey\\eclipse-workspace\\webCondominio\\img\\anuncios"+File.separator;
-        System.out.println(File.separator);
+
         File dirs = new File(file_dirs_path);
         if (!dirs.exists()) {
             dirs.mkdirs();
         }
         String file_url = file_dirs_path +File.separator+fileFileName;
-        System.out.println("file_url: " + file_url);
+        //System.out.println("file_url: " + file_url);
 
         FileInputStream io = new FileInputStream(file);
         FileOutputStream op = new FileOutputStream(file_url);
@@ -33,17 +31,37 @@ public class ActionSetAnuncio extends ActionSupport {
         io.close();
         op.close();
 
+        ControllerConexion conexion = new ControllerConexion();
+        if(conexion.setAnuncios(this.descripcion,this.fileFileName)){
+            conexion.cerrarSession();
+            this.resultado = 1;
+        }else {
+            conexion.cerrarSession();
+            this.resultado = 0;
+        }
         return SUCCESS;
     }
 
-
+    private int resultado;
     private File file;
     private String fileFileName;
     private String fileContentType;
-
+    private String descripcion;
     // return value
 
+    public int getResultado(){
+        return resultado;
+    }
+    @JsonIgnore
+    public String getDescripcion() {
+        return descripcion;
+    }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @JsonIgnore
     public String getFileFileName() {
         return fileFileName;
     }
@@ -51,7 +69,7 @@ public class ActionSetAnuncio extends ActionSupport {
     public void setFileFileName(String fileFileName) {
         this.fileFileName = fileFileName;
     }
-
+    @JsonIgnore
     public String getFileContentType() {
         return fileContentType;
     }
@@ -59,7 +77,7 @@ public class ActionSetAnuncio extends ActionSupport {
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
     }
-
+    @JsonIgnore
     public File getFile() {
         return file;
     }

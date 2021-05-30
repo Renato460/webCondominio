@@ -73,7 +73,7 @@ Coded by www.creative-tim.com
                 </li>
                 <li id="opcMultas">
                     <a href="javascript:setAnuncio()">
-                        <i class="nc-icon nc-pin-3"></i>
+                        <i class="nc-icon nc-map-big"></i>
                         <p>Anuncios</p>
                     </a>
                 </li>

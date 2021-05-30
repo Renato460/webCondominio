@@ -1,15 +1,6 @@
+
 function setAnuncio() {
     $('#cuerpo').load('../directiva/views/vistaSetAnuncio.html');
-    /*$.ajax({
-        url:'views/vistaSetAnuncio.txt',
-        method:'GET'
-    }).done(function (data) {
-        console.log(data);
-        $('#cuerpo').append(data);
-    });
-    /*let formulario = $('.formAnuncio').html("<input type='file' id='file'><input type='submit' value='Submit'>");
-    $('#cuerpo').append(formulario);*/
-
 };
 
 $(document).on('submit','#formAnuncio',function (e) {
@@ -18,9 +9,11 @@ $(document).on('submit','#formAnuncio',function (e) {
     let data = document.getElementById('formAnuncio');
     let file = ($('#anuncioFoto'))[0].files[0];
     let fileName = file.name;
+    let descripcion = $('#descripcionAnuncio').val();
     let formData = new FormData();
     formData.append('file',file);
-    formData.append('fileFileName',fileName)
+    formData.append('fileFileName',fileName);
+    formData.append('descripcion', descripcion);
     console.log(formData);
     $.ajax({
         url:'setImagenAnuncio.action',
@@ -35,4 +28,24 @@ $(document).on('submit','#formAnuncio',function (e) {
         console.log(data);
         $('#cuerpo').append(data);
     });
+});
+
+
+$(document).on('change', '#anuncioFoto', function (){
+   let file = ($('#anuncioFoto'))[0].files[0];
+   if (file){
+     const reader = new FileReader();
+       $('.defaultText').addClass('d-none');
+       $('.image-preview_Image').removeClass('d-none').addClass('d-block');
+
+     reader.addEventListener('load', function () {
+         $('.image-preview_Image').attr("src", this.result);
+     });
+
+     reader.readAsDataURL(file);
+   }else {
+       $('.defaultText').removeClass('d-none');
+       $('.image-preview_Image').removeClass('d-block').addClass('d-none');
+       $('.image-preview_Image').attr("src", "");
+   };
 });
