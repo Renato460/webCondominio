@@ -72,9 +72,9 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li id="opcMultas">
-                    <a href="javascript:setMultas()">
-                        <i class="nc-icon nc-pin-3"></i>
-                        <p>Multas</p>
+                    <a href="javascript:setAnuncio()">
+                        <i class="nc-icon nc-map-big"></i>
+                        <p>Anuncios</p>
                     </a>
                 </li>
                 <li>
@@ -305,7 +305,7 @@ Coded by www.creative-tim.com
             <div class="modal-body card-body">
 
                 <!-- FORMULARIO DE RESERVA -->
-                <div id="formMulta">
+                <form id="formMulta">
                     <div class="container">
                         <div class="row">
                             <div class='col-lg-12'>
@@ -323,22 +323,25 @@ Coded by www.creative-tim.com
 
                                 <div class="form-group">
                                     <label for="descMulta">Descripción de la multa</label>
-                                    <textarea type="text" class="form-control rutP" placeholder="Descrpción de la Multa" name="descMult"
-                                              aria-label="Descripción" aria-describedby="basic-addon2" id="descMulta"></textarea>
+                                    <textarea type="text" class="form-control rutP" name="descMult"
+                                              aria-label="Descripción" aria-describedby="basic-addon2" id="descMulta" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="montoMulta">Monto de la multa</label>
-                                    <input type="number" class="form-control rutP" placeholder="Monto de la Multa" name="descMult"
-                                              aria-label="Multa" aria-describedby="basic-addon2" id="montoMulta">
+                                    <input type="number" class="form-control rutP" name="descMult"
+                                              aria-label="Multa" aria-describedby="basic-addon2" id="montoMulta" required>
                                 </div>
-                                <div class="d-flex justify-content-center"><button class="btn btn-primary btn-round btnEnviarForma">Ingresar Multa</button></div>
+                                <div id="cuerpoAlerta" class=" col-lg-12 mt-3"></div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary btn-round btnEnviarForma">Ingresar Multa</button>
+                                </div>
 
 
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </form>
+                <!--<form class="formAnuncio"></form>-->
 
                 <!-- FINAL FORMULARIO DE RESERVA -->
             </div>
@@ -360,7 +363,8 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/multasEdi.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/setMulta.js" type="text/javascript"></script>
-
+<script
+        src="${ pageContext.request.contextPath }/assets/js/setAnuncio.js" type="text/javascript"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
@@ -376,6 +380,8 @@ Coded by www.creative-tim.com
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/paper-dashboard.min.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/main.js" type="text/javascript"></script>
 
 
 

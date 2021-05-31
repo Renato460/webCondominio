@@ -3,6 +3,7 @@
  */
 
 $(document).on("click", ".btnBuscar", function () {
+
     let fila = $(this).closest("tr");
     let userRut = fila.find('td:eq(3)').text();
     let cantMultas = fila.find('td:eq(7)').text();
@@ -11,18 +12,16 @@ $(document).on("click", ".btnBuscar", function () {
     let buttonSearch = this;
     if (!(cantMultas==='0')){
         if ( row.child.isShown() ) {
-            // This row is already open - close it
             row.child.hide();
             fila.removeClass('shown');
-            imgButton.classList.remove("fa-search-minus");
-            buttonSearch.classList.remove("btn-danger");
-            imgButton.classList.add("fa-search");
-            buttonSearch.classList.add("btn-info");
+            $(".imgMostrar").removeClass("fa-search-minus").addClass('fa-search');
+            $(".btnBuscar").removeClass("btn-danger").addClass("btn-info");
         }
         else {
+            $(".btnBuscar").empty().append("<div class='spinner-border text-info'></div>");
             // Open this row
-            let tablaMultas = "<table className=' col-12 table table-striped tablaMultas' id='tablaMultas' style='width: 100%'>"+
-                "<thead className='text-primary'>"+
+            let tablaMultas = "<table class=' col-12 table tablaMultas' id='tablaMultas' style='width: 100%'>"+
+                "<thead class='text-primary'>"+
                 "<tr><th scope='col'>Id multa</th>"+
                 "<th scope='col'>Descripción</th>"+
                 "<th scope='col'>Monto</th>"+
@@ -33,10 +32,8 @@ $(document).on("click", ".btnBuscar", function () {
                 data:{rut: userRut}
             }).done(function( data ) {
 
-                imgButton.classList.remove("fa-search");
-                buttonSearch.classList.remove("btn-info");
-                imgButton.classList.add("fa-search-minus");
-                buttonSearch.classList.add("btn-danger");
+                $(".btnBuscar").removeClass("btn-info").addClass("btn-danger").empty().append("<i class=\"fas fs-4 fa-search-minus imgMostrar\"></i>");
+
                 $.each(data.numeroMultas,function(index,value){
                     let id_multa = (value.id_multa).toString();
                     let descripcion = value.descripcion;

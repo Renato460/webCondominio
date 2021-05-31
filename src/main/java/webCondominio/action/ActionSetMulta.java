@@ -15,7 +15,7 @@ public class ActionSetMulta extends ActionSupport implements ServletRequestAware
         String descripcion = request.getParameter("descMulta");
         Integer montoMulta = Integer.parseInt(request.getParameter("montoMulta"));
         ControllerConexion conexion = new ControllerConexion();
-        conexion.setMulta(rut,descripcion,montoMulta);
+        this.resultado = conexion.setMulta(rut,descripcion,montoMulta);
         conexion.cerrarSession();
         return SUCCESS;
     }

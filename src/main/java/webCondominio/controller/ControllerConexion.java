@@ -265,6 +265,22 @@ public class ControllerConexion {
 	};
 	//*******
 
+	//Ingresa nuevos anuncios
+	public boolean setAnuncios(String descripcion, String urlImagen){
+		System.out.println(">>>>>>>>>>>>>"+descripcion);
+		System.out.println(">>>>>>>>>>>>>"+urlImagen);
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_anuncios.setanuncio")
+				.registerStoredProcedureParameter("p_descripcion", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_url", String.class, ParameterMode.IN)
+				.setParameter("p_descripcion", descripcion)
+				.setParameter("p_url", urlImagen);
+		try {
+			query.execute();
+			return true;
+		}catch (Exception e){
+			return false;
+		}
+	}
 	//Retorna Los datos de un usuario si se encuentra registrado
 	public List<String> login(String user, String pass) {
 

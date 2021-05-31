@@ -142,6 +142,10 @@
 		<action name="setMulta" class="webCondominio.action.ActionSetMulta">
 			<result type="json"/>
 		</action>
+
+		<action name="setImagenAnuncio" class="webCondominio.action.ActionSetAnuncio">
+			<result type="json"/>
+		</action>
 	</package>
 
 	<package name="pkgAdmin" extends="struts-default, json-default" namespace="/administracion">
