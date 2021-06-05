@@ -344,7 +344,7 @@ public class ControllerConexion {
 	//*******
 
 	//Crea un perfil de usuario
-	public int setPerfil(String usuario,String password,int idrol,String nombre, String apaterno,String amaterno, String run,String nacionalidad, int telefono,String correo, int idvivienda, int idcondominio){
+	public int setPerfil(String usuario,String password,int idrol,String nombre, String apaterno,String amaterno, String run,String nacionalidad, int telefono,String correo, int nrovivienda, int idcondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.setusuario")
 				.registerStoredProcedureParameter("p_usuario", String.class,ParameterMode.IN )
 				.registerStoredProcedureParameter("p_password", String.class,ParameterMode.IN )
@@ -356,7 +356,7 @@ public class ControllerConexion {
 				.registerStoredProcedureParameter("p_nacionalidad", String.class,ParameterMode.IN )
 				.registerStoredProcedureParameter("p_telefono", Integer.class,ParameterMode.IN )
 				.registerStoredProcedureParameter("p_correo", String.class,ParameterMode.IN )
-				.registerStoredProcedureParameter("p_idvivienda", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_nrovivienda", Integer.class,ParameterMode.IN )
 				.registerStoredProcedureParameter("p_idcondominio", Integer.class,ParameterMode.IN )
 				.setParameter("p_usuario",usuario)
 				.setParameter("p_password",password)
@@ -368,7 +368,7 @@ public class ControllerConexion {
 				.setParameter("p_nacionalidad",nacionalidad)
 				.setParameter("p_telefono",telefono)
 				.setParameter("p_correo",correo)
-				.setParameter("p_idvivienda",idvivienda)
+				.setParameter("p_nrovivienda",nrovivienda)
 				.setParameter("p_idcondominio",idcondominio);
 
 		try{

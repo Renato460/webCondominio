@@ -89,6 +89,73 @@ $(document).on('click','.btn-ingresar',function (){
        $("#modalid1").modal('toggle');
    });
 });
-/*function getcondominios(){
+$("#formsetusuario").submit(function (e) {
+    e.preventDefault();
+    $('#cuerpoAlerta').empty();
+    $(".btnEnviarForma").empty().append("<div class='spinner-border text-primary'></div>");
+    let usuario = $('#usuario').val();
+    let password =$('#password').val();
+    let rol = $('#rol').val();
+    let nombre = $('#nombre').val();
+    let apaterno = $('#apaterno').val();
+    let amaterno = $('#amaterno').val();
+    let rut= $('#rut').val();
+    let nacionalidad = $('#nacionalidad').val();
+    let telefono = $('#telefono').val();
+    let email = $('#email').val();
+    let condominio = $('#condominio').val();
+    let vivienda = $('#vivienda').val();
 
-}*/
+    $.ajax({
+        url: "setUsuario.action",
+        method: "POST",
+        data: {
+            usuario:usuario,
+            password:password,
+            idrol:rol,
+            nombre:nombre,
+            apaterno:apaterno,
+            amaterno: amaterno,
+            run:rut,
+            nacionalidad:nacionalidad,
+            telefono:telefono,
+            correo:email,
+            idvivienda:vivienda,
+            idcondominio:condominio
+        }
+    }).done(function (data){
+
+        if(data.resultado === 1){
+            $("#cuerpoAlerta").append("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Usuario ingresado con exito</span>" +
+                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+            $('#usuario').val("");
+            $('#password').val("");
+            $('#rol').val("Seleccione Rol");
+            $('#nombre').val("");
+            $('#apaterno').val("");
+            $('#amaterno').val("");
+            $('#rut').val("");
+            $('#nacionalidad').val("");
+            $('#telefono').val("");
+            $('#email').val("");
+            $('#condominio').val("Seleccione Condominio");
+            $('#vivienda').val("");
+            setTablaUsuarios.ajax.reload();
+        }else{
+            $("#cuerpoAlerta").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Error al registrar el usuario</span>" +
+                "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+        };
+        $('.btnEnviarForma').empty().text("CONFIRMAR REGISTRO");
+
+
+
+
+    }).fail(function () {
+        $("#cuerpoAlerta").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+            "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>No se pudo concretar la petición</span>" +
+            "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+    });
+
+});
