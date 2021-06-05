@@ -52,35 +52,35 @@ public class ActionSetAnuncio extends ActionSupport {
     public int getResultado(){
         return resultado;
     }
-    @JsonIgnore
-    public String getDescripcion() {
+
+    /*public String getDescripcion() {
         return descripcion;
-    }
+    }*/
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    @JsonIgnore
+    /*
     public String getFileFileName() {
         return fileFileName;
-    }
+    }*/
 
     public void setFileFileName(String fileFileName) {
         this.fileFileName = fileFileName;
     }
-    @JsonIgnore
+    /*
     public String getFileContentType() {
         return fileContentType;
-    }
+    }*/
 
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
     }
-    @JsonIgnore
+   /*
     public File getFile() {
         return file;
-    }
+    }*/
 
     public void setFile(File file) {
         this.file = file;

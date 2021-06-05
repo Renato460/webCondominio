@@ -5,7 +5,7 @@ function setAnuncio() {
 
 $(document).on('submit','#formAnuncio',function (e) {
     e.preventDefault();
-    console.log($(this));
+    //console.log($(this));
     let data = document.getElementById('formAnuncio');
     let file = ($('#anuncioFoto'))[0].files[0];
     let fileName = file.name;
@@ -14,7 +14,12 @@ $(document).on('submit','#formAnuncio',function (e) {
     formData.append('file',file);
     formData.append('fileFileName',fileName);
     formData.append('descripcion', descripcion);
-    console.log(formData);
+    //console.log(formData);
+
+
+
+
+
     $.ajax({
         url:'setImagenAnuncio.action',
         type:'POST',
@@ -26,7 +31,12 @@ $(document).on('submit','#formAnuncio',function (e) {
 
     }).done(function (data) {
         console.log(data);
-        $('#cuerpo').append(data);
+        if(data.resultado===1){
+            $("#respuestaAnuncio").html("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Anuncio ingresado con éxito</span>" +
+                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+        }
+
     });
 });
 

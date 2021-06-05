@@ -1,7 +1,9 @@
 package webCondominio.model;
 
 
-import java.sql.Date;
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="MULTAS")
 public class ModelMulta {
 
-	public ModelMulta(int id_multa, Date fechaIng, String descripcion, int monto) {
+	public ModelMulta(int id_multa, String fechaIng, String descripcion, int monto) {
 		
 		this.id_multa = id_multa;
 		this.fechaIng = fechaIng;
@@ -29,10 +31,10 @@ public class ModelMulta {
 	public void setId_multa(int id_multa) {
 		this.id_multa = id_multa;
 	}
-	public Date getFechaIng() {
+	public String getFechaIng() {
 		return fechaIng;
 	}
-	public void setFechaIng(Date fecha) {
+	public void setFechaIng(String fecha) {
 		this.fechaIng = fecha;
 	}
 	public String getDescripcion() {
@@ -60,7 +62,7 @@ public class ModelMulta {
 		this.id_periodo = id_periodo;
 	}
 	private int id_multa;
-	private Date fechaIng;
+	private String fechaIng;
 	private String descripcion;
 	private int monto;
 	private int id_vivienda;

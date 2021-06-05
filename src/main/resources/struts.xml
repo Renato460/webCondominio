@@ -6,7 +6,6 @@
 
 	<constant name="struts.devMode" value="true" />
 
-
 	<package name="residente" namespace="/residentes"
 		extends="struts-default, json-default">
 		<interceptors>
@@ -75,9 +74,9 @@
 			</result>
 		</action>
 
-		<action name="multa" class="webCondominio.action.ActionMulta">
+		<action name="multaResidente" class="webCondominio.action.ActionMulta">
 			<interceptor-ref name="secureStack" />
-			<result name="success">views/multas.jsp</result>
+			<result type="json"/>
 			<result name="login" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
@@ -87,7 +86,7 @@
 		<action name="reserva"
 			class="webCondominio.action.ActionServicio">
 			<interceptor-ref name="secureStack" />
-			<result name="success">views/reservas.jsp</result>
+			<result type="json"/>
 			<result name="login" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
@@ -107,6 +106,13 @@
 			<result name="success">views/anuncios.jsp</result>
 			<result name="login" type="redirectAction">
 				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="pagoExitoso">
+			<result type="redirectAction">
+				<param name="actionName">pagoExitosoChain</param>
 				<param name="namespace">/</param>
 			</result>
 		</action>
@@ -135,7 +141,7 @@
 			<result type="json"/>
 		</action>
 
-		<action name="getMulta" class="webCondominio.action.ActionMulta" method="multa">
+		<action name="getMulta" class="webCondominio.action.ActionMultaDirectorio">
 			<result type="json"/>
 		</action>
 
@@ -145,6 +151,12 @@
 
 		<action name="setImagenAnuncio" class="webCondominio.action.ActionSetAnuncio">
 			<result type="json"/>
+		</action>
+
+		<action name="pagoTotal" class="webCondominio.controller.ControllerPago">
+
+			<result type="json"/>
+
 		</action>
 	</package>
 
@@ -163,7 +175,7 @@
 		</action>
 	</package>
 
-	<package name="index" extends="struts-default" namespace="/">
+	<package name="index" extends="struts-default, json-default" namespace="/">
 		<interceptors>
 			<interceptor name="authenticationInterceptor"
 						 class="webCondominio.controller.AuthenticationInterceptor" />
@@ -176,6 +188,15 @@
 		<action name="return">
 			<interceptor-ref name="secureStack" />
 			<result>index.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="pagoExitosoChain" class="webCondominio.action.ActionPagoExitoso">
+			<interceptor-ref name="secureStack" />
+			<result name="success">pagoExitoso.jsp</result>
 			<result name="login" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
