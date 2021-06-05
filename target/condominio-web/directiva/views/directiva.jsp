@@ -78,33 +78,9 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
-                    <a href="./notifications.html">
+                    <a href="javascript:getPagoTotal()">
                         <i class="nc-icon nc-bell-55"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./user.html">
-                        <i class="nc-icon nc-single-02"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./tables.html">
-                        <i class="nc-icon nc-tile-56"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./typography.html">
-                        <i class="nc-icon nc-caps-small"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="./upgrade.html">
-                        <i class="nc-icon nc-spaceship"></i>
-                        <p>Upgrade to PRO</p>
+                        <p>Pago</p>
                     </a>
                 </li>
             </ul>
@@ -365,6 +341,8 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/setMulta.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/setAnuncio.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js" type="text/javascript"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>

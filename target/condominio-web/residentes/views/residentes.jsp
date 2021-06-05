@@ -1,227 +1,323 @@
-<%@ taglib prefix="d" uri="/struts-tags"%>
+
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author"
-	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-<meta name="generator" content="Hugo 0.82.0">
-<title>Residentes</title>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>
+		Residente
+	</title>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<!--     Fonts and icons     -->
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/paper-dashboard.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"/>
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/fontawesome/css/all.min.css"/>
+	<!-- CSS Files -->
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/css/buttons.bootstrap4.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/css/dataTables.bootstrap5.min.css"/>
 
-<link rel="canonical"
-	href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+	<!-- CSS Just for demo purpose, don't include it in your project <link href="../assets/demo/demo.css" rel="stylesheet" />-->
 
-
-
-<!-- Bootstrap core CSS -->
-
-<link
-	href="${ pageContext.request.contextPath }/assets/css/adminlte.min.css"
-	rel="stylesheet">
-<link
-	href="${ pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Favicons -->
-
-
-
-<style>
-.bd-placeholder-img {
-	font-size: 1.125rem;
-	text-anchor: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-}
-
-@media ( min-width : 768px) {
-	.bd-placeholder-img-lg {
-		font-size: 3.5rem;
-	}
-}
-</style>
-
-
-<!-- Custom styles for this template -->
-<link
-	href="${ pageContext.request.contextPath }/assets/css/dashboard.css"
-	rel="stylesheet">
 </head>
-<body>
 
-	<header
-		class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Condominio</a>
-		<button class="navbar-toggler position-absolute d-md-none collapsed"
-			type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
-			aria-controls="sidebarMenu" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap"><d:a class="nav-link"
-					href="logout.action">Salir</d:a></li>
-		</ul>
-	</header>
-
-	<div class="container-fluid">
-		<div class="row">
-			<nav id="sidebarMenu"
-				class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-				<div class="position-sticky pt-3">
-					<ul class="nav nav-pills nav-sidebar flex-column">
-						<li class="nav-item"><d:a class="nav-link home" id="home"
-								aria-current="page" onclick="getAnuncios()" href="#">Home</d:a>
-						</li>
-						<li class="nav-item"><d:a class="nav-link multa" id="multa"
-								aria-current="page" onclick="getMenuMultas()" href="#">Multas</d:a>
-						</li>
-						<li class="nav-item"><d:a class="nav-link reserva" id="reserva"
-								aria-current="page" onclick="getMenuReservas()" href="#">Reservas</d:a>
-						</li>
-						<li class="nav-item"><d:a class="nav-link pago" id="pago"
-								aria-current="page" onclick="getPago()" href="#">Pagar</d:a></li>
-					</ul>
+<body class="">
+<div class="wrapper ">
+	<div class="sidebar" data-color="white" data-active-color="danger">
+		<div class="logo">
+			<a href="https://www.creative-tim.com" class="simple-text logo-mini">
+				<div class="logo-image-small">
+					<img src="${ pageContext.request.contextPath }/assets/img/logo-small.png">
 				</div>
-			</nav>
-
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-				<div
-					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-					<h1 class="h2">Dashboard</h1>
-
-				</div>
-
-
-				<h3>
-					Bienvenido
-					<d:property value="#session['user'].nombre" />
-				</h3>
-
-				<!-- SECCION -->
-
-				<section class="content">
-					<div class="container-fluid">
-						<!-- Small boxes (Stat box) -->
-						<div class="row">
-							<div class="col-lg-3 col-6">
-								<!-- small box -->
-								<div class="small-box bg-info">
-									<div class="inner">
-										<h3>430</h3>
-
-										<p>Pagos Efectuados</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-bag"></i>
-									</div>
-									<a href="#" class="small-box-footer">Más Información <i
-										class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-							<!-- ./col -->
-							<div class="col-lg-3 col-6">
-								<!-- small box -->
-								<div class="small-box bg-success">
-									<div class="inner">
-										<h3>
-											4<sup style="font-size: 20px">%</sup>
-										</h3>
-
-										<p>Morosidades</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-stats-bars"></i>
-									</div>
-									<a href="#" class="small-box-footer">Más Información <i
-										class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-							<!-- ./col -->
-							<div class="col-lg-3 col-6">
-								<!-- small box -->
-								<div class="small-box bg-warning">
-									<div class="inner">
-										<h3>500</h3>
-
-										<p>Registros en Aplicación</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-person-add"></i>
-									</div>
-									<a href="#" class="small-box-footer">Más Información <i
-										class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-							<!-- ./col -->
-							<div class="col-lg-3 col-6">
-								<!-- small box -->
-								<div class="small-box bg-danger">
-									<div class="inner">
-										<h3>65</h3>
-
-										<p>Reservas</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-pie-graph"></i>
-									</div>
-									<a href="#" class="small-box-footer">Más Información <i
-										class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-							<!-- ./col -->
-						</div>
-						
-						
-						<div class="row">
-							<div id="cuerpo" class="cuerpo col-sm-12"><span class="visually-hidden">Loading...</span></div>
-						</div>
-						
-						
-						
-					</div>
-					<!-- /.row -->
-					<!-- Main row -->
-				</section>
-
-
-				<!--  FINAL SECCION -->
-
-
-
-
-
-			</main>
+				<!-- <p>CT</p> -->
+			</a>
+			<a href="https://www.creative-tim.com" class="simple-text logo-normal">
+				<s:property value="#session['user'].nombre" />
+				<!-- <div class="logo-image-big">
+                  <img src="../assets/img/logo-big.png">
+                </div> -->
+			</a>
+		</div>
+		<div class="sidebar-wrapper">
+			<ul class="nav">
+				<li class="active ">
+					<a href="./dashboard.html">
+						<i class="nc-icon nc-bank"></i>
+						<p>Dashboard</p>
+					</a>
+				</li>
+				<li id="opcResidentes">
+					<a href="javascript:getMenuReservas()">
+						<i class="nc-icon nc-circle-10"></i>
+						<p>Reservas</p>
+					</a>
+				</li>
+				<li id="opcMultas">
+					<a href="javascript:setTablaMulta()">
+						<i class="nc-icon nc-map-big"></i>
+						<p>Multas</p>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:getPagoTotal()">
+						<i class="nc-icon nc-bell-55"></i>
+						<p>Pago</p>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
+	<div class="main-panel">
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+			<div class="container-fluid">
+				<div class="navbar-wrapper">
+					<div class="navbar-toggle">
+						<button type="button" class="navbar-toggler">
+							<span class="navbar-toggler-bar bar1"></span>
+							<span class="navbar-toggler-bar bar2"></span>
+							<span class="navbar-toggler-bar bar3"></span>
+						</button>
+					</div>
+					<a class="navbar-brand" href="javascript:;">Dashboard</a>
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-bar navbar-kebab"></span>
+					<span class="navbar-toggler-bar navbar-kebab"></span>
+					<span class="navbar-toggler-bar navbar-kebab"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navigation">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="navbar-brand" href="javascript:;">
+								Salir
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- End Navbar -->
+		<div class="content">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="card card-stats">
+						<div class="card-body ">
+							<div class="row">
+								<div class="col-5 col-md-4">
+									<div class="icon-big text-center icon-warning">
+										<i class="nc-icon nc-globe text-warning"></i>
+									</div>
+								</div>
+								<div class="col-7 col-md-8">
+									<div class="numbers">
+										<p class="card-category">Capacity</p>
+										<p class="card-title">150GB<p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer ">
+							<hr>
+							<div class="stats">
+								<i class="fa fa-refresh"></i>
+								Update Now
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="card card-stats">
+						<div class="card-body ">
+							<div class="row">
+								<div class="col-5 col-md-4">
+									<div class="icon-big text-center icon-warning">
+										<i class="nc-icon nc-money-coins text-success"></i>
+									</div>
+								</div>
+								<div class="col-7 col-md-8">
+									<div class="numbers">
+										<p class="card-category">Revenue</p>
+										<p class="card-title">$ 1,345<p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer ">
+							<hr>
+							<div class="stats">
+								<i class="fa fa-calendar-o"></i>
+								Last day
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="card card-stats">
+						<div class="card-body ">
+							<div class="row">
+								<div class="col-5 col-md-4">
+									<div class="icon-big text-center icon-warning">
+										<i class="nc-icon nc-vector text-danger"></i>
+									</div>
+								</div>
+								<div class="col-7 col-md-8">
+									<div class="numbers">
+										<p class="card-category">Errors</p>
+										<p class="card-title">23<p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer ">
+							<hr>
+							<div class="stats">
+								<i class="fa fa-clock-o"></i>
+								In the last hour
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="card card-stats">
+						<div class="card-body ">
+							<div class="row">
+								<div class="col-5 col-md-4">
+									<div class="icon-big text-center icon-warning">
+										<i class="nc-icon nc-favourite-28 text-primary"></i>
+									</div>
+								</div>
+								<div class="col-7 col-md-8">
+									<div class="numbers">
+										<p class="card-category">Followers</p>
+										<p class="card-title">+45K<p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer ">
+							<hr>
+							<div class="stats">
+								<i class="fa fa-refresh"></i>
+								Update now
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script> -->
-	 <script
-		src="${ pageContext.request.contextPath }/assets/js/jquery.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js"></script>
-	<script
+			<!-- CUERPO-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card" id="cuerpo">
+						<form action="pagoExitoso.action" novalidate method="post">
+
+							<button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+							<p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!--CUERPO-->
+			<!--Cuerpo2-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card" id="cuerpo2">
+
+					</div>
+				</div>
+			</div>
+			<!--Cuerpo2-->
+		</div>
+		<footer class="footer footer-black  footer-white ">
+			<div class="container-fluid">
+				<div class="row">
+					<nav class="footer-nav">
+						<ul>
+							<li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
+							<li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
+							<li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
+						</ul>
+					</nav>
+					<div class="credits ml-auto">
+              <span class="copyright">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</div>
+
+
+<!--Modal-->
+
+<!--   Core JS Files   -->
+<script
+		src="${ pageContext.request.contextPath }/assets/js/jquery.js" type="text/javascript"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/popper.min.js" type="text/javascript"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+
+
+
+
+<script
 		src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js"></script>
-	<script
-		src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="${ pageContext.request.contextPath }/assets/js/residentes-ajax.js"></script>
-	<script
+<!--<script
+		src="${ pageContext.request.contextPath }/assets/js/residentes-ajax.js"></script>-->
+<script
 		src="${ pageContext.request.contextPath }/assets/js/reserva-ajax.js"></script>
-	<script
+<script
 		src="${ pageContext.request.contextPath }/assets/js/form-reserva-ajax.js"></script>
-	<script
+<script
 		src="${ pageContext.request.contextPath }/assets/js/multa-ajax.js"></script>
-	<script
-		src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
-	<script
-		src="${ pageContext.request.contextPath }/assets/js/adminlte.js"></script>
+
+
+
+
+
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.print.min.js"></script>
+<!--  Notifications Plugin    -->
+<script
+		src="${ pageContext.request.contextPath }/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script
+		src="${ pageContext.request.contextPath }/assets/js/paper-dashboard.min.js" type="text/javascript"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! <script src="../assets/demo/demo.js"></script>
+<script>
+    $(document).ready(function() {
+        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+        demo.initChartsPages();
+    });
+</script>
+-->
+
 
 </body>
 </html>

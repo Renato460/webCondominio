@@ -1,14 +1,10 @@
 package webCondominio.controller;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -213,12 +209,9 @@ public class ControllerConexion {
 			for (Object[] obj : cursorMultas) {
 
 				int idMulta = Integer.parseInt(obj[0].toString());
-				SimpleDateFormat sdf = new SimpleDateFormat("yyy-mm-dd hh:mm:ss");
-				java.util.Date date = sdf.parse(obj[3].toString());
-				Date fecha = new Date(date.getTime());
-
+				String fecha = obj[3].toString();
+				System.out.println(fecha);
 				String descripcion = obj[1].toString();
-
 				int monto = Integer.parseInt(obj[2].toString());
 
 				ModelMulta multa = new ModelMulta(idMulta, fecha, descripcion, monto);
@@ -272,10 +265,13 @@ public class ControllerConexion {
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_anuncios.setanuncio")
 				.registerStoredProcedureParameter("p_descripcion", String.class, ParameterMode.IN)
 				.registerStoredProcedureParameter("p_url", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("return_message", String.class, ParameterMode.OUT)
 				.setParameter("p_descripcion", descripcion)
 				.setParameter("p_url", urlImagen);
 		try {
 			query.execute();
+			String message = (String) query.getOutputParameterValue("return_message");
+			System.out.println(message);
 			return true;
 		}catch (Exception e){
 			return false;

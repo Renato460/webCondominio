@@ -5,7 +5,7 @@
  function getPagoTotal(){
 	$("#cuerpo").empty();
  $.ajax({
-		url: 'pago.action',
+		url: 'pagoTotal.action',
 		type: "POST",
 		
 		beforeSend: function (xhr){

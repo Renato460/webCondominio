@@ -67,6 +67,17 @@
 			<version>5.4.30.Final</version>
 		</dependency>
 
+		<!-- webSocket start-->
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- webSocket End-->
+
 	</dependencies>
 
 	<build>
