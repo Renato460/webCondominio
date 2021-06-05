@@ -23,7 +23,7 @@ Coded by www.creative-tim.com
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Directiva
+        Administración
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -72,21 +72,21 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
-                    <a href="./map.html">
+                    <a href="javascript:setAnuncio()">
                         <i class="nc-icon nc-pin-3"></i>
-                        <p>Maps</p>
+                        <p>Anuncios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./notifications.html">
+                    <a href="javascript:setTabla()">
                         <i class="nc-icon nc-bell-55"></i>
-                        <p>Notifications</p>
+                        <p>Multas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="./user.html">
+                    <a href="javascript:setTablaCondominio()">
                         <i class="nc-icon nc-single-02"></i>
-                        <p>User Profile</p>
+                        <p>Condominios</p>
                     </a>
                 </li>
                 <li>
@@ -280,56 +280,7 @@ Coded by www.creative-tim.com
 </div>
 
 
-<!--Modal-->
-
-<div class="modal fade" id="residenteMultas" tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Multas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <!-- FORMULARIO DE RESERVA -->
-                <div id="tablaMulta">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class='col-lg-12'>
-                                <div class="input-group mb-2 reservaNombre">
-                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                    <input type="text" class="form-control reservaId" name="nombre"
-                                           aria-label="Nombre" aria-describedby="basic-addon1" id="nombreResidente">
-                                </div>
-
-                                <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon2">RUN</span>
-                                    <input type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
-                                        aria-label="Rut" aria-describedby="basic-addon2" id="rutResidente">
-                                </div>
-
-                                <div id="cuerpoMulta"></div>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- FINAL FORMULARIO DE RESERVA -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<
 <!-- Modal -->
 <div class="modal fade" id="modalid1" role="dialog">
     <div class="modal-dialog">
@@ -339,25 +290,25 @@ Coded by www.creative-tim.com
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="form_reserva">
+                <form id="formsetusuario">
                     <div class="container">
                         <div class="row">
 
                             <div class='col-lg-12'>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Usuario</span>
-                                    <input type="text" class="form-control " name="usuario"
+                                    <input type="text" id="usuario" type="usuario" class="form-control " name="usuario"
                                            aria-label="Usuario" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Password</span>
-                                    <input type="password" class="form-control " name="password"
+                                    <input type="password" id="password" class="form-control " name="password"
                                            aria-label="Password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group mb-2">
-                                <span class="input-group-text" id="basic-addon1">Horario</span>
-                                <select name="rol" id="rol" class="form-select " aria-label="Default select example">
+                                <span class="input-group-text" id="basic-addon1">Rol</span>
+                                <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
                                     <option value="2">Conserje</option>
@@ -367,59 +318,55 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Nombre</span>
-                                    <input type="text" class="form-control " name="nombre"
+                                    <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Apellido Paterno</span>
-                                    <input type="text" class="form-control " name="apaterno"
+                                    <input type="text" id="apaterno" class="form-control " name="apaterno"
                                            aria-label="Apellido Paterno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Apellido Materno</span>
-                                    <input type="text" class="form-control " name="amaterno"
+                                    <input type="text" id="amaterno" class="form-control " name="amaterno"
                                            aria-label="Apellido Materno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon1">RUN</span> <input
-                                        type="text" class="form-control " placeholder="12345678-9" name="rut"
+                                    <span class="input-group-text" id="basic-addon1">RUN</span>
+                                    <input type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
                                         aria-label="Rut" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Nacionalidad</span>
-                                    <input type="text" class="form-control " name="nacionalidad"
+                                    <input type="text" class="form-control " id="nacionalidad" name="nacionalidad"
                                            aria-label="Nacionalidad" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">Telefono</span>
-                                    <input type="text" class="form-control" name="telefono"
+                                    <input type="text" class="form-control" id="telefono" name="telefono"
                                            aria-label="Telefono" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">e-mail</span>
-                                    <input type="email" class="form-control " name="email"
+                                    <input type="email" class="form-control " id="email" name="email"
                                            aria-label="email" aria-describedby="basic-addon1">
                                 </div>
-                                <select name="condominio" id="condominio" class="form-select mb-2" aria-label="Default select example">
+                                <select name="condominio" id="condominio" class="form-select mb-2" aria-label="Condominio">
                                     <option selected>Seleccione Condominio</option>
                                 </select>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" id="basic-addon1">N°Vivienda</span>
-                                    <input type="text" class="form-control" name="vivienda"
-                                           aria-label="vivienda" aria-describedby="basic-addon1">
+                                    <input type="text" id="vivienda" class="form-control" name="vivienda"
+                                           aria-label="vivienda" aria-describedby="Vivienda">
                                 </div>
-                                <div id="spin" class="col-12"></div>
-                                <button id="btn" class="btn btn-primary btn-lg" onclick="getcondominios()">Confirmar
-                                    Registro</button>
+                                <div id="cuerpoAlerta" class=" col-lg-12 mt-3"></div>
+                                <button type="submit"  class="btn btn-primary btn-lg btnEnviarForma">
+                                    Confirmar Registro</button>
 
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                </form>
             </div>
         </div>
     </div>
@@ -435,7 +382,16 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/admin-ajax.js" type="text/javascript"></script>
-
+<script
+        src="${ pageContext.request.contextPath }/assets/js/setAnuncio.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/multasEdi.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/setMulta.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/listaResidente.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/Condominios.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>

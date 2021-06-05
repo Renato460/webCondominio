@@ -280,7 +280,7 @@ Coded by www.creative-tim.com
             </div>
             <div class="modal-body card-body">
 
-                <!-- FORMULARIO DE RESERVA -->
+                <!-- FORMULARIO DE MULTA -->
                 <form id="formMulta">
                     <div class="container">
                         <div class="row">
@@ -319,7 +319,7 @@ Coded by www.creative-tim.com
                 </form>
                 <!--<form class="formAnuncio"></form>-->
 
-                <!-- FINAL FORMULARIO DE RESERVA -->
+                <!-- FINAL FORMULARIO DE MULTA -->
             </div>
         </div>
     </div>

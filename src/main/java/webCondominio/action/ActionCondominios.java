@@ -21,6 +21,8 @@ public class ActionCondominios extends ActionSupport {
     public String execute() throws Exception {
         ControllerConexion conexion = new ControllerConexion();
          this.condominio = conexion.getCondominios();
+         conexion.cerrarSession();
+         System.out.println(condominio);
          return SUCCESS;
     }
 }

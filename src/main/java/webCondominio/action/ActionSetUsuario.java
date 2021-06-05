@@ -19,10 +19,10 @@ public class ActionSetUsuario extends ActionSupport implements ServletRequestAwa
         this.nacionalidad=request.getParameter("nacionalidad");
         this.telefono=Integer.parseInt(request.getParameter("telefono"));
         this.correo=request.getParameter("correo");
-        this.idvivienda=Integer.parseInt(request.getParameter("idvivienda"));
+        this.nrovivienda=Integer.parseInt(request.getParameter("idvivienda"));
         this.idcondominio=Integer.parseInt(request.getParameter("idcondominio"));
         ControllerConexion conexion = new ControllerConexion();
-        conexion.setPerfil(usuario,password,idrol,nombre,apaterno,amaterno,run,nacionalidad,telefono,correo,idvivienda,idcondominio);
+        this.resultado=conexion.setPerfil(usuario,password,idrol,nombre,apaterno,amaterno,run,nacionalidad,telefono,correo,nrovivienda,idcondominio);
         return SUCCESS;
     }
     private String usuario;
@@ -35,9 +35,19 @@ public class ActionSetUsuario extends ActionSupport implements ServletRequestAwa
     private String nacionalidad;
     private int telefono;
     private String correo;
-    private int idvivienda;
+    private int nrovivienda;
     private int idcondominio;
     private HttpServletRequest request;
+    private int resultado;
+    public int getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(int resultado) {
+        this.resultado = resultado;
+    }
+
+
     public String getUsuario() {
         return usuario;
     }
@@ -118,12 +128,12 @@ public class ActionSetUsuario extends ActionSupport implements ServletRequestAwa
         this.correo = correo;
     }
 
-    public int getIdvivienda() {
-        return idvivienda;
+    public int getNrovivienda() {
+        return nrovivienda;
     }
 
-    public void setIdvivienda(int idvivienda) {
-        this.idvivienda = idvivienda;
+    public void setNrovivienda(int idvivienda) {
+        this.nrovivienda = idvivienda;
     }
 
     public int getIdcondominio() {

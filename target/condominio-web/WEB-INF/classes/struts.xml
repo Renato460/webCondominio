@@ -170,6 +170,9 @@
 		<action name="getCondominios" class="webCondominio.action.ActionCondominios">
 			<result type="json"/>
 		</action>
+		<action name="setUsuario" class="webCondominio.action.ActionSetUsuario">
+			<result type="json"/>
+		</action>
 	</package>
 
 	<package name="index" extends="struts-default, json-default" namespace="/">
