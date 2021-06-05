@@ -2,11 +2,11 @@
  * 
  */
 
-function setTabla() {
-	$('#cuerpo').append("<div class='card-header'><h5 class='card-title'>Residentes</h5><p class='card-category'>Información residentes</p></div>"+
+function setTablaMulta() {
+	$('#cuerpo').append("<div class='card-header'><h5 class='card-title'>Multas</h5><p class='card-category'>Información multas del residente</p></div>"+
 		"<div class='card-body residenteMultas'></div>"+"<div class='card-footer '><hr></div>");
 	$('.residenteMultas').append("<div class='table-responsive row'><table class=' col-12 table table-striped tablaMultas' id='tablaMultas' style='width: 100%'></table></div>");
-	$('.tablaMultas').append("<thead class='text-primary'>" +"<tr>"+"<th scope='col'>Nombre</th>" +
+	$('.tablaMultas').append("<thead class='text-primary'>" +"<tr>"+
 		"<th scope='col'>Id multa</th>" +
 		"<th scope='col'>Descripción</th>" +
 		"<th scope='col'>Monto</th>" +
@@ -42,7 +42,7 @@ function getMultas(){
 		},
 		responsive: "true",
 		"ajax": {
-			"url":    'multa.action',
+			"url":    'multaResidente.action',
 			"type":   'POST',
 			"dataSrc": "numeroMultas"
 		},
@@ -72,35 +72,7 @@ function getMultas(){
 			{"data": "id_multa"},
 			{"data": "descripcion"},
 			{"data": "monto"},
-			{"data": "fecha"}
+			{"data": "fechaIng"}
 		]
 	});
 };
-/*
- function getMenuMultas(){
-	$("#cuerpo").empty();
-	$("#multa").removeAttr("onclick")
- $.ajax({
-		url: 'multa.action',
-		type: "POST",
-		
-		beforeSend: function (xhr){
-		$("#cuerpo").addClass("spinner-border text-primary");
-			console.log('He entrado al sistema ');
-			
-		},complete: function (data) {
-			console.log('Se ha completado la peticion');
-			$("#cuerpo").removeClass("spinner-border text-primary");
-			
-		},error: function(XMLHttpRequest, textStatus, errorThrown){
-			console.log('Error se ha caido');
-		},
-	    success: function(data){
-	    	console.log(data);
-			
-	    	$("#cuerpo").append(data);
-	    	$("#multa").attr("onclick", "getMenuMultas()");
-
-	    }
-	});
-}*/

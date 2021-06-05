@@ -1,5 +1,7 @@
 package webCondominio.model;
 
+import java.util.Map;
+
 public class ModelLoginUsuario {
 	private String usuario;
 
@@ -11,15 +13,24 @@ public class ModelLoginUsuario {
 	
 	private String rol;
 
-	
+	private Map <String, Object> pagos;
+
 
 	public ModelLoginUsuario(String usuario, String password, String nombre, String rut, String rol) {
-		super();
+
 		this.usuario = usuario;
 		this.password = password;
 		this.nombre = nombre;
 		this.rut = rut;
 		this.rol = rol;
+	}
+
+	public Map<String, Object> getPagos() {
+		return pagos;
+	}
+
+	public void setPagos(Map<String, Object> pagos) {
+		this.pagos = pagos;
 	}
 
 	public ModelLoginUsuario() {
