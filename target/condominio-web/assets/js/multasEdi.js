@@ -4,7 +4,7 @@
 
 $(document).on("click", ".btnBuscar", function () {
 
-    let fila = $(this).closest("tr");
+    let fila = $(this).closest("tr"); //con esto puedo traerme
     let userRut = fila.find('td:eq(3)').text();
     let cantMultas = fila.find('td:eq(7)').text();
     let row = $("#tablaResidentes").DataTable().row(fila);

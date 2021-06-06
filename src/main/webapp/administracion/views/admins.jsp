@@ -154,8 +154,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Capacity</p>
-                                        <p class="card-title">150GB<p>
+                                        <p class="card-category">Condominios Administrados</p>
+                                        <p class="card-title" id="cantcondos">150GB<p>
                                     </div>
                                 </div>
                             </div>
@@ -180,8 +180,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <p class="card-title">$ 1,345<p>
+                                        <p class="card-category">Morosos</p>
+                                        <p class="card-title " id="cantmorosos">$ 1,345<p>
                                     </div>
                                 </div>
                             </div>
@@ -232,8 +232,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <p class="card-title">+45K<p>
+                                        <p class="card-category">Multas</p>
+                                        <p class="card-title" id="cantmultas">+45K<p>
                                     </div>
                                 </div>
                             </div>

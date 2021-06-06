@@ -1,10 +1,11 @@
-function setTablaCondominio(){
+function
+/*function setTablaCondominio(){
     /*$('#cuerpo').empty();
     $('#cuerpo').load("../administracion/views/condominios.html", function () {
         console.log("Entramos a datatable")
 
     });*/
-
+/*
     $('#cuerpo').append("<div class='card-header'>\n" +
         "  <h5 class='card-title'>Condominios</h5>\n" +
         "</div>\n" +
@@ -85,4 +86,4 @@ function getCondominio(){
             {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnBuscar'><i class='fas fa-search'></i></button></div>"}
         ]
     });
-};
+}; */

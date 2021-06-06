@@ -407,4 +407,25 @@ public class ControllerConexion {
 		}
 
 	}
+	public ArrayList <ModelVivienda> getViviendas(int idcondo){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_vivienda.getviviendascondominio")
+				.registerStoredProcedureParameter("p_idcondo", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("c_curvivienda",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_idcondo",idcondo);
+		try{
+			query.execute();
+			List <Object[]> viviends= query.getResultList();
+			ArrayList <ModelVivienda> viviendas = new ArrayList<>();
+			for (Object[] obj: viviends) {
+				int idVivienda = Integer.parseInt(obj[0].toString());
+				int Numero = Integer.parseInt(obj[1].toString());
+				ModelVivienda viviend = new ModelVivienda(idVivienda,Numero);
+				viviendas.add(viviend);
+			}
+			return viviendas;
+		}
+		catch(Exception ex){
+			return null;
+		}
+	}
 }
