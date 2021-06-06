@@ -1,6 +1,7 @@
 package webCondominio.model;
 
 public class ModelCondominio {
+
     private int idCondominio;
     private String nombre;
 
