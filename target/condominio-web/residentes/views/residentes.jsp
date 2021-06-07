@@ -265,6 +265,8 @@
 <script
 		src="${ pageContext.request.contextPath }/assets/js/jquery.js" type="text/javascript"></script>
 <script
+		src="${ pageContext.request.contextPath }/assets/js/rutValidar.js" type="text/javascript"></script>
+<script
 		src="${ pageContext.request.contextPath }/assets/js/popper.min.js" type="text/javascript"></script>
 <script
 		src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -276,8 +278,7 @@
 
 <script
 		src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js"></script>
-<!--<script
-		src="${ pageContext.request.contextPath }/assets/js/residentes-ajax.js"></script>-->
+
 <script
 		src="${ pageContext.request.contextPath }/assets/js/reserva-ajax.js"></script>
 <script
@@ -306,6 +307,8 @@
 		src="${ pageContext.request.contextPath }/assets/js/paper-dashboard.min.js" type="text/javascript"></script>
 <script
 		src="${ pageContext.request.contextPath }/assets/js/main.js" type="text/javascript"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/rutValidar.js" type="text/javascript"></script>
 
 
 
