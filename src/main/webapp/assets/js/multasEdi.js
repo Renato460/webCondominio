@@ -3,7 +3,7 @@
  */
 
 $(document).on("click", ".btnBuscar", function () {
-
+    console.log("Entramos a las multas")
     let fila = $(this).closest("tr"); //con esto puedo traerme
     let userRut = fila.find('td:eq(3)').text();
     let cantMultas = fila.find('td:eq(7)').text();

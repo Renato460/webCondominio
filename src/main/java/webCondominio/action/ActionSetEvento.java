@@ -25,6 +25,7 @@ public class ActionSetEvento extends ActionSupport implements ServletRequestAwar
         Integer idCondominio= Integer.parseInt(request.getParameter("idCondominio"));
         ControllerConexion conexion=new ControllerConexion();
         this.resultado=conexion.setEventos(fechaEv, descripcion, idCondominio);
+        conexion.cerrarSession();
         return SUCCESS;
     }
     private HttpServletRequest request;

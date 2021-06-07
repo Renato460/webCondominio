@@ -35,6 +35,10 @@
 				<param name="actionName">admin</param>
 				<param name="namespace">/administracion</param>
 			</result>
+			<result name="conserje" type="redirectAction">
+				<param name="actionName">conserje</param>
+				<param name="namespace">/conserje</param>
+			</result>
 			<result name="input" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
@@ -206,6 +210,33 @@
 		</action>
 	</package>
 
+	<package name="conserje" namespace="/conserje"
+			 extends="struts-default, json-default">
+
+		<action name="getMulta" class="webCondominio.action.ActionMultaDirectorio">
+			<result type="json"/>
+		</action>
+
+		<action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
+			<result type="json"/>
+		</action>
+
+		<action name="conserje">
+			<result>views/conserje.jsp</result>
+		</action>
+
+		<action name="getEvento"
+				class="webCondominio.action.ActionGetEventos">
+			<result type="json"/>
+		</action>
+		<action name="setEvento"
+				class="webCondominio.action.ActionSetEvento">
+			<result type="json"/>
+		</action>
+
+
+	</package>
+
 	<package name="index" extends="struts-default, json-default" namespace="/">
 		<interceptors>
 			<interceptor name="authenticationInterceptor"
@@ -231,18 +262,6 @@
 
 	</package>
 
-	<package name="conserje" namespace="/conserje"
-			 extends="struts-default, json-default">
-		<action name="getEvento"
-				class="webCondominio.action.ActionGetEventos">
-			<result type="json"/>
-		</action>
-		<action name="setEvento"
-				class="webCondominio.action.ActionSetEvento">
-			<result type="json"/>
-		</action>
 
-
-	</package>
 
 </struts>
