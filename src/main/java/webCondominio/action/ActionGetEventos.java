@@ -18,6 +18,7 @@ public class ActionGetEventos extends ActionSupport implements ServletRequestAwa
     public String execute () {
 
         Integer idCondominio= Integer.parseInt(request.getParameter("idCondominio"));
+        System.out.println(idCondominio);
         ControllerConexion conexion=new ControllerConexion();
         this.resultado=conexion.getEventos(idCondominio);
         conexion.cerrarSession();

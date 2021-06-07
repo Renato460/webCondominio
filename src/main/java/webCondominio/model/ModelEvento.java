@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ModelEvento {
     private Integer id;
-    private Date fecha;
+    private String fecha;
     private String descripcion;
     public Integer getId() {
         return id;
@@ -12,10 +12,10 @@ public class ModelEvento {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
     public String getDescripcion() {
@@ -24,7 +24,7 @@ public class ModelEvento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public ModelEvento(Integer id, Date fecha, String descripcion) {
+    public ModelEvento(Integer id, String fecha, String descripcion) {
         super();
         this.id = id;
         this.fecha = fecha;
