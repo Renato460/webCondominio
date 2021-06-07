@@ -7,10 +7,10 @@
 		aria-current="true">
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 bd-highlight">
-				<h5>Quincho</h5>
+				<h5 class="my-0">Quincho</h5>
 			</div>
 			<div class="p-2 col-4 bd-highlight">
-				<h5>Costo: $10.000</h5>
+				<h5 class="my-0">Costo: $10.000</h5>
 			</div>
 			<div class="p-2 col-4 bd-highlight">
 				<button type="button" id="buttonQuincho"
@@ -24,10 +24,10 @@
 	</a> <a href="#" class="list-group-item list-group-item-action">
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 bd-highlight">
-				<h5 class=>Multicancha</h5>
+				<h5 class="my-0">Multicancha</h5>
 			</div>
 			<div class="p-2 col-4 bd-highlight">
-				<h5 class=>Costo: $8.000</h5>
+				<h5 class="my-0">Costo: $8.000</h5>
 			</div>
 			<div class="p-2 col-4 bd-highlight">
 				<button type="button" id="buttonMulticancha"
@@ -39,10 +39,10 @@
 	</a> <a href="#" class="list-group-item list-group-item-action">
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 flex-fill bd-highlight">
-				<h5 class="mx-auto">Sala de Eventos</h5>
+				<h5 class="m-0">Sala de Eventos</h5>
 			</div>
 			<div class="p-2 col-4 flex-fill bd-highlight">
-				<h5>Costo: $20.000</h5>
+				<h5 class="my-0">Costo: $20.000</h5>
 			</div>
 			<div class="p-2 col-4 flex-fill bd-highlight">
 				<button type="button" id="buttonEvento"
@@ -58,10 +58,10 @@
 	<a href="#" class="list-group-item list-group-item-action">
 		<div class="d-flex w-100 justify-content-between">
 			<div class="p-2 col-4 flex-fill bd-highlight">
-				<h5>Estacionamiento</h5>
+				<h5 class="my-0">Estacionamiento</h5>
 			</div>
 			<div class="p-2 col-4 flex-fill bd-highlight">
-				<h5>Costo: $1.000</h5>
+				<h5 class="my-0">Costo: $1.000</h5>
 			</div>
 			<div class="p-2 col-4 flex-fill bd-highlight">
 				<button type="button" id="buttonEstacionamiento"
@@ -98,13 +98,13 @@
 								<div class="input-group mb-2 reservaNombre">
 									<span class="input-group-text">Reserva</span>
 									<input type="text" class="form-control reservaId" name="servicio"
-										aria-label="Reserva" aria-describedby="basic-addon1">
+										aria-label="Reserva" aria-describedby="basic-addon1" disabled>
 								</div>
 
 								<div class="input-group mb-2">
-									<span class="input-group-text">RUN</span> <input
-										type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
-										aria-label="Rut" aria-describedby="basic-addon1">
+									<span class="input-group-text">RUN</span>
+									<input id="rut" type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
+										aria-label="Rut" aria-describedby="basic-addon1" onfocusout="validarRut()">
 								</div>
 
 								<div class="input-group mb-2">
