@@ -66,9 +66,7 @@ $(document).on('click','.btnEnviarCondominio',function () {
 
 
 });
-$(document).on('click','.btn-ingresarVivienda',function(){
 
-})
 $(document).on('click','.btn-ingresarCondo',function (){
         $("#modalid2").modal('toggle');
         $.ajax({
@@ -111,7 +109,7 @@ $(document).on('change','#region',function (){
 });
 $('#formsetcondominio').submit(function(e){
     e.preventDefault();
-    $('#cuerpoAlerta').empty();
+    $('#cuerpoAlerta2').empty();
     $(".btnEnviarForma").empty().append("<div class='spinner-border text-primary'></div>");
     let nombreCondominio = $('#nombrecondo').val();
     let calle = $('#calle').val();
@@ -147,7 +145,46 @@ $('#formsetcondominio').submit(function(e){
 
 
     }).fail(function () {
-        $("#cuerpoAlerta").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+        $("#cuerpoAlerta2").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+            "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>No se pudo concretar la petición</span>" +
+            "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+    });
+});
+$(document).on('click','.btn-ingresarVivienda',function(){
+    $("#modalid3").modal('toggle');
+});
+$('#formsetvivienda').submit(function(e){
+     e.preventDefault();
+     $('#cuerpoAlerta3').empty();
+    $(".btnEnviarFormaVivienda").empty().append("<div class='spinner-border text-primary'></div>");
+    let idCondominio= $('#condominioviv').val();
+    let nroVivienda = $('#numerovivienda').val();
+    $.ajax({
+        url: "setVivienda.action",
+        method:"POST",
+        data:{
+            nroVivienda:nroVivienda,
+            idCondominio:idCondominio,
+        }
+    }).done(function (data){
+
+        if(data.resultado === 1){
+            $("#cuerpoAlerta3").append("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Vivienda ingresada con exito</span>" +
+                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+
+        }else{
+            $("#cuerpoAlerta3").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Error al registrar la vivienda</span>" +
+                "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+        };
+        $('.btnEnviarFormaVivienda').empty().text("CONFIRMAR REGISTRO");
+
+
+
+
+    }).fail(function () {
+        $("#cuerpoAlerta3").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
             "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>No se pudo concretar la petición</span>" +
             "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
     });

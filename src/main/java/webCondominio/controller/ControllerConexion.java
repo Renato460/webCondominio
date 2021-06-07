@@ -356,6 +356,56 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
+	public int setVivienda(int nroVivienda,int idCondominio){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_vivienda.setvivienda")
+				.registerStoredProcedureParameter("p_numero", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_idcondominio", Integer.class,ParameterMode.IN )
+				.setParameter("p_numero",nroVivienda)
+				.setParameter("p_idcondominio",idCondominio);
+		try{
+			query.execute();
+			return 1;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
+	public int setPagoManual(int idPlanilla){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_pago_gc.setpagomanual")
+				.registerStoredProcedureParameter("p_idplanilla",Integer.class,ParameterMode.IN)
+				.setParameter("p_idplanilla",idPlanilla);
+		try{
+			query.execute();
+			return 1;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
+	public int updateUser(String Nombre,String Apaterno,String Amaterno,String Run,String Nacionalidad,int Telefono,String Correo){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.updateperfiluser")
+				.registerStoredProcedureParameter("p_Nombre", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_Apaterno", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_Amaterno", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_Run", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_Nacionalidad", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_Telefono", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_Correo", String.class,ParameterMode.IN)
+				.setParameter("p_Nombre",Nombre)
+				.setParameter("p_Apaterno",Apaterno)
+				.setParameter("p_Amaterno",Amaterno)
+				.setParameter("p_Run",Run)
+				.setParameter("p_Nacionalidad",Nacionalidad)
+				.setParameter("p_Telefono",Telefono)
+				.setParameter("p_Correo",Correo);
+		try{
+			query.execute();
+			return 1;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
 	//Crea un perfil de usuario
 	public int setPerfil(String usuario,String password,int idrol,String nombre, String apaterno,String amaterno, String run,String nacionalidad, int telefono,String correo, int nrovivienda, int idcondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.setusuario")
@@ -392,6 +442,45 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
+	public int getcantMultas(){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reportes.getcantmultas")
+				.registerStoredProcedureParameter("p_multas", Integer.class, ParameterMode.OUT);
+		try{
+			query.execute();
+
+			Integer cantMultas=Integer.parseInt(query.getOutputParameterValue("p_multas").toString());
+			return cantMultas;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
+	public int getcantCondos(){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reportes.GETCANTCONDOMINIOS")
+				.registerStoredProcedureParameter("p_condominios", Integer.class, ParameterMode.OUT);
+		try{
+			query.execute();
+
+			Integer cantCondominios=Integer.parseInt(query.getOutputParameterValue("p_condominios").toString());
+			return cantCondominios;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
+	public int getcantMorosos(){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reportes.GETMOROSOS")
+				.registerStoredProcedureParameter("p_morosos", Integer.class, ParameterMode.OUT);
+		try{
+			query.execute();
+
+			Integer cantMorosos=Integer.parseInt(query.getOutputParameterValue("p_morosos").toString());
+			return cantMorosos;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
 	//*******
 
 	//Retorna los servicios que ofrece el condominio
@@ -423,6 +512,32 @@ public class ControllerConexion {
 			return null;
 		}
 
+	}
+	public ArrayList<ModelPlanillaGC> getPlanillas(){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_pago_gc.getplanillas")
+				.registerStoredProcedureParameter("c_curplanillas",Class.class,ParameterMode.REF_CURSOR);
+		try{
+			query.execute();
+			List <Object[]> planillax= query.getResultList();
+			ArrayList <ModelPlanillaGC> planillas = new ArrayList<>();
+			for (Object[] obj: planillax) {
+				int nroVivienda = Integer.parseInt(obj[0].toString());
+				int idPlanilla = Integer.parseInt(obj[1].toString());
+				String rut = obj[2].toString();
+				String nombre = obj[3].toString();
+				String apaterno = obj[4].toString();
+				String fecha = obj[5].toString();
+				int montoTotal = Integer.parseInt(obj[6].toString());
+				String fechavenc = obj[7].toString();
+				int isvalid =Integer.parseInt(obj[8].toString());
+				ModelPlanillaGC planilla = new ModelPlanillaGC(nroVivienda, fecha, montoTotal, fechavenc, isvalid, rut,  nombre,  apaterno,idPlanilla);
+				planillas.add(planilla);
+			}
+			return planillas;
+		}
+		catch(Exception ex){
+			return null;
+		}
 	}
 	public ArrayList <ModelRegiones> getRegiones(){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_regionescom.getregiones")
