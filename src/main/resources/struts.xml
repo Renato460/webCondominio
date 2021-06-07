@@ -231,5 +231,18 @@
 
 	</package>
 
+	<package name="conserje" namespace="/conserje"
+			 extends="struts-default, json-default">
+		<action name="getEvento"
+				class="webCondominio.action.ActionGetEventos">
+			<result type="json"/>
+		</action>
+		<action name="setEvento"
+				class="webCondominio.action.ActionSetEvento">
+			<result type="json"/>
+		</action>
+
+
+	</package>
 
 </struts>
