@@ -84,7 +84,7 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:setTablaCondominio()">
+                    <a href="javascript:setTablaViviendas()">
                         <i class="nc-icon nc-single-02"></i>
                         <p>Condominios</p>
                     </a>
@@ -154,8 +154,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Capacity</p>
-                                        <p class="card-title">150GB<p>
+                                        <p class="card-category">Condominios Administrados</p>
+                                        <p class="card-title" id="cantcondos">150GB<p>
                                     </div>
                                 </div>
                             </div>
@@ -180,8 +180,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <p class="card-title">$ 1,345<p>
+                                        <p class="card-category">Morosos</p>
+                                        <p class="card-title " id="cantmorosos">$ 1,345<p>
                                     </div>
                                 </div>
                             </div>
@@ -232,8 +232,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <p class="card-title">+45K<p>
+                                        <p class="card-category">Multas</p>
+                                        <p class="card-title" id="cantmultas">+45K<p>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +307,11 @@ Coded by www.creative-tim.com
                                 </div>
 
                                 <div class="input-group mb-2">
+<<<<<<< HEAD
+                                <span class="input-group-text" >Rol</span>
+=======
                                 <span class="input-group-text">Rol</span>
+>>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
@@ -317,7 +321,11 @@ Coded by www.creative-tim.com
                                 </select>
                                 </div>
                                 <div class="input-group mb-2 ">
+<<<<<<< HEAD
+                                    <span class="input-group-text" >Nombre</span>
+=======
                                     <span class="input-group-text">Nombre</span>
+>>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                     <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
                                 </div>
@@ -327,22 +335,38 @@ Coded by www.creative-tim.com
                                            aria-label="Apellido Paterno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
+<<<<<<< HEAD
+                                    <span class="input-group-text" >Apellido Materno</span>
+=======
                                     <span class="input-group-text">Apellido Materno</span>
+>>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                     <input type="text" id="amaterno" class="form-control " name="amaterno"
                                            aria-label="Apellido Materno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2">
                                     <span class="input-group-text" >RUN</span>
+<<<<<<< HEAD
+                                    <input onfocusout="validarRut()" type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
+                                        aria-label="Rut" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Nacionalidad</span>
+=======
                                     <input type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
                                         aria-label="Rut" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text">Nacionalidad</span>
+>>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                     <input type="text" class="form-control " id="nacionalidad" name="nacionalidad"
                                            aria-label="Nacionalidad" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
+<<<<<<< HEAD
+                                    <span class="input-group-text" >Telefono</span>
+=======
                                     <span class="input-group-text">Telefono</span>
+>>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                     <input type="text" class="form-control" id="telefono" name="telefono"
                                            aria-label="Telefono" aria-describedby="basic-addon1">
                                 </div>
@@ -355,7 +379,7 @@ Coded by www.creative-tim.com
                                     <option selected>Seleccione Condominio</option>
                                 </select>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">N°Vivienda</span>
+                                    <span class="input-group-text" >N°Vivienda</span>
                                     <input type="text" id="vivienda" class="form-control" name="vivienda"
                                            aria-label="vivienda" aria-describedby="Vivienda">
                                 </div>
@@ -363,6 +387,82 @@ Coded by www.creative-tim.com
                                 <button type="submit"  class="btn btn-primary btn-lg btnEnviarForma">
                                     Confirmar Registro</button>
 
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalid2" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Registro Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formsetcondominio">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Nombre Condominio</span>
+                                    <input type="text" id="nombrecondo" type="usuario" class="form-control " name="nombrecondo"
+                                           aria-label="Nombre Condominio" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Calle</span>
+                                    <input type="text" id="calle" class="form-control " name="calle"
+                                           aria-label="Calle" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Numero </span>
+                                    <input type="text" id="numero" class="form-control " name="numero"
+                                           aria-label="Numero" aria-describedby="basic-addon1">
+                                </div>
+
+                                <select name="region" id="region" class="form-select mb-2" aria-label="region" ">
+                                    <option selected>Seleccione Region </option>
+                                </select>
+                                <select name="comunas" id="comunas" class="form-select mb-2" aria-label="region" >
+                                    <option selected>Seleccione Comuna </option>
+                                </select>
+                                <div id="cuerpoAlerta2" class=" col-lg-12 mt-3"></div>
+                                <button type="submit"  class="btn btn-primary btn-lg btnEnviarForma">
+                                    Confirmar Registro</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalid3" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Registro Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formsetvivienda">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Numero</span>
+                                    <input type="text" id="numerovivienda" type="usuario" class="form-control " name="numerovivienda"
+                                           aria-label="Numero Vivienda" aria-describedby="basic-addon1">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -402,6 +502,7 @@ Coded by www.creative-tim.com
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.bootstrap4.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.print.min.js"></script>
+<script src="${ pageContext.request.contextPath }/assets/js/rutValidar.js" type="text/javascript"></script>
 <!--  Notifications Plugin    -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/plugins/bootstrap-notify.js"></script>

@@ -338,7 +338,24 @@ public class ControllerConexion {
 		}
 	}
 	//*******
-
+	public int setCondominio(String nombre, int numero,String calle, int idComuna){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("paq_condominios.setcondominio")
+				.registerStoredProcedureParameter("p_nombre", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_numero", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_calle", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_idcomuna", Integer.class,ParameterMode.IN )
+				.setParameter("p_nombre",nombre)
+				.setParameter("p_numero",numero)
+				.setParameter("p_calle",calle)
+				.setParameter("p_idcomuna",idComuna);
+		try{
+			query.execute();
+			return 1;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
 	//Crea un perfil de usuario
 	public int setPerfil(String usuario,String password,int idrol,String nombre, String apaterno,String amaterno, String run,String nacionalidad, int telefono,String correo, int nrovivienda, int idcondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.setusuario")
@@ -406,5 +423,66 @@ public class ControllerConexion {
 			return null;
 		}
 
+	}
+	public ArrayList <ModelRegiones> getRegiones(){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_regionescom.getregiones")
+				.registerStoredProcedureParameter("c_curregion", Class.class,ParameterMode.REF_CURSOR);
+		try{
+			query.execute();
+			List <Object[]> regionex= query.getResultList();
+			ArrayList <ModelRegiones> regiones = new ArrayList<>();
+			for (Object[] obj: regionex) {
+				int idRegion = Integer.parseInt(obj[0].toString());
+				String nombre = obj[1].toString();
+				ModelRegiones region = new ModelRegiones(idRegion,nombre);
+				regiones.add(region);
+			}
+			return regiones;
+		}
+		catch(Exception ex){
+			return null;
+		}
+	}
+	public ArrayList <ModelVivienda> getViviendas(int idcondo){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_vivienda.getviviendascondominio")
+				.registerStoredProcedureParameter("p_idcondo", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("c_curvivienda",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_idcondo",idcondo);
+		try{
+			query.execute();
+			List <Object[]> viviends= query.getResultList();
+			ArrayList <ModelVivienda> viviendas = new ArrayList<>();
+			for (Object[] obj: viviends) {
+				int idVivienda = Integer.parseInt(obj[0].toString());
+				int Numero = Integer.parseInt(obj[1].toString());
+				ModelVivienda viviend = new ModelVivienda(idVivienda,Numero);
+				viviendas.add(viviend);
+			}
+			return viviendas;
+		}
+		catch(Exception ex){
+			return null;
+		}
+	}
+	public ArrayList <ModelComunas> getComunas(int idRegion){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_regionescom.getcomunas")
+				.registerStoredProcedureParameter("p_idregion", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("c_curcom",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_idregion",idRegion);
+		try{
+			query.execute();
+			List <Object[]> comuns= query.getResultList();
+			ArrayList <ModelComunas> comunas = new ArrayList<>();
+			for (Object[] obj: comuns) {
+				int idComuna = Integer.parseInt(obj[0].toString());
+				String nombreComuna = obj[1].toString();
+				ModelComunas comuna = new ModelComunas(idComuna,nombreComuna);
+				comunas.add(comuna);
+			}
+			return comunas;
+		}
+		catch(Exception ex){
+			return null;
+		}
 	}
 }

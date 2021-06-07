@@ -1,8 +1,23 @@
-function setTablaCondominio(){
-//    $('#cuerpo').empty();
-    $('#cuerpo').load("../administracion/views/condominios.html", function () {
-        console.log("Entramos a datatable")
+function setTablaViviendas(){
+    $('#cuerpo').load("../administracion/views/condominios.html", function(){
+        $.ajax({
+            url:'getCondominios.action',
+            type: 'POST'
+        }).done(function(data){
 
+            console.log(data);
+            $("#condominioviv").empty();
+            $.each(data.condominio,function(index,value){
+                let idCondominio = (value.idCondominio).toString();
+                let nombre = value.nombre;
+                $("#condominioviv").append('<option value='+idCondominio+'> '+nombre+' </option>');
+            });
+        });
+    });
+};
+$(document).on('click','.btnEnviarCondominio',function () {
+    $('.tablaCondominios').load("../administracion/views/tablaviviendas.html", function(){
+        let condominio = $('#condominioviv').val();
         $('#tablaCondominios').DataTable({
             "language":{
                 "decimal":        ",",
@@ -26,43 +41,114 @@ function setTablaCondominio(){
             },
             responsive: "true",
             "ajax": {
-                "url":    'getCondominios.action',
+                "url":    'getViviendas.action',
                 "type":   'POST',
-                "dataSrc": "condominio"
+                "dataSrc": "vivienda",
+                "data": {idCondo:condominio
+                }
             },
             dom: 'Bfrtip',
             buttons: [
                 {
-                    text:'<i class="fas fa-user-plus"></i>',
-                    className: 'btn btn-primary btn-ingresar '
-                },
-                {
-                    extend:     'excelHtml5',
-                    text:       '<i class="far fa-file-excel"></i>',
-                    titleAttr:  'Exportar a Excel',
-                    className:  'btn btn-success'
-                },
-                {
-                    extend:     'pdfHtml5',
-                    text:       '<i class="far fa-file-pdf"></i>',
-                    titleAttr:  'Exportar a PDF',
-                    className:  'btn btn-danger'
-                },
-                {
-                    extend:     'print',
-                    text:       '<i class="fas fa-print"></i>',
-                    titleAttr:  'Imprimir',
-                    className:  'btn btn-info'
+                    titleAttr: 'Ingresar Vivienda',
+                    text:'<i class="fas fa-house-user"></i>',
+                    className: 'btn btn-primary btn-ingresarVivienda'
                 }
-                //'excel', 'pdf', 'print'
             ],
             "columns":[
-                {"data": "idCondominio"},
-                {"data": "nombre"},
+                {"data": "idVivienda"},
+                {"data": "nroVivienda"},
                 {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnBuscar'><i class='fas fa-search'></i></button></div>"}
             ]
         });
-
     });
+    //$(".btnEnviarCondominio").empty().append("<div class='spinner-border text-primary'></div>");
 
-};
+
+});
+$(document).on('click','.btn-ingresarVivienda',function(){
+
+})
+$(document).on('click','.btn-ingresarCondo',function (){
+        $("#modalid2").modal('toggle');
+        $.ajax({
+            url:'getRegiones.action',
+            type: 'POST'
+        }).done(function(data){
+
+        console.log(data);
+
+        $("#region").empty().append('<option > Seleccione Región </option>');
+
+        $.each(data.regiones,function(index,value){
+            let idRegion = (value.idRegion).toString();
+            let nombre = value.nombreRegion;
+
+            $("#region").append('<option value='+idRegion+'> '+nombre+' </option>');
+        });
+    });
+});
+
+$(document).on('change','#region',function (){
+    console.log(this.value);
+    $.ajax({
+        url: 'getComunas.action',
+        type: 'POST',
+        data:{
+            idRegion:this.value
+        }
+    }).done(function(data){
+        console.log(data)
+        $('#comunas').empty().append('<option > Seleccione Comuna </option>');;
+
+        $.each(data.comunas,function(index,value){
+            let idComuna = (value.idComuna).toString();
+            let nombre = value.nombreComuna;
+
+            $("#comunas").append('<option value='+idComuna+'> '+nombre+' </option>');
+        });
+    });
+});
+$('#formsetcondominio').submit(function(e){
+    e.preventDefault();
+    $('#cuerpoAlerta').empty();
+    $(".btnEnviarForma").empty().append("<div class='spinner-border text-primary'></div>");
+    let nombreCondominio = $('#nombrecondo').val();
+    let calle = $('#calle').val();
+    let numero = $('#numero').val();
+    let idComuna = $('#comunas').val();
+    $.ajax({
+        url: "setCondominio.action",
+        method: "POST",
+        data: {
+            nombre: nombreCondominio,
+            numero: numero,
+            calle: calle,
+            idComuna: idComuna
+        }
+    }).done(function (data){
+
+        if(data.resultado === 1){
+            $("#cuerpoAlerta2").append("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Condominio ingresado con exito</span>" +
+                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+
+        }else{
+            $("#cuerpoAlerta2").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Error al registrar el condominio</span>" +
+                "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+        };
+        $('.btnEnviarForma').empty().text("CONFIRMAR REGISTRO");
+
+        $('#nombrecondo').val("");
+        $('#calle').val("");
+        $('#numero').val("");
+        $('#comunas').val("");
+
+
+    }).fail(function () {
+        $("#cuerpoAlerta").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+            "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>No se pudo concretar la petición</span>" +
+            "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+    });
+});
