@@ -5,6 +5,20 @@
 <struts>
 
 	<constant name="struts.devMode" value="true" />
+	
+	<package name="conserje" namespace="/conserje"
+		extends="struts-default, json-default">
+			<action name="getEvento"
+			class="webCondominio.action.ActionGetEventos">
+			<result type="json"/>
+			</action>
+			<action name="setEvento"
+			class="webCondominio.action.ActionSetEvento">
+			<result type="json"/>
+			</action>
+			
+			
+			</package>
 
 	<package name="residente" namespace="/residentes"
 		extends="struts-default, json-default">

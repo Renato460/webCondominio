@@ -255,7 +255,8 @@ public class ControllerConexion {
 			System.out.println(ex);
 			return null;
 		}
-	};
+	}
+
 	//*******
 
 	//Ingresa nuevos anuncios
@@ -277,6 +278,7 @@ public class ControllerConexion {
 			return false;
 		}
 	}
+
 	//Retorna Los datos de un usuario si se encuentra registrado
 	public List<String> login(String user, String pass) {
 
@@ -311,6 +313,7 @@ public class ControllerConexion {
 
 		}
 	}
+
 	//*******
 
 	//TODO por hacer perfil
@@ -337,6 +340,7 @@ public class ControllerConexion {
 
 		}
 	}
+
 	//*******
 
 	//Crea un perfil de usuario
@@ -375,6 +379,7 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
+
 	//*******
 
 	//Retorna los servicios que ofrece el condominio
@@ -384,6 +389,7 @@ public class ControllerConexion {
 		System.out.println(reserva.get(0));
 		return reserva;
 	}
+
 	//*******
 
 	//Retorna la lista de condominios
@@ -407,4 +413,52 @@ public class ControllerConexion {
 		}
 
 	}
-}
+
+	//Envia informacion evento y la guarda en la BD
+		public Integer setEventos(Date fecha, String descripcion, Integer idCondominio){
+			StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.setevento")
+					.registerStoredProcedureParameter("p_fecha",String.class,ParameterMode.IN)
+			.registerStoredProcedureParameter("p_descripcion",String.class,ParameterMode.IN)
+			.registerStoredProcedureParameter("p_idcondominio",Integer.class,ParameterMode.IN)
+			.setParameter("p_fecha", fecha)
+			.setParameter("p_descripcion", descripcion)
+			.setParameter("p_idcondominio", idCondominio);
+			try{
+				query.execute();
+			
+				return 1;
+			}catch(Exception ex){
+				return 0;
+			}
+		}
+
+		
+		
+		//Recibe informacion de evento
+				public ArrayList<ModelEvento> getEventos(Integer idCondominio){
+					StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.setevento")
+					.registerStoredProcedureParameter("p_idcondominio",Integer.class,ParameterMode.IN)
+					.registerStoredProcedureParameter("nombre cursor",Class.class,ParameterMode.REF_CURSOR)
+					.setParameter("p_idcondominio", idCondominio);
+					try{
+						query.execute();
+						List <Object[]> eventos= query.getResultList();
+						ArrayList <ModelEvento> evento = new ArrayList<>();
+						for (Object[] obj: eventos) {
+							Integer id = Integer.parseInt(obj[0].toString());
+							Date fecha = Date.valueOf(obj[1].toString());
+							String descripcion = obj[2].toString();
+							ModelEvento evenCon = new ModelEvento(id,fecha, descripcion);
+							evento.add(evenCon);
+						}
+						return evento;
+						
+					}catch(Exception ex){
+						return null;
+				}
+				}}
+						
+					
+				
+				
+				
