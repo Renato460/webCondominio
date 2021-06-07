@@ -173,6 +173,18 @@
 		<action name="setUsuario" class="webCondominio.action.ActionSetUsuario">
 			<result type="json"/>
 		</action>
+		<action name="getViviendas" class="webCondominio.action.ActionVivienda">
+			<result type="json"/>
+		</action>
+		<action name="setCondominio" class="webCondominio.action.ActionSetCondominio">
+			<result type="json"/>
+		</action>
+		<action name="getRegiones" class="webCondominio.action.ActionGetRegiones">
+			<result type="json"/>
+		</action>
+		<action name="getComunas" class="webCondominio.action.ActionGetComunas">
+			<result type="json"/>
+		</action>
 	</package>
 
 	<package name="index" extends="struts-default, json-default" namespace="/">
