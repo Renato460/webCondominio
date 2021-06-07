@@ -15,6 +15,7 @@ public class ActionSetCondominio extends ActionSupport implements ServletRequest
         this.idComuna=Integer.parseInt(request.getParameter("idComuna"));
         ControllerConexion conexion = new ControllerConexion();
         this.resultado=conexion.setCondominio(nombre,numero,calle,idComuna);
+        conexion.cerrarSession();
         return SUCCESS;
     }
 

@@ -1,7 +1,7 @@
 function setTablaUsuarios(){
         $('#cuerpo').load("../administracion/views/usuarios.html", function () {
             console.log("Entramos a datatable")
-            $('#tablaResidentes').DataTable({
+           tableResidente= $('#tablaResidentes').DataTable({
                 "language":{
                     "decimal":        ",",
                     "emptyTable":     "Sin datos",
@@ -63,7 +63,7 @@ function setTablaUsuarios(){
                     {"data": "telefono"},
                     {"data": "correo"},
                     {"data": "fechai"},
-                    {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnBuscar'><i class='fas fa-search'></i></button></div>"}
+                    {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnEditar'><i class=\"fas fa-user-edit\"></i></button></div>"}
                 ]
             });
         });
@@ -159,3 +159,78 @@ $("#formsetusuario").submit(function (e) {
     });
 
 });
+$(document).on('click','.btnEditar',function(){
+    let fila = $(this).closest("tr");
+    let Nombre = fila.find('td:eq(0)').text();
+    let Apaterno = fila.find('td:eq(1)').text();
+    let Amaterno = fila.find('td:eq(2)').text();
+    let Run = fila.find('td:eq(3)').text();
+    let Nacionalidad = fila.find('td:eq(4)').text();
+    let Telefono = fila.find('td:eq(5)').text();
+    let Correo = fila.find('td:eq(6)').text();
+    $("#modalid4").modal('toggle');
+    $('#nombreedit').val(Nombre);
+    $('#apaternoedit').val(Apaterno);
+    $('#amaternoedit').val(Amaterno);
+    $('#rutedit').val(Run);
+    $('#nacionalidadedit').val(Nacionalidad);
+    $('#telefonoedit').val(Telefono);
+    $('#correoedit').val(Correo);
+
+});
+$(document).on('click','.btnEnviarFormaEdit',function(e){
+    e.preventDefault();
+    $(".btnEnviarFormaEdit").empty().append("<div class='spinner-border text-primary'></div>");
+    let Nombre = $('#nombreedit').val();
+    let Apaterno = $('#apaternoedit').val();
+    let Amaterno = $('#amaternoedit').val();
+    let Run = $('#rutedit').val();
+    let Nacionalidad = $('#nacionalidadedit').val();
+    let Telefono = $('#telefonoedit').val();
+    let Correo = $('#correoedit').val();
+    $.ajax({
+        url: "updateUser.action",
+        type: "POST",
+        data:{
+            Nombre:Nombre,
+            Apaterno:Apaterno,
+            Amaterno:Amaterno,
+            Run:Run,
+            Nacionalidad:Nacionalidad,
+            Telefono:Telefono,
+            Correo:Correo
+        }
+    }).done(function (data){
+
+        if(data.resultado === 1){
+            $("#cuerpoAlerta4").append("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Actualización Completada</span>" +
+                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+
+        }else{
+            $("#cuerpoAlerta4").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Error al Actualizar los datos</span>" +
+                "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+        };
+        $('.btnEnviarFormaEdit').empty().text("Actualizar");
+        tableResidente.ajax.reload(null,false);
+
+    }).fail(function () {
+        $("#cuerpoAlerta4").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+            "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>No se pudo concretar la petición</span>" +
+            "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+    });
+});
+$(function (){
+    $.ajax({
+        url:"miniReportes.action",
+        type:"POST"
+
+    }).done(function(data){
+        $("#cantmultas").html(data.cantMultas);
+        $("#cantmorosos").html(data.cantMorosos);
+        $("#cantcondos").html(data.cantCondos);
+    })
+
+
+})

@@ -78,7 +78,7 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:setTabla()">
+                    <a href="javascript:setTablaMulta()">
                         <i class="nc-icon nc-bell-55"></i>
                         <p>Multas</p>
                     </a>
@@ -90,21 +90,9 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
-                    <a href="./tables.html">
+                    <a href="javascript:setTablaGastosComunes()">
                         <i class="nc-icon nc-tile-56"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./typography.html">
-                        <i class="nc-icon nc-caps-small"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="./upgrade.html">
-                        <i class="nc-icon nc-spaceship"></i>
-                        <p>Upgrade to PRO</p>
+                        <p>Pago Manual</p>
                     </a>
                 </li>
             </ul>
@@ -155,7 +143,7 @@ Coded by www.creative-tim.com
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Condominios Administrados</p>
-                                        <p class="card-title" id="cantcondos">150GB<p>
+                                        <p class="card-title" id="cantcondos"><p>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +169,7 @@ Coded by www.creative-tim.com
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Morosos</p>
-                                        <p class="card-title " id="cantmorosos">$ 1,345<p>
+                                        <p class="card-title " id="cantmorosos"><p>
                                     </div>
                                 </div>
                             </div>
@@ -195,45 +183,20 @@ Coded by www.creative-tim.com
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-vector text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Errors</p>
-                                        <p class="card-title">23<p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-clock-o"></i>
-                                In the last hour
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-favourite-28 text-primary"></i>
+                                        <i class="fas fa-money-bill-wave text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
                                         <p class="card-category">Multas</p>
-                                        <p class="card-title" id="cantmultas">+45K<p>
+                                        <p class="card-title" id="cantmultas"><p>
                                     </div>
                                 </div>
                             </div>
@@ -307,11 +270,7 @@ Coded by www.creative-tim.com
                                 </div>
 
                                 <div class="input-group mb-2">
-<<<<<<< HEAD
                                 <span class="input-group-text" >Rol</span>
-=======
-                                <span class="input-group-text">Rol</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
@@ -321,11 +280,9 @@ Coded by www.creative-tim.com
                                 </select>
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
+
                                     <span class="input-group-text" >Nombre</span>
-=======
-                                    <span class="input-group-text">Nombre</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
                                 </div>
@@ -335,38 +292,29 @@ Coded by www.creative-tim.com
                                            aria-label="Apellido Paterno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
+
                                     <span class="input-group-text" >Apellido Materno</span>
-=======
-                                    <span class="input-group-text">Apellido Materno</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" id="amaterno" class="form-control " name="amaterno"
                                            aria-label="Apellido Materno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2">
                                     <span class="input-group-text" >RUN</span>
-<<<<<<< HEAD
+
                                     <input onfocusout="validarRut()" type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
                                         aria-label="Rut" aria-describedby="basic-addon1">
                                 </div>
-                                <div class="input-group mb-2 ">
-                                    <span class="input-group-text" >Nacionalidad</span>
-=======
-                                    <input type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
-                                        aria-label="Rut" aria-describedby="basic-addon1">
-                                </div>
+
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text">Nacionalidad</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" class="form-control " id="nacionalidad" name="nacionalidad"
                                            aria-label="Nacionalidad" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
-                                    <span class="input-group-text" >Telefono</span>
-=======
+
                                     <span class="input-group-text">Telefono</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" class="form-control" id="telefono" name="telefono"
                                            aria-label="Telefono" aria-describedby="basic-addon1">
                                 </div>
@@ -426,7 +374,7 @@ Coded by www.creative-tim.com
                                            aria-label="Numero" aria-describedby="basic-addon1">
                                 </div>
 
-                                <select name="region" id="region" class="form-select mb-2" aria-label="region" ">
+                                <select name="region" id="region" class="form-select mb-2" aria-label="region" >
                                     <option selected>Seleccione Region </option>
                                 </select>
                                 <select name="comunas" id="comunas" class="form-select mb-2" aria-label="region" >
@@ -449,7 +397,7 @@ Coded by www.creative-tim.com
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Registro Usuario</h5>
+                <h5 class="modal-title" >Registro Vivienda</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -463,6 +411,70 @@ Coded by www.creative-tim.com
                                     <input type="text" id="numerovivienda" type="usuario" class="form-control " name="numerovivienda"
                                            aria-label="Numero Vivienda" aria-describedby="basic-addon1">
                                 </div>
+                                <div id="cuerpoAlerta3" class=" col-lg-12 mt-3"></div>
+                                <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormaVivienda">
+                                    Confirmar Registro</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal edit -->
+<div class="modal fade" id="modalid4" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formedituser">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Nombre</span>
+                                    <input type="text" id="nombreedit" type="usuario" class="form-control " name="nombreedit"
+                                           aria-label="Nombre" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Apellido Paterno</span>
+                                    <input type="text" id="apaternoedit" class="form-control " name="apaternoedit"
+                                           aria-label="Apellido Paterno" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Apellido Materno </span>
+                                    <input type="text" id="amaternoedit" class="form-control " name="amaternoedit"
+                                           aria-label="Apellido Materno" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Run </span>
+                                    <input type="text" onfocusout="validarRut()" id="rutedit"  class="form-control " name="rutedit"
+                                           aria-label="RUN" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Nacionalidad </span>
+                                    <input type="text" id="nacionalidadedit" class="form-control " name="nacionalidadedit"
+                                           aria-label="Nacionalidad" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Telefono </span>
+                                    <input type="text" id="telefonoedit" class="form-control " name="telefonoedit"
+                                           aria-label="Telefono" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Correo </span>
+                                    <input type="text" id="correoedit" class="form-control " name="correoedit"
+                                           aria-label="Correo" aria-describedby="basic-addon1">
+                                </div>
+                                <div id="cuerpoAlerta4" class=" col-lg-12 mt-3"></div>
+                                <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormaEdit">
+                                    Actualizar </button>
+
                             </div>
                         </div>
                     </div>
@@ -492,6 +504,10 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/listaResidente.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/Condominios.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/PagoManualGC.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/multa-ajax.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>

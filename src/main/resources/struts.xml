@@ -185,6 +185,21 @@
 		<action name="getComunas" class="webCondominio.action.ActionGetComunas">
 			<result type="json"/>
 		</action>
+		<action name="setVivienda" class="webCondominio.action.ActionSetVivienda">
+			<result type="json"/>
+		</action>
+		<action name="getPlanillas" class="webCondominio.action.ActionGetPlanillasGC">
+			<result type="json"/>
+		</action>
+		<action name="setPagoManual" class="webCondominio.action.ActionSetPagoManual">
+			<result type="json"/>
+		</action>
+		<action name="updateUser" class="webCondominio.action.ActionUpdateUsuario">
+			<result type="json"/>
+		</action>
+		<action name="miniReportes" class="webCondominio.action.ActionMiniReportes">
+			<result type="json"/>
+		</action>
 	</package>
 
 	<package name="index" extends="struts-default, json-default" namespace="/">
