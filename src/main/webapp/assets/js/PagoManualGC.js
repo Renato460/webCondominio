@@ -1,8 +1,8 @@
 function setTablaGastosComunes(){
-    $('#cuerpo').empty();
+
     $('#cuerpo').load("../administracion/views/planillas.html", function () {
         console.log("Entramos a datatable")
-        $('#tablaPlanillas').DataTable({
+        tablaplani=$('#tablaPlanillas').DataTable({
             "language":{
                 "decimal":        ",",
                 "emptyTable":     "Sin datos",
@@ -50,6 +50,7 @@ function setTablaGastosComunes(){
 $(document).on('click','.btnConfirmarPago',function(){
     let fila = $(this).closest("tr");
     let idPlanilla = fila.find('td:eq(1)').text();
+    $(".btnConfirmarPago").empty().append("<div class='spinner-border text-primary'></div>");
     $.ajax({
         url: "setPagoManual.action",
         type: "POST",
@@ -69,9 +70,7 @@ $(document).on('click','.btnConfirmarPago',function(){
                 "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
         };
 
-        setTablaGastosComunes();
-
-
+        tablaplani.ajax.reload(null,false);
 
     }).fail(function () {
         $("#cuerpoAlerta4").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +

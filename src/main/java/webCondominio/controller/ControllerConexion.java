@@ -609,7 +609,7 @@ public class ControllerConexion {
 	//Envia informacion evento y la guarda en la BD
 	public Integer setEventos(Date fecha, String descripcion, Integer idCondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.setevento")
-				.registerStoredProcedureParameter("p_fecha",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_fecha",Date.class,ParameterMode.IN)
 				.registerStoredProcedureParameter("p_descripcion",String.class,ParameterMode.IN)
 				.registerStoredProcedureParameter("p_idcondominio",Integer.class,ParameterMode.IN)
 				.setParameter("p_fecha", fecha)
@@ -626,9 +626,9 @@ public class ControllerConexion {
 
 	//Recibe informacion de evento
 	public ArrayList<ModelEvento> getEventos(Integer idCondominio){
-		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.setevento")
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.geteventos")
 				.registerStoredProcedureParameter("p_idcondominio",Integer.class,ParameterMode.IN)
-				.registerStoredProcedureParameter("nombre cursor",Class.class,ParameterMode.REF_CURSOR)
+				.registerStoredProcedureParameter("c_cureventos",Class.class,ParameterMode.REF_CURSOR)
 				.setParameter("p_idcondominio", idCondominio);
 		try{
 			query.execute();
@@ -636,7 +636,7 @@ public class ControllerConexion {
 			ArrayList <ModelEvento> evento = new ArrayList<>();
 			for (Object[] obj: eventos) {
 				Integer id = Integer.parseInt(obj[0].toString());
-				Date fecha = Date.valueOf(obj[1].toString());
+				String fecha = obj[1].toString();
 				String descripcion = obj[2].toString();
 				ModelEvento evenCon = new ModelEvento(id,fecha, descripcion);
 				evento.add(evenCon);
@@ -644,6 +644,7 @@ public class ControllerConexion {
 			return evento;
 
 		}catch(Exception ex){
+			System.out.println(ex);
 			return null;
 		}
 	}

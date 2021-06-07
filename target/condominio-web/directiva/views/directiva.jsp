@@ -130,8 +130,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Capacity</p>
-                                        <p class="card-title">150GB<p>
+                                        <p class="card-category">Condominios Administrados</p>
+                                        <p class="card-title" id="cantcondos"><p>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Update Now
+                                Multas Cursadas
                             </div>
                         </div>
                     </div>
@@ -156,8 +156,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <p class="card-title">$ 1,345<p>
+                                        <p class="card-category">Morosos</p>
+                                        <p class="card-title " id="cantmorosos"><p>
                                     </div>
                                 </div>
                             </div>
@@ -166,50 +166,25 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-calendar-o"></i>
-                                Last day
+                                Cantidad de Morosos
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-5 col-md-4">
                                     <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-vector text-danger"></i>
+                                        <i class="fas fa-money-bill-wave text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Errors</p>
-                                        <p class="card-title">23<p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-clock-o"></i>
-                                In the last hour
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-favourite-28 text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <p class="card-title">+45K<p>
+                                        <p class="card-category">Multas</p>
+                                        <p class="card-title" id="cantmultas"><p>
                                     </div>
                                 </div>
                             </div>
@@ -218,14 +193,12 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Update now
+                                Numero de Condominios
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- CUERPO-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" id="cuerpo">
@@ -233,16 +206,6 @@ Coded by www.creative-tim.com
                     </div>
                 </div>
             </div>
-            <!--CUERPO-->
-            <!--Cuerpo2-->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" id="cuerpo2">
-
-                    </div>
-                </div>
-            </div>
-            <!--Cuerpo2-->
         </div>
         <footer class="footer footer-black  footer-white ">
             <div class="container-fluid">
@@ -290,6 +253,8 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/setAnuncio.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/pago-ajax.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/admin-ajax.js" type="text/javascript"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/vfs_fonts.js"></script>

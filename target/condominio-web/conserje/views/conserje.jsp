@@ -68,40 +68,22 @@ Coded by www.creative-tim.com
           </a>
         </li>
         <li>
-          <a href="javascript:setAnuncio()">
+          <a href="javascript:setTablaGastosComunes()">
             <i class="nc-icon nc-pin-3"></i>
             <p>Pagos</p>
           </a>
         </li>
 
         <li>
-          <a href="javascript:setTablaCondominio()">
+          <a href="javascript:getMenuReservas()">
             <i class="nc-icon nc-single-02"></i>
             <p>Areas Comunes</p>
           </a>
         </li>
         <li>
-          <a href="javascript:setTablaCondominio()">
+          <a href="javascript:menuCondos()">
             <i class="nc-icon nc-single-02"></i>
             <p>Eventos</p>
-          </a>
-        </li>
-        <li>
-          <a href="./tables.html">
-            <i class="nc-icon nc-tile-56"></i>
-            <p>Table List</p>
-          </a>
-        </li>
-        <li>
-          <a href="./typography.html">
-            <i class="nc-icon nc-caps-small"></i>
-            <p>Typography</p>
-          </a>
-        </li>
-        <li class="active-pro">
-          <a href="./upgrade.html">
-            <i class="nc-icon nc-spaceship"></i>
-            <p>Upgrade to PRO</p>
           </a>
         </li>
       </ul>
@@ -291,10 +273,6 @@ Coded by www.creative-tim.com
           <div class="container">
             <div class="row">
 
-              <select name="condominio" id="condominio" class="form-select mb-2" aria-label="Condominio">
-                <option selected>Seleccione Condominio</option>
-              </select>
-
               <div class='col-lg-12'>
                 <div class="input-group mb-2">
 									<span class="input-group-text col-2">Fecha
@@ -332,7 +310,14 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/listaResidentesConserje.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/multasEdi.js" type="text/javascript"></script>
-
+<script
+        src="${ pageContext.request.contextPath }/assets/js/getEvento.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/setEventos.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/PagoManualGC.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/reserva-ajax.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>
