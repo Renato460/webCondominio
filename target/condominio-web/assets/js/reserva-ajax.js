@@ -1,8 +1,6 @@
 /**
  * 
  */
-
-
 $(document).on('change', '#fechaDispo', function () {
 	let fecha = $("#fechaDispo").val();
 	let servicio = $(".reservaId").attr("placeholder");
@@ -17,13 +15,10 @@ $(document).on('change', '#fechaDispo', function () {
 			servicio:servicio
 		}
 	}).done(function (data) {
-		//console.log(data);
 		let time = data;
-		//console.log(time.dispo[0]);
 		let i;
 		let arrayTime = time.dispo;
 		let val = 0;
-		//console.log(arrayTime.length);
 		for (i = 0; i < arrayTime.length; i++) {
 			val=i+1;
 			$( "#horarios" ).append( "<option value="+time.dispo[i].idHorario+">"+time.dispo[i].horario+"</option>" );
@@ -35,31 +30,8 @@ $(document).on('change', '#fechaDispo', function () {
 
 
  function getMenuReservas(){
-	$("#cuerpo").empty();
-	$("#reserva").removeAttr("onclick")
-	
-	
- $.ajax({
-		url: 'reserva.action',
-		type: "POST",
-		
-		beforeSend: function (xhr){
-		$("#cuerpo").addClass("spinner-border text-primary");
-			//console.log('He entrado al sistema ');
-		},complete: function (data) {
-			//console.log('Se ha completado la peticion');
-			$("#cuerpo").removeClass("spinner-border text-primary");
-		},error: function(XMLHttpRequest, textStatus, errorThrown){
-			//console.log('Error se ha caido');
-		},
-	    success: function(data){
-	    //console.log(data);
-			$('#cuerpo').load('../residentes/views/reservas.html');
-	    	//$("#cuerpo").append(data);
-	    	$("#reserva").attr("onclick", "getMenuReservas()");
-	    }
-	});
-	
+	 $('#cuerpo').load('../residentes/views/reservas.html');
+
 };
 
 function modalFormulario(idButton){

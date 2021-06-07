@@ -296,18 +296,18 @@ Coded by www.creative-tim.com
 
                             <div class='col-lg-12'>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Usuario</span>
+                                    <span class="input-group-text">Usuario</span>
                                     <input type="text" id="usuario" type="usuario" class="form-control " name="usuario"
                                            aria-label="Usuario" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Password</span>
+                                    <span class="input-group-text">Password</span>
                                     <input type="password" id="password" class="form-control " name="password"
                                            aria-label="Password" aria-describedby="basic-addon1">
                                 </div>
 
                                 <div class="input-group mb-2">
-                                <span class="input-group-text" id="basic-addon1">Rol</span>
+                                <span class="input-group-text">Rol</span>
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
@@ -317,37 +317,37 @@ Coded by www.creative-tim.com
                                 </select>
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                    <span class="input-group-text">Nombre</span>
                                     <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Apellido Paterno</span>
+                                    <span class="input-group-text" >Apellido Paterno</span>
                                     <input type="text" id="apaterno" class="form-control " name="apaterno"
                                            aria-label="Apellido Paterno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Apellido Materno</span>
+                                    <span class="input-group-text">Apellido Materno</span>
                                     <input type="text" id="amaterno" class="form-control " name="amaterno"
                                            aria-label="Apellido Materno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon1">RUN</span>
+                                    <span class="input-group-text" >RUN</span>
                                     <input type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
                                         aria-label="Rut" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Nacionalidad</span>
+                                    <span class="input-group-text">Nacionalidad</span>
                                     <input type="text" class="form-control " id="nacionalidad" name="nacionalidad"
                                            aria-label="Nacionalidad" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">Telefono</span>
+                                    <span class="input-group-text">Telefono</span>
                                     <input type="text" class="form-control" id="telefono" name="telefono"
                                            aria-label="Telefono" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" id="basic-addon1">e-mail</span>
+                                    <span class="input-group-text" >e-mail</span>
                                     <input type="email" class="form-control " id="email" name="email"
                                            aria-label="email" aria-describedby="basic-addon1">
                                 </div>
