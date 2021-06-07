@@ -156,6 +156,9 @@
 			<result type="json"/>
 
 		</action>
+		<action name="miniReportes" class="webCondominio.action.ActionMiniReportes">
+			<result type="json"/>
+		</action>
 	</package>
 
 	<package name="pkgAdmin" extends="struts-default, json-default" namespace="/administracion">
@@ -248,8 +251,26 @@
 				class="webCondominio.action.ActionSetEvento">
 			<result type="json"/>
 		</action>
+		<action name="getCondominios" class="webCondominio.action.ActionCondominios">
+			<result type="json"/>
+		</action>
+		<action name="setPagoManual" class="webCondominio.action.ActionSetPagoManual">
+			<result type="json"/>
+		</action>
+		<action name="getPlanillas" class="webCondominio.action.ActionGetPlanillasGC">
+			<result type="json"/>
+		</action>
+		<action name="dispo"
+				class="webCondominio.action.ActionDisponibilidad">
 
+			<result type="json" />
+		</action>
+		<action name="setReserva"
+				class="webCondominio.action.ActionReserva">
 
+			<result type="json" />
+
+		</action>
 	</package>
 
 	<package name="index" extends="struts-default, json-default" namespace="/">

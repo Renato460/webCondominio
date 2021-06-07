@@ -152,7 +152,7 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Update Now
+                                Multas Cursadas
                             </div>
                         </div>
                     </div>
@@ -178,7 +178,7 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-calendar-o"></i>
-                                Last day
+                                Cantidad de Morosos
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Update now
+                                Numero de Condominios
                             </div>
                         </div>
                     </div>
@@ -270,13 +270,8 @@ Coded by www.creative-tim.com
                                 </div>
 
                                 <div class="input-group mb-2">
-<<<<<<< HEAD
                                 <span class="input-group-text" >Rol</span>
-=======
 
-                                <span class="input-group-text">Rol</span>
-
->>>>>>> 0c2f4f122f009c1b248a7c3a521b33315ee2061b
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
@@ -287,11 +282,9 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="input-group mb-2 ">
 
-<<<<<<< HEAD
+
                                     <span class="input-group-text" >Nombre</span>
-=======
-                                    <span class="input-group-text">Nombre</span>
->>>>>>> 0c2f4f122f009c1b248a7c3a521b33315ee2061b
+
 
                                     <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
@@ -303,11 +296,8 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="input-group mb-2 ">
 
-<<<<<<< HEAD
-                                    <span class="input-group-text" >Apellido Materno</span>
-=======
+
                                     <span class="input-group-text">Apellido Materno</span>
->>>>>>> 0c2f4f122f009c1b248a7c3a521b33315ee2061b
 
                                     <input type="text" id="amaterno" class="form-control " name="amaterno"
                                            aria-label="Apellido Materno" aria-describedby="basic-addon1">
@@ -321,10 +311,7 @@ Coded by www.creative-tim.com
 
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text">Nacionalidad</span>
-<<<<<<< HEAD
 
-=======
->>>>>>> 0c2f4f122f009c1b248a7c3a521b33315ee2061b
                                     <input type="text" class="form-control " id="nacionalidad" name="nacionalidad"
                                            aria-label="Nacionalidad" aria-describedby="basic-addon1">
                                 </div>
@@ -391,11 +378,9 @@ Coded by www.creative-tim.com
                                            aria-label="Numero" aria-describedby="basic-addon1">
                                 </div>
 
-<<<<<<< HEAD
+
                                 <select name="region" id="region" class="form-select mb-2" aria-label="region" >
-=======
-                                <select name="region" id="region" class="form-select mb-2" aria-label="region">
->>>>>>> 0c2f4f122f009c1b248a7c3a521b33315ee2061b
+
                                     <option selected>Seleccione Region </option>
                                 </select>
                                 <select name="comunas" id="comunas" class="form-select mb-2" aria-label="region" >

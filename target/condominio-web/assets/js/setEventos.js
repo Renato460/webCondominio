@@ -1,27 +1,15 @@
-$(document).on('click','.btn-ingresar',function (){
-    $.ajax({
-        url:'getCondominios.action',
-        type: 'POST'
-    }).done(function(data){
-
-        console.log(data);
-        $("#condominio").empty();
-        $.each(data.condominio,function(index,value){
-            let idCondominio = (value.idCondominio).toString();
-            let nombre = value.nombre;
-            $("#condominio").append('<option value='+idCondominio+'> '+nombre+' </option>');
-        });
-        $("#modaleven").modal('toggle');
-    });
+$(document).on('click','.btn-ingresarevento',function(){
+    $("#modaleven").modal('toggle');
 });
-
 $("#formsetevento").submit(function(e){
     e.preventDefault();
     $(".btnEnviarForma").empty().append("<div class='spinner-border text-primary'></div>");
-    let idCondominio = $('#condominio').val();
+    let idCondominio = $('#condominioeven').val();
     let fecha = $('#fechaEvento').val();
     let descripcion = $('#descEvento').val();
-
+    console.log(idCondominio);
+    console.log(fecha);
+    console.log(descripcion);
     $.ajax({
         url:"setEvento.action",
         method: "POST",
