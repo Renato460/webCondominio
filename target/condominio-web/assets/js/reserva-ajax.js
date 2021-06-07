@@ -29,9 +29,9 @@ $(document).on('change', '#fechaDispo', function () {
 });
 
 
- function getMenuReservas(){
+function getMenuReservas(){
 	 $('#cuerpo').load('../residentes/views/reservas.html');
-
+	 $('#multicancha').attr('src', '${ pageContext.request.contextPath }/assets/img/reservas/multicancha.jpg');
 };
 
 function modalFormulario(idButton){

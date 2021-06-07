@@ -132,7 +132,7 @@ Coded by www.creative-tim.com
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="navbar-brand" href="javascript:;">
+                            <a class="navbar-brand" href="logout.action">
                                 Salir
                             </a>
                         </li>
@@ -307,11 +307,9 @@ Coded by www.creative-tim.com
                                 </div>
 
                                 <div class="input-group mb-2">
-<<<<<<< HEAD
-                                <span class="input-group-text" >Rol</span>
-=======
+
                                 <span class="input-group-text">Rol</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
@@ -321,11 +319,9 @@ Coded by www.creative-tim.com
                                 </select>
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
-                                    <span class="input-group-text" >Nombre</span>
-=======
+
                                     <span class="input-group-text">Nombre</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
                                 </div>
@@ -335,38 +331,28 @@ Coded by www.creative-tim.com
                                            aria-label="Apellido Paterno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
-                                    <span class="input-group-text" >Apellido Materno</span>
-=======
+
                                     <span class="input-group-text">Apellido Materno</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" id="amaterno" class="form-control " name="amaterno"
                                            aria-label="Apellido Materno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2">
                                     <span class="input-group-text" >RUN</span>
-<<<<<<< HEAD
+
                                     <input onfocusout="validarRut()" type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
                                         aria-label="Rut" aria-describedby="basic-addon1">
                                 </div>
-                                <div class="input-group mb-2 ">
-                                    <span class="input-group-text" >Nacionalidad</span>
-=======
-                                    <input type="text" id="rut" class="form-control " placeholder="12345678-9" name="rut"
-                                        aria-label="Rut" aria-describedby="basic-addon1">
-                                </div>
+
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text">Nacionalidad</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
                                     <input type="text" class="form-control " id="nacionalidad" name="nacionalidad"
                                            aria-label="Nacionalidad" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
-                                    <span class="input-group-text" >Telefono</span>
-=======
+
                                     <span class="input-group-text">Telefono</span>
->>>>>>> 16915f27c9523710a2de911704f8ba85629f91f6
+
                                     <input type="text" class="form-control" id="telefono" name="telefono"
                                            aria-label="Telefono" aria-describedby="basic-addon1">
                                 </div>
@@ -426,7 +412,7 @@ Coded by www.creative-tim.com
                                            aria-label="Numero" aria-describedby="basic-addon1">
                                 </div>
 
-                                <select name="region" id="region" class="form-select mb-2" aria-label="region" ">
+                                <select name="region" id="region" class="form-select mb-2" aria-label="region">
                                     <option selected>Seleccione Region </option>
                                 </select>
                                 <select name="comunas" id="comunas" class="form-select mb-2" aria-label="region" >
@@ -435,7 +421,6 @@ Coded by www.creative-tim.com
                                 <div id="cuerpoAlerta2" class=" col-lg-12 mt-3"></div>
                                 <button type="submit"  class="btn btn-primary btn-lg btnEnviarForma">
                                     Confirmar Registro</button>
-
                             </div>
                         </div>
                     </div>

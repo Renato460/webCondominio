@@ -8,9 +8,8 @@ $(document).on("click", ".btnAgregar", function () {
     $("#residenteMultas").modal("toggle");
 });
 
-
-$("#formMulta").submit(function (e) {
-   e.preventDefault();
+$(document).on('submit', '#formMulta', function (e) {
+    e.preventDefault();
     $('#cuerpoAlerta').empty();
     $(".btnEnviarForma").empty().append("<div class='spinner-border text-primary'></div>");
     //$("#btnEnviarForma").append("<div class='spinner-border text-primary'></div>");
@@ -49,3 +48,4 @@ $("#formMulta").submit(function (e) {
             "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
     });
 });
+
