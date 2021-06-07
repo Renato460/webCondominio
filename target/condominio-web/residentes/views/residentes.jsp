@@ -95,7 +95,7 @@
 				<div class="collapse navbar-collapse justify-content-end" id="navigation">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="navbar-brand" href="javascript:;">
+							<a class="navbar-brand" href="logout.action">
 								Salir
 							</a>
 						</li>
@@ -216,6 +216,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card" id="cuerpo">
+
 						<form action="pagoExitoso.action" novalidate method="post">
 
 							<button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
