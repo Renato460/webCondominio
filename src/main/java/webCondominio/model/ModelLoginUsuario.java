@@ -34,7 +34,7 @@ public class ModelLoginUsuario {
 	}
 
 	public ModelLoginUsuario() {
-		super();
+
 	}
 
 	public String getUsuario() {

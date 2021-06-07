@@ -16,9 +16,13 @@
 			</interceptor-stack>
 		</interceptors>
 
-		<action name="pago"
+		<!--<action name="pago"
 			class="webCondominio.controller.ControllerPago">
 			<result name="success" type="redirect">${urlPago}</result>
+		</action>-->
+		<action name="pago"
+				class="webCondominio.controller.ControllerPago">
+			<result type="json"/>
 		</action>
 		
 		<action name="login"
@@ -261,6 +265,10 @@
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
 		</interceptors>
+
+		<action name="actionPagoExitoso" class="webCondominio.action.ActionPagoExitoso">
+			<result type="json"/>
+		</action>
 
 		<action name="return">
 			<result>index.jsp</result>

@@ -468,6 +468,7 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
+
 	public int getcantMorosos(){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reportes.GETMOROSOS")
 				.registerStoredProcedureParameter("p_morosos", Integer.class, ParameterMode.OUT);
@@ -513,6 +514,7 @@ public class ControllerConexion {
 		}
 
 	}
+
 	public ArrayList<ModelPlanillaGC> getPlanillas(){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_pago_gc.getplanillas")
 				.registerStoredProcedureParameter("c_curplanillas",Class.class,ParameterMode.REF_CURSOR);
@@ -539,6 +541,7 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+
 	public ArrayList <ModelRegiones> getRegiones(){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_regionescom.getregiones")
 				.registerStoredProcedureParameter("c_curregion", Class.class,ParameterMode.REF_CURSOR);
@@ -558,6 +561,7 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+
 	public ArrayList <ModelVivienda> getViviendas(int idcondo){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_vivienda.getviviendascondominio")
 				.registerStoredProcedureParameter("p_idcondo", Integer.class,ParameterMode.IN )
@@ -579,6 +583,7 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+
 	public ArrayList <ModelComunas> getComunas(int idRegion){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_regionescom.getcomunas")
 				.registerStoredProcedureParameter("p_idregion", Integer.class,ParameterMode.IN )
@@ -619,8 +624,6 @@ public class ControllerConexion {
 		}
 	}
 
-
-
 	//Recibe informacion de evento
 	public ArrayList<ModelEvento> getEventos(Integer idCondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.setevento")
@@ -642,6 +645,20 @@ public class ControllerConexion {
 
 		}catch(Exception ex){
 			return null;
+		}
+	}
+
+	//Pago de Multas
+	public Integer setPagoMulta (Integer idMulta){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_pago_multa.pago_multa")
+				.registerStoredProcedureParameter("p_id",Integer.class,ParameterMode.IN)
+				.setParameter("p_id", idMulta);
+
+		try {
+			query.execute();
+			return 1;
+		}catch (Exception ex){
+			return 0;
 		}
 	}
 }

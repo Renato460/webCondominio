@@ -39,8 +39,27 @@
 <hr>
         </div>
         <div class="card-body container">
-            <div class="row ">
-                <div><p>Hizo un pago de: $ <s:property value="#session['user'].montoPagar"/></p> </div>
+            <div class="row  d-flex justify-content-center">
+                <div class="w-50">
+                    <table class="table  table-success table-striped ">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="d-flex justify-content-center">Resumen del Pago</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row" class="d-flex justify-content-center"><p>Motivo: <s:property value="#session['user'].pagos.tipo"/></p></th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="d-flex justify-content-center"><p>Descripción: <s:property value="#session['user'].pagos.descripcion"/></p></th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="d-flex justify-content-center"><p>Monto: $ <s:property value="#session['user'].pagos.monto"/></p></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="card-footer">
@@ -62,6 +81,8 @@
         src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/pago.js" type="text/javascript"></script>
 
 
 <!--  Notifications Plugin    -->

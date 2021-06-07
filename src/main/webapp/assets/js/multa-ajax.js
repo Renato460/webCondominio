@@ -57,9 +57,35 @@ function setTablaMulta() {
 				{"data": "id_multa"},
 				{"data": "descripcion"},
 				{"data": "monto"},
-				{"data": "fechaIng"}
+				{"data": "fechaIng"},
+				{"defaultContent": "<div class='btn-group-sm' role='group'><button type='button' class='btn btn-info btnPagar fs-4' title='Información Multas'><i class='fas fa-search'></i></button></div>"}
 			]
 		});
 	});
 
 };
+
+$(document).on('click', '.btnPagar', function () {
+	let fila = $(this).closest("tr");
+	let idMulta = fila.find('td:eq(0)').text();
+	let descripcion = fila.find('td:eq(1)').text();
+	let tipo = "multa";
+	let monto = fila.find('td:eq(2)').text();
+	console.log(idMulta,descripcion,tipo,monto);
+
+	$.ajax({
+		url:'pago.action',
+		type: 'POST',
+		data: {
+			'id':idMulta,
+			'desc':descripcion,
+			'tipo':tipo,
+			'monto':monto
+		}
+	}).done(function (data) {
+		console.log(data);
+		//window.location.replace(data.urlPago);
+		window.open(data.urlPago, "_blank");
+
+	});
+});

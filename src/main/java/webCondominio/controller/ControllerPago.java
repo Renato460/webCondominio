@@ -48,6 +48,7 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		pagos.put("tipo", tipo);
 		pagos.put("monto",monto);
 
+
 		((ModelLoginUsuario)session.get("user")).setPagos(pagos);
 
 		int receiverId = 381468;
@@ -62,15 +63,15 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 
 		Map<String, Object> options = new HashMap<>();
 		options.put("transactionId", "Gastos Condominio");//Cambiar
-		options.put("returnUrl", "http://localhost:8081/webCondominio_war_exploded/directiva/directiva.action");
-		options.put("cancelUrl", "http://localhost:8081/condominio-web/return.action#");
+		options.put("returnUrl", "http://localhost:8081/webCondominio_war_exploded/pagoExitosoChain.action");
+		options.put("cancelUrl", "http://localhost:8081/webCondominio_war_exploded/return.action#");
 		options.put("pictureUrl", "https://media.revistagq.com/photos/5f45010acb266484bb785c78/16:9/w_1920%2cc_limit/dragon-ball-z.jpg");
 		options.put("notifyUrl", "http://localhost:8081/webCondominio_war_exploded/pago_exitoso.html");
 		options.put("notifyApiVersion", "1.3");
 
 		PaymentsCreateResponse response;
 
-		response = paymentsApi.paymentsPost("Compra de prueba de la API" //Motivo de la compra
+		response = paymentsApi.paymentsPost(descripcion //Motivo de la compra
 				, "CLP" //Monedas disponibles CLP, USD, ARS, BOB
 				, monto //Monto
 				, options    //campos opcionales
