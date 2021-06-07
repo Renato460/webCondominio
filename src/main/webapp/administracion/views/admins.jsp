@@ -274,8 +274,6 @@ Coded by www.creative-tim.com
 
                                 <span class="input-group-text">Rol</span>
 
-=======
-                                <span class="input-group-text" >Rol</span>
 
 >>>>>>> 1f4d2fd00f4ba740b85cf3bd0b616c5f594aa61a
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
@@ -290,11 +288,6 @@ Coded by www.creative-tim.com
 
 <<<<<<< HEAD
                                     <span class="input-group-text" >Nombre</span>
-=======
-
-                                    <span class="input-group-text" >Nombre</span>
-
->>>>>>> 1f4d2fd00f4ba740b85cf3bd0b616c5f594aa61a
 
                                     <input type="text" id="nombre" class="form-control " name="nombre"
                                            aria-label="Nombre" aria-describedby="basic-addon1">
@@ -305,11 +298,7 @@ Coded by www.creative-tim.com
                                            aria-label="Apellido Paterno" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-2 ">
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 1f4d2fd00f4ba740b85cf3bd0b616c5f594aa61a
                                     <span class="input-group-text">Apellido Materno</span>
 
                                     <input type="text" id="amaterno" class="form-control " name="amaterno"
@@ -391,9 +380,6 @@ Coded by www.creative-tim.com
                                            aria-label="Numero" aria-describedby="basic-addon1">
                                 </div>
 
-<<<<<<< HEAD
-                                <select name="region" id="region" class="form-select mb-2" aria-label="region">
-=======
 
                                 <select name="region" id="region" class="form-select mb-2" aria-label="region" >
 

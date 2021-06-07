@@ -14,7 +14,7 @@ function setTablaMulta() {
 				"infoPostFix":    "",
 				"thousands":      ".",
 				"lengthMenu":     "Mostrando _MENU_ entradas",
-				"loadingRecords": "Cargando...",
+				"loadingRecords": "<div class='spinner-border text-primary'></div>",
 				"processing":     "Procesando...",
 				"search":         "Buscar:",
 				"zeroRecords":    "No hay coincidencias",
@@ -58,7 +58,7 @@ function setTablaMulta() {
 				{"data": "descripcion"},
 				{"data": "monto"},
 				{"data": "fechaIng"},
-				{"defaultContent": "<div class='btn-group-sm' role='group'><button type='button' class='btn btn-info btnPagar fs-4' title='Información Multas'><i class='fas fa-search'></i></button></div>"}
+				{"defaultContent": "<div class='btn-group-sm' role='group'><button type='button' class='btn btn-info btnPagar fs-4' title='Información Multas'><i class=\"fas fa-money-bill-alt\"></i></button></div>"}
 			]
 		});
 	});
@@ -72,7 +72,7 @@ $(document).on('click', '.btnPagar', function () {
 	let tipo = "multa";
 	let monto = fila.find('td:eq(2)').text();
 	console.log(idMulta,descripcion,tipo,monto);
-
+	$(this).empty().append("<div class='spinner-border text-info'></div>");
 	$.ajax({
 		url:'pago.action',
 		type: 'POST',
@@ -84,8 +84,9 @@ $(document).on('click', '.btnPagar', function () {
 		}
 	}).done(function (data) {
 		console.log(data);
-		//window.location.replace(data.urlPago);
-		window.open(data.urlPago, "_blank");
+		window.location.href = data.urlPago;
+		$(this).empty().append("<i class=\"fas fa-money-bill-alt\"></i>");
+
 
 	});
 });

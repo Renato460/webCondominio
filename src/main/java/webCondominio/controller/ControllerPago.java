@@ -48,7 +48,7 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		pagos.put("tipo", tipo);
 		pagos.put("monto",monto);
 
-
+		((ModelLoginUsuario)session.get("user")).getPagos().clear();
 		((ModelLoginUsuario)session.get("user")).setPagos(pagos);
 
 		int receiverId = 381468;

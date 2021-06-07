@@ -15,7 +15,7 @@ public class ActionPagoExitoso extends ActionSupport implements SessionAware {
         Integer idMulta = Integer.parseInt(((ModelLoginUsuario)session.get("user")).getPagos().get("id").toString());
         System.out.println("----------------------->>>>>>>>>>>"+idMulta+"<<<<<<<<<<<<<<<-----------------------");
         this.resultado = conexion.setPagoMulta(idMulta);
-
+        ((ModelLoginUsuario)session.get("user")).getPagos().clear();
         conexion.cerrarSession();
         return SUCCESS;
     }

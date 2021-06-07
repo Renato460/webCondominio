@@ -77,12 +77,6 @@ Coded by www.creative-tim.com
                         <p>Anuncios</p>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:getPagoTotal()">
-                        <i class="nc-icon nc-bell-55"></i>
-                        <p>Pago</p>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
@@ -108,7 +102,7 @@ Coded by www.creative-tim.com
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="navbar-brand" href="javascript:;">
+                            <a class="navbar-brand" href="logout.action">
                                 Salir
                             </a>
                         </li>
@@ -130,7 +124,7 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="col-7 col-md-8">
                                     <div class="numbers">
-                                        <p class="card-category">Condominios Administrados</p>
+                                        <p class="card-category">Condominios</p>
                                         <p class="card-title" id="cantcondos"><p>
                                     </div>
                                 </div>
@@ -193,7 +187,7 @@ Coded by www.creative-tim.com
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-refresh"></i>
-                                Numero de Condominios
+                                Numero de Multas
                             </div>
                         </div>
                     </div>
@@ -208,24 +202,7 @@ Coded by www.creative-tim.com
             </div>
         </div>
         <footer class="footer footer-black  footer-white ">
-            <div class="container-fluid">
-                <div class="row">
-                    <nav class="footer-nav">
-                        <ul>
-                            <li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
-                            <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
-                            <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
-                        </ul>
-                    </nav>
-                    <div class="credits ml-auto">
-              <span class="copyright">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-              </span>
-                    </div>
-                </div>
-            </div>
+
         </footer>
     </div>
 </div>

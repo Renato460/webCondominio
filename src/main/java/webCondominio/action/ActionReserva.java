@@ -62,8 +62,11 @@ public class ActionReserva extends ActionSupport implements ServletRequestAware{
 			return SUCCESS;
 		}catch(Exception ex) {
 			System.out.println(ex);
+
 			return ERROR;
 		}
+
+
 	}
 
 	

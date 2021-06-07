@@ -64,12 +64,6 @@
 						<p>Multas</p>
 					</a>
 				</li>
-				<li>
-					<a href="javascript:getPagoTotal()">
-						<i class="nc-icon nc-bell-55"></i>
-						<p>Pago</p>
-					</a>
-				</li>
 			</ul>
 		</div>
 	</div>
@@ -85,7 +79,7 @@
 							<span class="navbar-toggler-bar bar3"></span>
 						</button>
 					</div>
-					<a class="navbar-brand" href="javascript:;">Dashboard</a>
+					<h2>Dashboard</h2>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-bar navbar-kebab"></span>
@@ -105,7 +99,7 @@
 		</nav>
 		<!-- End Navbar -->
 		<div class="content">
-			<div class="row">
+			<!--<div class="row">
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="card card-stats">
 						<div class="card-body ">
@@ -210,7 +204,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 
 			<!-- CUERPO-->
 			<div class="row">
@@ -237,24 +231,7 @@
 			<!--Cuerpo2-->
 		</div>
 		<footer class="footer footer-black  footer-white ">
-			<div class="container-fluid">
-				<div class="row">
-					<nav class="footer-nav">
-						<ul>
-							<li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
-							<li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
-							<li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
-						</ul>
-					</nav>
-					<div class="credits ml-auto">
-              <span class="copyright">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-              </span>
-					</div>
-				</div>
-			</div>
+
 		</footer>
 	</div>
 </div>

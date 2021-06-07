@@ -2,7 +2,7 @@
  *
  */
 
-$(document).on("click", ".btnBuscar", function () {
+$(document).on("click", ".btnBuscar", function (e) {
     console.log("Entramos a las multas")
     let fila = $(this).closest("tr"); //con esto puedo traerme
     let userRut = fila.find('td:eq(3)').text();
@@ -15,10 +15,10 @@ $(document).on("click", ".btnBuscar", function () {
             row.child.hide();
             fila.removeClass('shown');
             $(".imgMostrar").removeClass("fa-search-minus").addClass('fa-search');
-            $(".btnBuscar").removeClass("btn-danger").addClass("btn-info");
+            $(this).removeClass("btn-danger").addClass("btn-info");
         }
         else {
-            $(".btnBuscar").empty().append("<div class='spinner-border text-info'></div>");
+            $(this).empty().append("<div class='spinner-border text-info'></div>");
             // Open this row
             let tablaMultas = "<table class=' col-12 table tablaMultas' id='tablaMultas' style='width: 100%'>"+
                 "<thead class='text-primary'>"+
@@ -31,9 +31,10 @@ $(document).on("click", ".btnBuscar", function () {
                 type:"POST",
                 data:{rut: userRut}
             }).done(function( data ) {
-
-                $(".btnBuscar").removeClass("btn-info").addClass("btn-danger").empty().append("<i class=\"fas fs-4 fa-search-minus imgMostrar\"></i>");
-
+                console.log(buttonSearch);
+                $(buttonSearch).removeClass("btn-info").addClass("btn-danger").empty().append("<i class=\"fas fs-4 fa-search-minus imgMostrar\"></i>");
+                /*$(buttonSearch).empty();
+                $(buttonSearch).append("<i class=\"fas fs-4 fa-search-minus imgMostrar\"></i>")*/
                 $.each(data.numeroMultas,function(index,value){
                     let id_multa = (value.id_multa).toString();
                     let descripcion = value.descripcion;
@@ -41,13 +42,14 @@ $(document).on("click", ".btnBuscar", function () {
                     let fechaIng = value.fechaIng;
                     let dt = new Date(fechaIng).toLocaleDateString()
                     tablaMultas +="<tr><td>"+id_multa+"</td><td>"+descripcion+"</td><td>$"+monto+"</td><td>"+dt+"</td></tr>";
-
                 });
+
                 tablaMultas+="</tbody></table>";
                 row.child( tablaMultas ).show();
 
                 fila.addClass('shown');
             });
-        }
+
+        };
     }
 });

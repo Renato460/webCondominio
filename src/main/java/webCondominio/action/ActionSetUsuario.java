@@ -23,6 +23,7 @@ public class ActionSetUsuario extends ActionSupport implements ServletRequestAwa
         this.idcondominio=Integer.parseInt(request.getParameter("idcondominio"));
         ControllerConexion conexion = new ControllerConexion();
         this.resultado=conexion.setPerfil(usuario,password,idrol,nombre,apaterno,amaterno,run,nacionalidad,telefono,correo,nrovivienda,idcondominio);
+        conexion.cerrarSession();
         return SUCCESS;
     }
     private String usuario;
