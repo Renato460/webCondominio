@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="residente" extends="struts-default, json-default" namespace="/residentes">
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+				class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="pago"
+				class="webCondominio.controller.ControllerPago">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+
+
+		<action name="logout"
+			class="webCondominio.controller.LogoutAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="getPagoDatos"
+			class="webCondominio.action.ActionPago" method="listaJson">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="getPagoView"
+			class="webCondominio.action.ActionPago" method="execute">
+			<interceptor-ref name="secureStack" />
+			<result name="success">views/pago.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="residente">
+			<interceptor-ref name="secureStack" />
+			<result>views/residentes.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="multaResidente" class="webCondominio.action.ActionMulta">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="reserva"
+			class="webCondominio.action.ActionServicio">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+		<action name="anuncio"
+			class="webCondominio.action.ActionAnuncio">
+			<interceptor-ref name="secureStack" />
+			<result name="success">views/anuncios.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="pagoExitoso">
+			<result type="redirectAction">
+				<param name="actionName">pagoExitosoChain</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="dispo"
+			class="webCondominio.action.ActionDisponibilidad">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="setReserva"
+			class="webCondominio.action.ActionReserva">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="directiva" extends="struts-default, json-default" namespace="/directiva">
+
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+						 class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="directiva">
+			<result>views/directiva.jsp</result>
+		</action>
+
+		<action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="getMulta" class="webCondominio.action.ActionMultaDirectorio">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="setMulta" class="webCondominio.action.ActionSetMulta">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="setImagenAnuncio" class="webCondominio.action.ActionSetAnuncio">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="pagoTotal" class="webCondominio.controller.ControllerPago">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="logout"
+				class="webCondominio.controller.LogoutAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="miniReportes" class="webCondominio.action.ActionMiniReportes">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="pkgAdmin" extends="struts-default, json-default" namespace="/administracion">
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+						 class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<action name="setMulta" class="webCondominio.action.ActionSetMulta">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="setImagenAnuncio" class="webCondominio.action.ActionSetAnuncio">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="admin">
+			<result> views/admins.jsp </result>
+		</action>
+
+		<action name="getMulta" class="webCondominio.action.ActionMultaDirectorio">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="getListaResidentes" class="webCondominio.action.ActionResidentes">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="getCondominios" class="webCondominio.action.ActionCondominios">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="logout"
+				class="webCondominio.controller.LogoutAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="setUsuario" class="webCondominio.action.ActionSetUsuario">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="getViviendas" class="webCondominio.action.ActionVivienda">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="setCondominio" class="webCondominio.action.ActionSetCondominio">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="getRegiones" class="webCondominio.action.ActionGetRegiones">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="getComunas" class="webCondominio.action.ActionGetComunas">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="setVivienda" class="webCondominio.action.ActionSetVivienda">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="getPlanillas" class="webCondominio.action.ActionGetPlanillasGC">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="setPagoManual" class="webCondominio.action.ActionSetPagoManual">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="updateUser" class="webCondominio.action.ActionUpdateUsuario">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="miniReportes" class="webCondominio.action.ActionMiniReportes">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="conserje" namespace="/conserje"
+			 extends="struts-default, json-default">
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+						 class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="getMulta" class="webCondominio.action.ActionMultaDirectorio">
+			<result type="json"/>
+		</action>
+
+		<action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
+			<result type="json"/>
+		</action>
+
+		<action name="conserje">
+			<result>views/conserje.jsp</result>
+		</action>
+
+		<action name="getEvento"
+				class="webCondominio.action.ActionGetEventos">
+			<result type="json"/>
+		</action>
+		<action name="setEvento"
+				class="webCondominio.action.ActionSetEvento">
+			<result type="json"/>
+		</action>
+		<action name="getCondominios" class="webCondominio.action.ActionCondominios">
+			<result type="json"/>
+		</action>
+		<action name="setPagoManual" class="webCondominio.action.ActionSetPagoManual">
+			<result type="json"/>
+		</action>
+		<action name="getPlanillas" class="webCondominio.action.ActionGetPlanillasGC">
+			<result type="json"/>
+		</action>
+		<action name="dispo"
+				class="webCondominio.action.ActionDisponibilidad">
+
+			<result type="json" />
+		</action>
+		<action name="setReserva"
+				class="webCondominio.action.ActionReserva">
+
+			<result type="json" />
+
+		</action>
+	</package>
+
+	<package name="index" extends="struts-default, json-default" namespace="/">
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+						 class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="login"
+				class="webCondominio.controller.ControllerVistas">
+			<result name="residente" type="redirectAction">
+				<param name="actionName">residente</param>
+				<param name="namespace">/residentes</param>
+			</result>
+			<result name="directiva" type="redirectAction">
+				<param name="actionName">directiva</param>
+				<param name="namespace">/directiva</param>
+			</result>
+			<result name="admin" type="redirectAction">
+				<param name="actionName">admin</param>
+				<param name="namespace">/administracion</param>
+			</result>
+			<result name="conserje" type="redirectAction">
+				<param name="actionName">conserje</param>
+				<param name="namespace">/conserje</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="actionPagoExitoso" class="webCondominio.action.ActionPagoExitoso">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="return">
+			<result>index.jsp</result>
+		</action>
+
+		<action name="pagoExitosoChain" class="webCondominio.action.ActionPagoExitoso">
+			<interceptor-ref name="secureStack" />
+			<result name="success">pagoExitoso.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+	</package>
+
+
+
+</struts>

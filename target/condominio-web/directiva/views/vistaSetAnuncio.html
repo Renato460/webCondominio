@@ -1,0 +1,31 @@
+<div class='card-header'>
+    <h5 class='card-title'>Anuncios</h5>
+    <p class='card-category'>Creación de anuncios</p>
+
+    <div id="respuestaAnuncio" class="mt-1">
+
+    </div>
+</div>
+
+<div class="card-body row d-flex justify-content-center mt-1">
+    <div class="col-lg-4">
+        <form id="formAnuncio" method="post" enctype="multipart/form-data">
+
+                <label for="anuncioFoto">Imagen del anuncio</label>
+                <input type="file" class="form-control" id="anuncioFoto">
+
+            <div class="form-group mt-2">
+                <label for="descripcionAnuncio">Descripción Anuncio</label>
+                <textarea type="text" class="form-control rutP" name="anuncio"
+                          aria-label="Descripcion" aria-describedby="basic-addon2" id="descripcionAnuncio"></textarea>
+            </div>
+             <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    <div class="col-lg-8 d-flex justify-content-center my-2">
+        <div class="image-preview d-flex justify-content-center" id="imagePreview">
+            <img src="" alt="Image Preview" class="image-preview_Image d-none w-100">
+            <span class="defaultText">Vista Previa</span>
+        </div>
+    </div>
+</div>

@@ -48,9 +48,9 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		pagos.put("tipo", tipo);
 		pagos.put("monto",monto);
 
-		((ModelLoginUsuario)session.get("user")).getPagos().clear();
+		//((ModelLoginUsuario)session.get("user")).getPagos().clear();
 		((ModelLoginUsuario)session.get("user")).setPagos(pagos);
-
+		System.out.println(((ModelLoginUsuario)session.get("user")).getPagos().get("tipo"));
 		int receiverId = 381468;
 		String secretKey = "d749349a39c35148ea43352381b2c9ff60bbb6ce";
 
@@ -66,7 +66,7 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		options.put("returnUrl", "http://localhost:8081/webCondominio_war_exploded/pagoExitosoChain.action");
 		options.put("cancelUrl", "http://localhost:8081/webCondominio_war_exploded/return.action#");
 		options.put("pictureUrl", "https://media.revistagq.com/photos/5f45010acb266484bb785c78/16:9/w_1920%2cc_limit/dragon-ball-z.jpg");
-		options.put("notifyUrl", "http://localhost:8081/webCondominio_war_exploded/pago_exitoso.html");
+		options.put("notifyUrl", "http://localhost:8082/khipu");
 		options.put("notifyApiVersion", "1.3");
 
 		PaymentsCreateResponse response;

@@ -1,0 +1,27 @@
+html{
+    background-color: #f4f3ef;
+}
+body{
+    background-color: #f4f3ef !important;
+}
+
+.image-preview{
+    width: 100vw;
+    min-height: 45vh;
+    border: 2px dotted #dddddd;
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+    font-weight: bold;
+    color: #cccccc;
+}
+
+.circleCheck{
+    color: #6bd098;
+}
+/*
+#eventos{
+    background-image: url("../../assets/img/reservas/multicancha.jpg");
+}
+*/

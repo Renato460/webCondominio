@@ -12,11 +12,17 @@ public class ActionPagoExitoso extends ActionSupport implements SessionAware {
     @Override
     public String execute() throws Exception {
         ControllerConexion conexion = new ControllerConexion();
-        Integer idMulta = Integer.parseInt(((ModelLoginUsuario)session.get("user")).getPagos().get("id").toString());
-        System.out.println("----------------------->>>>>>>>>>>"+idMulta+"<<<<<<<<<<<<<<<-----------------------");
-        this.resultado = conexion.setPagoMulta(idMulta);
-        ((ModelLoginUsuario)session.get("user")).getPagos().clear();
-        conexion.cerrarSession();
+        try{
+            Integer idMulta = Integer.parseInt(((ModelLoginUsuario)session.get("user")).getPagos().get("id").toString());
+            System.out.println("----------------------->>>>>>>>>>>"+idMulta+"<<<<<<<<<<<<<<<-----------------------");
+            this.resultado = conexion.setPagoMulta(idMulta);
+
+            conexion.cerrarSession();
+        }catch (Exception e){
+            System.out.println("------------->"+e);
+        }
+
+
         return SUCCESS;
     }
     private Integer resultado;
