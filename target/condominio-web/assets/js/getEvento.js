@@ -2,7 +2,11 @@ $(document).on('click','.btnEnviarCondominioeven',function(){
     console.log("Entramos a datatable")
     let idCondo=$('#condominioeven').val();
     console.log(idCondo);
+<<<<<<< HEAD
     $('#tablaEventos').DataTable({
+=======
+    tablaEvento = $('#tablaEventos').DataTable({
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
         "language": {
             "decimal": ",",
             "emptyTable": "Sin datos",
@@ -62,7 +66,11 @@ $(document).on('click','.btnEnviarCondominioeven',function(){
             {"data": "id"},
             {"data": "fecha"},
             {"data": "descripcion"},
+<<<<<<< HEAD
             {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnBuscar'><i class='fas fa-search'></i></button></div>"}
+=======
+
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
         ]
     });
 });

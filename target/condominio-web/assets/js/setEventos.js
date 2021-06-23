@@ -21,6 +21,10 @@ $("#formsetevento").submit(function(e){
 
     }).done(function(data){
         if(data.resultado === 1){
+<<<<<<< HEAD
+=======
+            tablaEvento.ajax.reload(null, false);
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
             $("#cuerpoAlerta").append("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
                 "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Usuario ingresado con exito</span>" +
                 "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");

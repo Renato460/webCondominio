@@ -78,7 +78,11 @@ Coded by www.creative-tim.com
                     </a>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a href="javascript:setTablaMulta()">
+=======
+                    <a href="javascript:setTabla()">
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
                         <i class="nc-icon nc-bell-55"></i>
                         <p>Multas</p>
                     </a>
@@ -243,7 +247,11 @@ Coded by www.creative-tim.com
 </div>
 
 
+<<<<<<< HEAD
 
+=======
+<
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
 <!-- Modal -->
 <div class="modal fade" id="modalid1" role="dialog">
     <div class="modal-dialog">
@@ -274,8 +282,11 @@ Coded by www.creative-tim.com
 
                                 <span class="input-group-text">Rol</span>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
                                     <option value="1">Administrador</option>
@@ -286,7 +297,10 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="input-group mb-2 ">
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
                                     <span class="input-group-text" >Nombre</span>
 
                                     <input type="text" id="nombre" class="form-control " name="nombre"
@@ -383,7 +397,10 @@ Coded by www.creative-tim.com
 
                                 <select name="region" id="region" class="form-select mb-2" aria-label="region" >
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
                                     <option selected>Seleccione Region </option>
                                 </select>
                                 <select name="comunas" id="comunas" class="form-select mb-2" aria-label="region" >
@@ -533,6 +550,11 @@ Coded by www.creative-tim.com
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/paper-dashboard.min.js" type="text/javascript"></script>
+<<<<<<< HEAD
+=======
+<script
+        src="${ pageContext.request.contextPath }/assets/js/main.js" type="text/javascript"></script>
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
 
 
 

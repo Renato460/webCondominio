@@ -141,13 +141,24 @@ $("#formsetusuario").submit(function (e) {
             $('#email').val("");
             $('#condominio').val("Seleccione Condominio");
             $('#vivienda').val("");
+<<<<<<< HEAD
             tableResidente.ajax.reload(null,false);
         }else{
+=======
+            $('.btnEnviarForma').empty().html("CONFIRMAR REGISTRO");
+            tableResidente.ajax.reload();
+        }else{
+            $('.btnEnviarForma').empty().html("CONFIRMAR REGISTRO");
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
             $("#cuerpoAlerta").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
                 "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Error al registrar el usuario</span>" +
                 "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
         };
+<<<<<<< HEAD
         $('.btnEnviarForma').empty().text("CONFIRMAR REGISTRO");
+=======
+
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
 
 
 

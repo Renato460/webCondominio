@@ -439,6 +439,7 @@ public class ControllerConexion {
 			return 1;
 		}
 		catch(Exception ex){
+			System.out.println(ex);
 			return 0;
 		}
 	}

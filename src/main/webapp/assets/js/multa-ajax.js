@@ -67,6 +67,7 @@ function setTablaMulta() {
 
 $(document).on('click', '.btnPagar', function () {
 	let fila = $(this).closest("tr");
+	let button = this;
 	let idMulta = fila.find('td:eq(0)').text();
 	let descripcion = fila.find('td:eq(1)').text();
 	let tipo = "multa";
@@ -84,8 +85,9 @@ $(document).on('click', '.btnPagar', function () {
 		}
 	}).done(function (data) {
 		console.log(data);
-		window.location.href = data.urlPago;
-		$(this).empty().append("<i class=\"fas fa-money-bill-alt\"></i>");
+		//window.location.href = data.urlPago;
+		window.open(data.urlPago,"_blank")
+		$(button).empty().append("<i class=\"fas fa-money-bill-alt\"></i>");
 
 
 	});

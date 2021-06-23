@@ -36,7 +36,12 @@
             <div class="d-flex justify-content-center">
                 <h3 class="card-title">Pago exitoso</h3>
             </div>
+<<<<<<< HEAD
 <hr>
+=======
+<hr><s:property value="#session['user'].nombre" />
+
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
         </div>
         <div class="card-body container">
             <div class="row  d-flex justify-content-center">
@@ -49,6 +54,7 @@
                         </thead>
                         <tbody>
                         <tr>
+<<<<<<< HEAD
                             <th scope="row" class="d-flex justify-content-center"><p>Motivo: <s:property value="#session['user'].pagos.tipo"/></p></th>
                         </tr>
                         <tr>
@@ -56,6 +62,15 @@
                         </tr>
                         <tr>
                             <th scope="row" class="d-flex justify-content-center"><p>Monto: $ <s:property value="#session['user'].pagos.monto"/></p></th>
+=======
+                            <th scope="row" class="d-flex justify-content-center"><p>Motivo: <s:property value="#session['user'].pagos['tipo']"/></p></th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="d-flex justify-content-center"><p>Descripción: <s:property value="#session['user'].pagos['descripcion']"/></p></th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="d-flex justify-content-center"><p>Monto: $ <s:property value="#session['user'].pagos['monto']"/></p></th>
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
                         </tr>
                         </tbody>
                     </table>

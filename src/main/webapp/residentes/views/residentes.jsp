@@ -39,6 +39,7 @@
 			</a>
 			<a href="https://www.creative-tim.com" class="simple-text logo-normal">
 				<s:property value="#session['user'].nombre" />
+				<s:property value="#session['user'].pagos['key']" />
 				<!-- <div class="logo-image-big">
                   <img src="../assets/img/logo-big.png">
                 </div> -->
@@ -211,11 +212,7 @@
 				<div class="col-md-12">
 					<div class="card" id="cuerpo">
 
-						<form action="pagoExitoso.action" novalidate method="post">
 
-							<button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
-							<p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-						</form>
 					</div>
 				</div>
 			</div>

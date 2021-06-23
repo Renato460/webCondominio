@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
+<<<<<<< HEAD
 Built-By: AcidByte
 Build-Jdk: version 15.0.1
+=======
+Built-By: rerey
+Build-Jdk: version 11.0.10
+>>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
 
