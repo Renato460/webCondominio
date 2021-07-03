@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+
+    <package name="conserje" namespace="/conserje"
+             extends="struts-default, json-default">
+        <interceptors>
+            <interceptor name="authenticationInterceptor"
+                         class="webCondominio.controller.AuthenticationInterceptor" />
+            <interceptor-stack name="secureStack">
+                <interceptor-ref name="authenticationInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+
+        <action name="getMulta" class="webCondominio.action.ActionMultaDirectorio">
+            <result type="json"/>
+        </action>
+
+        <action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
+            <result type="json"/>
+        </action>
+
+        <action name="conserje">
+            <result>../conserje/views/conserje.jsp</result>
+        </action>
+
+        <action name="getEvento"
+                class="webCondominio.action.ActionGetEventos">
+            <result type="json"/>
+        </action>
+        <action name="setEvento"
+                class="webCondominio.action.ActionSetEvento">
+            <result type="json"/>
+        </action>
+        <action name="getCondominios" class="webCondominio.action.ActionCondominios">
+            <result type="json"/>
+        </action>
+        <action name="setPagoManual" class="webCondominio.action.ActionSetPagoManual">
+            <result type="json"/>
+        </action>
+        <action name="getPlanillas" class="webCondominio.action.ActionGetPlanillasGC">
+            <result type="json"/>
+        </action>
+        <action name="dispo"
+                class="webCondominio.action.ActionDisponibilidad">
+
+            <result type="json" />
+        </action>
+        <action name="setReserva"
+                class="webCondominio.action.ActionReserva">
+
+            <result type="json" />
+
+        </action>
+    </package>
+
+</struts>

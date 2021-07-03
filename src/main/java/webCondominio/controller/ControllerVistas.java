@@ -2,6 +2,8 @@ package webCondominio.controller;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+
 import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import webCondominio.model.ModelLoginUsuario;
@@ -19,7 +21,10 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 	/**
 	 * 
 	 */
-	
+
+	private final Map<String,String> vistas = new TreeMap<>();
+
+
 	private Map<String,Object> session;
 	public Map<String, Object> getSession() {
 		return session;
@@ -32,35 +37,22 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 
 	@Override
 	public String execute() {
+		vistas.put("1","admin");
+		vistas.put("2","conserje");
+		vistas.put("3","directiva");
+		vistas.put("4","residente");
 			session.remove("user");
 			if(isValid(usuario, pass)){
 				ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 				session.put("user", nuevoUsuario);
 				System.out.println(((ModelLoginUsuario)session.get("user")).getPassword());
 				
-				return vistasRoles(this.rol);
+				return vistas.getOrDefault(this.rol,"INPUT");
 			}else{
 				return INPUT;
 			}
-
-
 	}
 
-	private String vistasRoles(String rol){
-		switch (rol){
-			case "1":
-				return "admin";
-			case "2":
-				return "conserje";
-			case "3":
-				return "directiva";
-			case "4":
-				return "residente";
-			default:
-				return "INPUT";
-		}
-	}
-	
 	private boolean isValid(String usuario, String pass) {
 		ControllerConexion user = new ControllerConexion();
 		List<String> contra = user.login(usuario, pass);

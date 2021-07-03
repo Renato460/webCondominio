@@ -84,7 +84,7 @@ $(document).on('click', '.btnPagar', function () {
 			'monto':monto
 		}
 	}).done(function (data) {
-		console.log(data);
+		console.log(data.urlPago);
 		//window.location.href = data.urlPago;
 		window.open(data.urlPago,"_blank")
 		$(button).empty().append("<i class=\"fas fa-money-bill-alt\"></i>");
