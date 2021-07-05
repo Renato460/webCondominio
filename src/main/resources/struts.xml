@@ -56,13 +56,16 @@
 
 		<action name="pagoExitosoChain" class="webCondominio.action.ActionPagoExitoso">
 			<interceptor-ref name="secureStack" />
-			<result name="success">pagoExitoso.jsp</result>
+			<result name="success">WEB-INF/pagoExitoso.jsp</result>
 			<result name="login" type="redirectAction">
 				<param name="actionName">return</param>
 				<param name="namespace">/</param>
 			</result>
 		</action>
 
+		<action name="test">
+			<result>/WEB-INF/test/test.jsp</result>
+		</action>
 	</package>
 
 

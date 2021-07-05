@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import webCondominio.model.ModelLoginUsuario;
 
 public class LogoutAction extends ActionSupport implements SessionAware {
 
@@ -19,7 +20,11 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 	}
 	@Override
 	public String execute() {
-		session.remove("user");
+
+		if (session.get("user")!=null){
+			session.remove("user");
+			return SUCCESS;
+		}
 		return SUCCESS;
 	}
 }

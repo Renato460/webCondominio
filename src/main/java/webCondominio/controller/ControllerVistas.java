@@ -1,5 +1,4 @@
 package webCondominio.controller;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -47,7 +46,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 				session.put("user", nuevoUsuario);
 				System.out.println(((ModelLoginUsuario)session.get("user")).getPassword());
 				
-				return vistas.getOrDefault(this.rol,"INPUT");
+				return vistas.getOrDefault(this.rol,"LOGIN");
 			}else{
 				return INPUT;
 			}

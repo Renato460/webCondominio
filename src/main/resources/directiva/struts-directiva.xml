@@ -12,22 +12,29 @@
         <interceptors>
             <interceptor name="authenticationInterceptor"
                          class="webCondominio.controller.AuthenticationInterceptor" />
+            <interceptor name="rolInterceptor" class="webCondominio.controller.DirectivaRol"/>
             <interceptor-stack name="secureStack">
                 <interceptor-ref name="authenticationInterceptor" />
+                <interceptor-ref name="rolInterceptor" />
                 <interceptor-ref name="defaultStack" />
             </interceptor-stack>
         </interceptors>
 
         <action name="directiva">
-            <result>../directiva/views/directiva.jsp</result>
+            <interceptor-ref name="secureStack" />
+            <result>../WEB-INF/directiva/views/directiva.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
+            </result>
         </action>
 
         <action name="getResidentes" class="webCondominio.action.ActionListaResidentes">
             <interceptor-ref name="secureStack" />
             <result type="json"/>
             <result name="login" type="redirectAction">
-                <param name="actionName">return</param>
-                <param name="namespace">/</param>
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
             </result>
         </action>
 
@@ -35,8 +42,8 @@
             <interceptor-ref name="secureStack" />
             <result type="json"/>
             <result name="login" type="redirectAction">
-                <param name="actionName">return</param>
-                <param name="namespace">/</param>
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
             </result>
         </action>
 
@@ -44,8 +51,8 @@
             <interceptor-ref name="secureStack" />
             <result type="json"/>
             <result name="login" type="redirectAction">
-                <param name="actionName">return</param>
-                <param name="namespace">/</param>
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
             </result>
         </action>
 
@@ -53,8 +60,8 @@
             <interceptor-ref name="secureStack" />
             <result type="json"/>
             <result name="login" type="redirectAction">
-                <param name="actionName">return</param>
-                <param name="namespace">/</param>
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
             </result>
         </action>
 
@@ -62,8 +69,17 @@
             <interceptor-ref name="secureStack" />
             <result type="json"/>
             <result name="login" type="redirectAction">
-                <param name="actionName">return</param>
-                <param name="namespace">/</param>
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
+            </result>
+        </action>
+
+        <action name="miniReportes" class="webCondominio.action.ActionMiniReportes">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/directiva</param>
             </result>
         </action>
 
@@ -75,14 +91,6 @@
             </result>
         </action>
 
-        <action name="miniReportes" class="webCondominio.action.ActionMiniReportes">
-            <interceptor-ref name="secureStack" />
-            <result type="json"/>
-            <result name="login" type="redirectAction">
-                <param name="actionName">return</param>
-                <param name="namespace">/</param>
-            </result>
-        </action>
     </package>
 
 </struts>
