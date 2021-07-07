@@ -72,6 +72,11 @@
 
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
 		</form>
+
+		<a class="navbar-brand" href="notification.action">
+			Prueba
+		</a>
+
 	</main>
 
 

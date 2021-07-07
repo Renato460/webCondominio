@@ -66,6 +66,10 @@
 		<action name="test">
 			<result>/WEB-INF/test/test.jsp</result>
 		</action>
+
+		<action name="notification" class="webCondominio.action.ActionNotification">
+			<result name="success">noti.jsp</result>
+		</action>
 	</package>
 
 

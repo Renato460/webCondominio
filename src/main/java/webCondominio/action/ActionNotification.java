@@ -5,6 +5,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ActionNotification extends ActionSupport {
     @Override
     public String execute(){
+        this.notification_token="Pruebaaa";
+        this.api_version="1.3";
         System.out.println(this.api_version+"---"+this.notification_token);
         return SUCCESS;
     }
