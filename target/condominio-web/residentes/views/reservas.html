@@ -1,0 +1,152 @@
+<div class='card-header'>
+	<h5 class='card-title'>Reservas</h5>
+	<p class='card-category'>Elija su reserva</p>
+</div>
+<div class="card-body list-group">
+
+
+
+
+	<div class="row row-cols-1 row-cols-md-2 g-4">
+		<div class="col">
+			<div class="card h-100">
+				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/quincho.jpg" class="card-img-top" id="quincho" alt="quincho">
+				<div class="card-body">
+					<h5 class="card-title">Quincho</h5>
+					<p class="card-text">$ 10.000</p>
+				</div>
+				<div class="card-footer">
+					<hr>
+					<div class="p-2 col-4 bd-highlight d-flex justify-content-center">
+						<button type="button" id="buttonQuincho"
+								class="btn btn-primary buttonQuincho" data-bs-toggle="modal"
+								data-bs-target="#datosResidente" data-bs-whatever="QUINCHO"
+								onclick="modalFormulario(buttonQuincho)">Reserva</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card h-100">
+				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/multicancha.jpg" class="card-img-top" id="multicancha" alt="Multicancha">
+				<div class="card-body">
+					<h5 class="card-title">Multicancha</h5>
+					<p class="card-text">$ 8.000</p>
+				</div>
+				<div class="card-footer">
+					<hr>
+					<div class="p-2 col-4 bd-highlight d-flex justify-content-center">
+						<button type="button" id="buttonMulticancha"
+								class="btn btn-primary buttonMulticancha" data-bs-toggle="modal"
+								data-bs-target="#datosResidente" data-bs-whatever="MULTICANCHA"
+								onclick="modalFormulario(buttonMulticancha)">Reserva</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card h-100">
+				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/eventos.jpg" class="card-img-top" id="eventos" alt="eventos">
+				<div class="card-body">
+					<h5 class="card-title">Sala de Eventos</h5>
+					<p class="card-text">$ 20.000</p>
+				</div>
+				<div class="card-footer">
+					<hr>
+					<div class="p-2 col-4 flex-fill bd-highlight d-flex justify-content-center">
+						<button type="button" id="buttonEvento"
+								class="btn btn-primary buttonEvento" data-bs-toggle="modal"
+								data-bs-target="#datosResidente" data-bs-whatever="SALA EVENTOS"
+								onclick="modalFormulario(buttonEvento)">Reserva</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card h-100">
+				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/estacionamiento.jpg" class="card-img-top" id="estacionamiento" alt="estacionamiento">
+				<div class="card-body">
+					<h5 class="card-title">Estacionamiento</h5>
+					<p class="card-text">$ 1.000</p>
+				</div>
+				<div class="card-footer">
+					<hr>
+					<div class="p-2 col-4 flex-fill bd-highlight d-flex justify-content-center">
+						<button type="button" id="buttonEstacionamiento"
+								class="btn btn-primary buttonEstacionamiento"
+								data-bs-toggle="modal" data-bs-target="#datosResidente"
+								data-bs-whatever="ESTACIONAMIENTO"
+								onclick="modalFormulario(buttonEstacionamiento)">Reserva</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="datosResidente" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ingrese datos de reserva</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				
+				<!-- FORMULARIO DE RESERVA -->
+				<div id="form_reserva">
+					<div class="container">
+						<div class="row">
+
+							<div class='col-lg-12'>
+								<div class="input-group mb-2 reservaNombre">
+									<span class="input-group-text">Reserva</span>
+									<input type="text" class="form-control reservaId" name="servicio"
+										aria-label="Reserva" aria-describedby="basic-addon1" disabled>
+								</div>
+
+								<div class="input-group mb-2">
+									<span class="input-group-text">RUN</span>
+									<input id="rut" type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
+										aria-label="Rut" aria-describedby="basic-addon1" onfocusout="validarRut()">
+								</div>
+
+								<div class="input-group mb-2">
+									<span class="input-group-text col-2">Fecha
+										</span> <input type="date" id="fechaDispo" class="form-control fechaReserva col-7"
+										placeholder="dd-mm-aaaa" aria-label="FechaReserva" name="fecha"
+										aria-describedby="basic-addon1">
+										
+								</div>
+
+								<div class="input-group mb-2">
+									<span class="input-group-text">Horario</span>
+									<select name="horarios" id="horarios" class="form-select horarios" aria-label="Default select example">
+
+									</select>
+
+								</div>
+								<div id="spin" class="col-12"></div>
+								<button id="btn" class="btn btn-primary btn-lg" onclick="formButton()">Confirmar
+									Reserva</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- FINAL FORMULARIO DE RESERVA -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+

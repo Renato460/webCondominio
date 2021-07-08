@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+
+	<package name="index" extends="struts-default, json-default" namespace="/">
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+						 class="webCondominio.controller.AuthenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="login"
+				class="webCondominio.controller.ControllerVistas">
+			<result name="residente" type="redirectAction">
+				<param name="actionName">residente</param>
+				<param name="namespace">/residentes</param>
+			</result>
+			<result name="directiva" type="redirectAction">
+				<param name="actionName">directiva</param>
+				<param name="namespace">/directiva</param>
+			</result>
+			<result name="admin" type="redirectAction">
+				<param name="actionName">admin</param>
+				<param name="namespace">/administracion</param>
+			</result>
+			<result name="conserje" type="redirectAction">
+				<param name="actionName">conserje</param>
+				<param name="namespace">/conserje</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="actionPagoExitoso" class="webCondominio.action.ActionPagoExitoso">
+			<interceptor-ref name="secureStack" />
+			<result type="json"/>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="return">
+			<result>index.jsp</result>
+		</action>
+
+		<action name="pagoExitosoChain" class="webCondominio.action.ActionPagoExitoso">
+			<interceptor-ref name="secureStack" />
+			<result name="success">WEB-INF/pagoExitoso.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">return</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="test">
+			<result>/WEB-INF/test/test.jsp</result>
+		</action>
+
+		<action name="notification" class="webCondominio.action.ActionNotification">
+			<result name="success">noti.jsp</result>
+		</action>
+	</package>
+
+
+	<include file="administracion/struts-admin.xml"/>
+
+	<include file="conserje/struts-conserje.xml"/>
+
+	<include file="directiva/struts-directiva.xml"/>
+
+	<include file="residentes/struts-residentes.xml"/>
+
+</struts>

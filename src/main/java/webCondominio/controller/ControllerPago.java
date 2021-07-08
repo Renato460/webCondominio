@@ -63,10 +63,10 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 
 		Map<String, Object> options = new HashMap<>();
 		options.put("transactionId", "Gastos Condominio");//Cambiar
-		options.put("returnUrl", "https://129.159.59.189:7001/condominio-web/pagoExitosoChain.action");
-		options.put("cancelUrl", "https://129.159.59.189:7001/condominio-web/return.action");
+		options.put("returnUrl", "http://129.159.59.189:7001/condominio-web/pagoExitosoChain.action");
+		options.put("cancelUrl", "http://129.159.59.189:7001/condominio-web/return.action");
 		options.put("pictureUrl", "https://media.revistagq.com/photos/5f45010acb266484bb785c78/16:9/w_1920%2cc_limit/dragon-ball-z.jpg");
-		options.put("notifyUrl", "https://129.159.59.189:7001/condominio-web/notification.action");
+		options.put("notifyUrl", "http://129.159.59.189:7001/condominio-web/notification.action");
 		options.put("notifyApiVersion", "1.3");
 
 		PaymentsCreateResponse response;
