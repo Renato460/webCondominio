@@ -528,12 +528,32 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
-	public int setVivienda(int nroVivienda,int idCondominio){
+	public int setGastoComun(int idCondominio,String descripcion,int valor){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_gastoscomunes.setgastocomun")
+				.registerStoredProcedureParameter("p_idcondominio",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_descripcion",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_valor",Integer.class,ParameterMode.IN)
+				.setParameter("p_idcondominio",idCondominio)
+				.setParameter("p_descripcion",descripcion)
+				.setParameter("p_valor",valor);
+		try{
+			query.execute();
+			return 1;
+		}
+		catch (Exception ex){
+			return 0;
+		}
+	}
+	public int setVivienda(int nroVivienda,int idCondominio,String titular,String ruttitular){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_vivienda.setvivienda")
 				.registerStoredProcedureParameter("p_numero", Integer.class,ParameterMode.IN )
 				.registerStoredProcedureParameter("p_idcondominio", Integer.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_titular", String.class,ParameterMode.IN )
+				.registerStoredProcedureParameter("p_ruttitular", String.class,ParameterMode.IN )
 				.setParameter("p_numero",nroVivienda)
-				.setParameter("p_idcondominio",idCondominio);
+				.setParameter("p_idcondominio",idCondominio)
+				.setParameter("p_titular",titular)
+				.setParameter("p_ruttitular",ruttitular);
 		try{
 			query.execute();
 			return 1;
@@ -587,6 +607,51 @@ public class ControllerConexion {
 			return 1;
 		}
 		catch(Exception ex){
+			return 0;
+		}
+	}
+	public int updateGastoComun (int idGastocomun,String descripcion,int valor){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_gastoscomunes.updategastoscomun")
+				.registerStoredProcedureParameter("p_idgastoc",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_descripcion",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_valor",Integer.class,ParameterMode.IN)
+				.setParameter("p_idgastoc",idGastocomun)
+				.setParameter("p_descripcion",descripcion)
+				.setParameter("p_valor",valor);
+		try{
+			query.execute();
+			return 1;
+		} catch (Exception ex){
+			return 0;
+		}
+	}
+	public int updateVivienda(int idVivienda,int nroVivienda,String titular,String ruttitular){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_vivienda.updatevivienda")
+				.registerStoredProcedureParameter("p_idVivienda",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_nroVivienda",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_titular",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_ruttitular",String.class,ParameterMode.IN)
+				.setParameter("p_idVivienda",idVivienda)
+				.setParameter("p_nroVivienda",nroVivienda)
+				.setParameter("p_titular",titular)
+				.setParameter("p_ruttitular",ruttitular);
+		try{
+			query.execute();
+			return 1;
+		}catch (Exception ex){
+			return 0;
+		}
+	}
+	public int updateEvento(int idEvento,String descripcion){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.updateevento")
+				.registerStoredProcedureParameter("p_idEvento",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_descripcion",String.class,ParameterMode.IN)
+				.setParameter("p_idEvento",idEvento)
+				.setParameter("p_descripcion",descripcion);
+		try{
+			query.execute();
+			return 1;
+		}catch(Exception ex){
 			return 0;
 		}
 	}
@@ -765,7 +830,9 @@ public class ControllerConexion {
 			for (Object[] obj: viviends) {
 				int idVivienda = Integer.parseInt(obj[0].toString());
 				int Numero = Integer.parseInt(obj[1].toString());
-				ModelVivienda viviend = new ModelVivienda(idVivienda,Numero);
+				String tiTular = obj[2].toString();
+				String rutTitular = obj[3].toString();
+				ModelVivienda viviend = new ModelVivienda(idVivienda,Numero,tiTular,rutTitular);
 				viviendas.add(viviend);
 			}
 			return viviendas;
@@ -774,7 +841,68 @@ public class ControllerConexion {
 			return null;
 		}
 	}
+	public ArrayList <ModelMorosos> getMorosos(int idCondo){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_morosos.getmorosos")
+				.registerStoredProcedureParameter("p_idCondominio",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("c_curmorosos",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_idCondominio",idCondo);
+		try{
+			query.execute();
+			List <Object []> moro = query.getResultList();
+			ArrayList <ModelMorosos> morosos = new ArrayList<>();
+			for(Object[] obj:moro){
+				int idPlanilla = Integer.parseInt(obj[0].toString());
+				String rut = obj[1].toString();
+				String nombre = obj[2].toString();
+				String fechainicial = obj[3].toString();
+				String fechavenc = obj[4].toString();
+				int montototal = Integer.parseInt(obj[5].toString());
+				ModelMorosos moroso = new ModelMorosos(idPlanilla,rut,nombre,fechainicial,fechavenc,montototal);
+				morosos.add(moroso);
+			}
+			return morosos;
+		}catch (Exception ex){
+			return null;
+		}
+	}
+	public ArrayList <ModelGastosComunes> getGastosComunes(int idCondo){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_gastoscomunes.getgastoscomunes")
+				.registerStoredProcedureParameter("p_idcondominio",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("c_gccursor",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_idcondominio",idCondo);
+		try{
+			query.execute();
+			List <Object[]> gastosgc = query.getResultList();
+			ArrayList <ModelGastosComunes> gastoscomunes = new ArrayList <>();
+			for(Object[] obj:gastosgc) {
+				int idGastocomun = Integer.parseInt(obj[0].toString());
+				String descripcion= obj[1].toString();
+				int valor = Integer.parseInt(obj[2].toString());
+				ModelGastosComunes gastocomun = new ModelGastosComunes(idGastocomun,descripcion,valor);
+				gastoscomunes.add(gastocomun);
+			}
+			return gastoscomunes;
 
+		} catch(Exception ex){
+			return null;
+		}
+	}
+	public ModelCondominio getCondoUsuario(String rut){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("paq_condominios.getcondominiousuario")
+				.registerStoredProcedureParameter("p_rut",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_idCondominio",Integer.class,ParameterMode.OUT)
+				.registerStoredProcedureParameter("p_nombre",String.class,ParameterMode.OUT)
+				.setParameter("p_rut",rut);
+		try{
+			query.execute();
+			int idCondominio=Integer.parseInt(query.getOutputParameterValue("p_idCondominio").toString());
+			String nombre= query.getOutputParameterValue("p_nombre").toString();
+			ModelCondominio condo = new ModelCondominio(idCondominio,nombre);
+			return condo;
+		}catch (Exception ex){
+			return null;
+		}
+	}
 	public ArrayList <ModelComunas> getComunas(int idRegion){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_regionescom.getcomunas")
 				.registerStoredProcedureParameter("p_idregion", Integer.class,ParameterMode.IN )
@@ -814,7 +942,39 @@ public class ControllerConexion {
 			return 0;
 		}
 	}
-
+	public int DeleteUsuario(String rut){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_usuarios.deleteuser")
+				.registerStoredProcedureParameter("p_run",String.class,ParameterMode.IN)
+				.setParameter("p_run",rut);
+		try{
+			query.execute();
+			return 1;
+		}catch(Exception ex){
+			return 0;
+		}
+	}
+	public Integer DeleteGastoComun (Integer idGastocomun){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_gastoscomunes.deletegastocomun")
+				.registerStoredProcedureParameter("p_idGastocomun",Integer.class,ParameterMode.IN)
+				.setParameter("p_idGastocomun",idGastocomun);
+		try{
+			query.execute();
+			return 1;
+		}catch(Exception ex){
+			return 0;
+		}
+	}
+	public Integer DeleteEvento(int idEvento){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.deleteevento")
+				.registerStoredProcedureParameter("p_idEvento",Integer.class,ParameterMode.IN)
+				.setParameter("p_idEvento",idEvento);
+				try{
+					query.execute();
+					return 1;
+				}catch(Exception ex){
+					return 0;
+				}
+	}
 	//Recibe informacion de evento
 	public ArrayList<ModelEvento> getEventos(Integer idCondominio){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_eventosconserje.geteventos")
@@ -826,10 +986,10 @@ public class ControllerConexion {
 			List <Object[]> eventos= query.getResultList();
 			ArrayList <ModelEvento> evento = new ArrayList<>();
 			for (Object[] obj: eventos) {
-				Integer id = Integer.parseInt(obj[0].toString());
+				Integer idEvento = Integer.parseInt(obj[0].toString());
 				String fecha = obj[1].toString();
 				String descripcion = obj[2].toString();
-				ModelEvento evenCon = new ModelEvento(id,fecha, descripcion);
+				ModelEvento evenCon = new ModelEvento(idEvento,fecha, descripcion);
 				evento.add(evenCon);
 			}
 			return evento;

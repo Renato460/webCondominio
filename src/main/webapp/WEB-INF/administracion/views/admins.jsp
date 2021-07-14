@@ -43,14 +43,15 @@ Coded by www.creative-tim.com
 <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
-            <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+            <a href="javascript:location.reload()" class="simple-text logo-mini">
                 <div class="logo-image-small">
                     <img src="${ pageContext.request.contextPath }/assets/img/logo-small.png">
                 </div>
                 <!-- <p>CT</p> -->
             </a>
-            <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+            <a href="javascript:location.reload()" class="simple-text logo-normal">
                 <s:property value="#session['user'].nombre" />
+
                 <!-- <div class="logo-image-big">
                   <img src="../assets/img/logo-big.png">
                 </div> -->
@@ -59,9 +60,9 @@ Coded by www.creative-tim.com
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="active ">
-                    <a href="./dashboard.html">
+                    <a href="javascript:location.reload()">
                         <i class="nc-icon nc-bank"></i>
-                        <p>Dashboard</p>
+                        <p>Home</p>
                     </a>
                 </li>
                 <li>
@@ -94,6 +95,12 @@ Coded by www.creative-tim.com
                         <p>Pago Manual</p>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript:setTablaMorosos()">
+                        <i class="nc-icon nc-tile-56"></i>
+                        <p>Morosos</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -109,7 +116,7 @@ Coded by www.creative-tim.com
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="javascript:;">Dashboard</a>
+
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -242,7 +249,7 @@ Coded by www.creative-tim.com
 </div>
 
 
-<
+
 <!-- Modal -->
 <div class="modal fade" id="modalid1" role="dialog">
     <div class="modal-dialog">
@@ -271,7 +278,9 @@ Coded by www.creative-tim.com
                                 <div class="input-group mb-2">
 
 
+
                                 <span class="input-group-text">Rol</span>
+
 
                                 <select name="rol" id="rol" class="form-select " aria-label="rol">
                                     <option selected>Seleccione Rol</option>
@@ -282,6 +291,7 @@ Coded by www.creative-tim.com
                                 </select>
                                 </div>
                                 <div class="input-group mb-2 ">
+
 
                                     <span class="input-group-text" >Nombre</span>
 
@@ -329,9 +339,9 @@ Coded by www.creative-tim.com
                                     <option selected>Seleccione Condominio</option>
                                 </select>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" >N°Vivienda</span>
-                                    <input type="text" id="vivienda" class="form-control" name="vivienda"
-                                           aria-label="vivienda" aria-describedby="Vivienda">
+                                    <select name="vivienda" id="vivienda" class="form-select mb-2" aria-label="vivienda">
+                                        <option selected>Seleccione Vivienda</option>
+                                    </select>
                                 </div>
                                 <div id="cuerpoAlerta" class=" col-lg-12 mt-3"></div>
                                 <button type="submit"  class="btn btn-primary btn-lg btnEnviarForma">
@@ -372,12 +382,13 @@ Coded by www.creative-tim.com
                                 </div>
                                 <div class="input-group mb-2 ">
                                     <span class="input-group-text" >Numero </span>
-                                    <input type="text" id="numero" class="form-control " name="numero"
+                                    <input type="number" id="numero" class="form-control " name="numero"
                                            aria-label="Numero" aria-describedby="basic-addon1">
                                 </div>
 
 
                                 <select name="region" id="region" class="form-select mb-2" aria-label="region" >
+
 
                                     <option selected>Seleccione Region </option>
                                 </select>
@@ -410,13 +421,62 @@ Coded by www.creative-tim.com
 
                             <div class='col-lg-12'>
                                 <div class="input-group mb-2 ">
-                                    <span class="input-group-text" >Numero</span>
+                                    <span class="input-group-text" >Numero Vivienda</span>
                                     <input type="text" id="numerovivienda" type="usuario" class="form-control " name="numerovivienda"
                                            aria-label="Numero Vivienda" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Titular</span>
+                                    <input type="text" id="titular" type="usuario" class="form-control " name="titular"
+                                           aria-label="Nombre titular" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Rut Titular</span>
+                                    <input type="text" id="ruttitular" type="usuario" class="form-control " name="ruttitular"
+                                           aria-label="Rut titular" aria-describedby="basic-addon1">
                                 </div>
                                 <div id="cuerpoAlerta3" class=" col-lg-12 mt-3"></div>
                                 <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormaVivienda">
                                     Confirmar Registro</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalid7" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Registro Vivienda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formupdatevivienda">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Numero Vivienda</span>
+                                    <input type="text" id="editnumerovivienda" type="usuario" class="form-control " name="numerovivienda"
+                                           aria-label="Numero Vivienda" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Titular</span>
+                                    <input type="text" id="edittitular" type="usuario" class="form-control " name="titular"
+                                           aria-label="Nombre titular" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Rut Titular</span>
+                                    <input type="text" id="editruttitular" type="usuario" class="form-control " name="ruttitular"
+                                           aria-label="Rut titular" aria-describedby="basic-addon1">
+                                </div>
+                                <div id="cuerpoAlerta7" class=" col-lg-12 mt-3"></div>
+                                <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormaeditVivienda">
+                                    Actualizar</button>
                             </div>
                         </div>
                     </div>
@@ -486,6 +546,76 @@ Coded by www.creative-tim.com
         </div>
     </div>
 </div>
+<div class="modal fade" id="modalid5" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Agregar Gasto Comun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formsetgastocomun">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Titulo/nombre Gasto comun</span>
+                                    <input type="text" id="nombregc" type="nombregc" class="form-control " name="nombregc"
+                                           aria-label="Nombre" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Valor Mensual</span>
+                                    <input type="text" id="Valorgc" class="form-control " name="valor"
+                                           aria-label="Valor Mensual" aria-describedby="basic-addon1">
+                                    <div id="cuerpoAlerta5" class=" col-lg-12 mt-3"></div>
+                                    <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormagc">
+                                        Agregar Gasto Comun </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalid6" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Editar Gasto Comun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formeditgastocomun">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class='col-lg-12'>
+
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Titulo/nombre Gasto comun</span>
+                                    <input type="text" id="editnombregc" type="nombregc" class="form-control " name="nombregc"
+                                           aria-label="Nombre" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-2 ">
+                                    <span class="input-group-text" >Valor Mensual</span>
+                                    <input type="text" id="editValorgc" class="form-control " name="valor"
+                                           aria-label="Valor Mensual" aria-describedby="basic-addon1">
+                                    <div id="cuerpoAlerta6" class=" col-lg-12 mt-3"></div>
+                                    <button type="submit"  class="btn btn-primary btn-lg btnEnviarUpdate">
+                                        Actualizar </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!--   Core JS Files   -->
 <script
         src="${ pageContext.request.contextPath }/assets/js/jquery.js" type="text/javascript"></script>
@@ -516,6 +646,8 @@ Coded by www.creative-tim.com
         src="${ pageContext.request.contextPath }/assets/js/conserje-js/PagoManualGC.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/administrador-js/multa-ajax.js" type="text/javascript"></script>
+<script
+        src="${ pageContext.request.contextPath }/assets/js/administrador-js/Morosos.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/JSZip-2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/pdfmake-0.1.36/pdfmake.min.js"></script>

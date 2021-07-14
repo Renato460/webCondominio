@@ -1,6 +1,7 @@
 function setTablaUsuarios(){
         $('#cuerpo').load("../administracion/views/usuarios.html", function () {
             console.log("Entramos a datatable")
+            console.log();
            tableResidente= $('#tablaResidentes').DataTable({
                 "language":{
                     "decimal":        ",",
@@ -63,12 +64,41 @@ function setTablaUsuarios(){
                     {"data": "telefono"},
                     {"data": "correo"},
                     {"data": "fechai"},
-                    {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnEditar'><i class=\"fas fa-user-edit\"></i></button></div>"}
+                    {"defaultContent": "<div class='text-center'><button type='button' class='btn btn-info btnEditar'><i class=\"fas fa-user-edit\"></i></button>  <button type='button' class='btn btn-info btnEliminarUsuario'><i class=\"far fa-trash-alt\"></i></button> </div> "}
                 ]
             });
         });
     };
 
+$(document).on('click','.btnEliminarUsuario',function(){
+    let fila = $(this).closest("tr");
+    let run = fila.find('td:eq(3)').text();
+    $.ajax({
+        url:"deleteUsuario",
+        method: 'POST',
+        data:{
+            rut:run
+        }
+    }).done(function (data){
+
+        if(data.resultado === 1){
+            $("#cuerpoconfirm3").append("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Usuario Eliminado</span>" +
+                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+
+        }else{
+            $("#cuerpoconfirm3").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+                "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Error al Eliminar el Usuario</span>" +
+                "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+        };
+
+
+    }).fail(function () {
+        $("#cuerpoconfirm3").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +
+            "<i class=\"fas fa-exclamation-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>No se pudo concretar la petición</span>" +
+            "<button type=\"button\" class=\"btn-close btn-danger\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
+    });
+})
 $(document).on('click','.btn-ingresar',function (){
   /*  $('#cuerpo').empty();
     $('#cuerpo').load("../administracion/views/registro.html");
@@ -89,6 +119,25 @@ $(document).on('click','.btn-ingresar',function (){
        $("#modalid1").modal('toggle');
    });
 });
+$(document).on('change','#condominio',function(){
+    $.ajax({
+        url: "getViviendas.action",
+        method: "POST",
+        data: {
+            idCondo:this.value
+        }
+    }).done(function(data){
+        console.log(data)
+        $('#vivienda').empty().append('<option > Seleccione Numero vivienda </option>');;
+
+        $.each(data.vivienda,function(index,value){
+            let idVivienda = (value.idVivienda).toString();
+            let nroVivienda = (value.nroVivienda).toString();
+
+            $("#vivienda").append('<option value='+idVivienda+'> '+nroVivienda+' </option>');
+        });
+    });
+})
 $("#formsetusuario").submit(function (e) {
     e.preventDefault();
     $('#cuerpoAlerta').empty();
@@ -141,8 +190,12 @@ $("#formsetusuario").submit(function (e) {
             $('#email').val("");
             $('#condominio').val("Seleccione Condominio");
             $('#vivienda').val("");
+
+            tableResidente.ajax.reload(null,false);
+
             $('.btnEnviarForma').empty().html("CONFIRMAR REGISTRO");
             tableResidente.ajax.reload();
+
         }else{
             $('.btnEnviarForma').empty().html("CONFIRMAR REGISTRO");
             $("#cuerpoAlerta").append("<div class='alert alert-danger alert-dismissible fade show position-relative' role='alert'>" +

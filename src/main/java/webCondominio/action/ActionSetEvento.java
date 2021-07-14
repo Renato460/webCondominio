@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,8 +20,9 @@ public class ActionSetEvento extends ActionSupport implements ServletRequestAwar
     @Override
     public String execute () {
 
-        String fecha=request.getParameter("fecha");
-        Date fechaEv = Date.valueOf(fecha);
+        /*String fecha=request.getParameter("fecha");
+        Date fechaEv = LocalDateTime.valueOf(fecha);*/
+        Date fechaEv = new Date(System.currentTimeMillis());
         String descripcion=request.getParameter("descripcion");
         Integer idCondominio= Integer.parseInt(request.getParameter("idCondominio"));
         ControllerConexion conexion=new ControllerConexion();

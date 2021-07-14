@@ -65,3 +65,18 @@ function setTabla(){
         });
     });
 };
+$(function (){
+    $.ajax({
+        url:"getCondoUsu.action",
+        type:"POST"
+
+    }).done(function(data){
+
+        $("#idCondominio").html(data.condominio.idCondominio);
+        $("#Condominio").html(data.condominio.nombre);
+        console.log(data.condominio.nombre);
+        console.log(data.condominio.idCondominio);
+    })
+
+
+})

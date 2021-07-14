@@ -93,6 +93,14 @@
                 <param name="namespace">/conserje</param>
             </result>
         </action>
+        <action name="getCondoUsu" class="webCondominio.action.ActionGetCondoUsu">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/conserje</param>
+            </result>
+        </action>
         <action name="dispo"
                 class="webCondominio.action.ActionDisponibilidad">
             <interceptor-ref name="secureStack" />
@@ -112,7 +120,24 @@
                 <param name="namespace">/conserje</param>
             </result>
         </action>
-
+        <action name="editarEvento"
+                class="webCondominio.action.ActionUpdateEvento">
+            <interceptor-ref name="secureStack" />
+            <result type="json" />
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/conserje</param>
+            </result>
+        </action>
+        <action name="deleteEvento"
+                class="webCondominio.action.ActionDeleteEvento">
+            <interceptor-ref name="secureStack" />
+            <result type="json" />
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/conserje</param>
+            </result>
+        </action>
         <action name="logout"
                 class="webCondominio.controller.LogoutAction">
             <result name="success" type="redirectAction">

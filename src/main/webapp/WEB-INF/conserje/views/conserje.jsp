@@ -38,6 +38,7 @@ Coded by www.creative-tim.com
 </head>
 
 <body class="">
+
 <div class="wrapper ">
   <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
@@ -53,7 +54,9 @@ Coded by www.creative-tim.com
           <img src="../assets/img/logo-big.png">
         </div> -->
       </a>
+
     </div>
+
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="active ">
@@ -82,8 +85,8 @@ Coded by www.creative-tim.com
           </a>
         </li>
         <li>
-          <a href="javascript:menuCondos()">
-            <i class="nc-icon nc-single-02"></i>
+          <a href="javascript:menuEventos()">
+            <i class="fas fa-calendar-plus"></i>
             <p>Eventos</p>
           </a>
         </li>
@@ -103,6 +106,10 @@ Coded by www.creative-tim.com
             </button>
           </div>
           <a class="navbar-brand" href="javascript:;">Dashboard</a>
+        </div>
+        <div>
+          <p id="idCondominio" hidden></p>
+          <p class="navbar-brand" id="Condominio"></p>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -275,20 +282,45 @@ Coded by www.creative-tim.com
             <div class="row">
 
               <div class='col-lg-12'>
-                <div class="input-group mb-2">
-									<span class="input-group-text col-2">Fecha
-										</span> <input type="date" id="fechaEvento" class="form-control fechaEvento col-7"
-                                                       placeholder="dd-mm-aaaa" aria-label="FechaEvento" name="fecha"
-                                                       aria-describedby="basic-addon1">
-                </div>
                 <div class="form-group">
                   <label for="descEvento">Descripción del Evento</label>
                   <textarea type="text" class="form-control rutP" name="descEvento"
                             aria-label="Descripción" aria-describedby="basic-addon2" id="descEvento" required></textarea>
                 </div>
                 <div id="cuerpoAlerta" class=" col-lg-12 mt-3"></div>
-                <button type="submit"  class="btn btn-primary btn-lg btnEnviarForma">
+                <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormaEvento">
                   Confirmar Registro</button>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaleven1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Registro">Actualizar Evento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formupdateevento">
+          <div class="container">
+            <div class="row">
+
+              <div class='col-lg-12'>
+                <div class="form-group">
+                  <label for="descEvento">Descripción del Evento</label>
+                  <textarea type="text" class="form-control rutP" name="descEvento"
+                            aria-label="Descripción" aria-describedby="basic-addon2" id="descEventoedit" required></textarea>
+                </div>
+                <div id="cuerpoAlerta0" class=" col-lg-12 mt-3"></div>
+                <button type="submit"  class="btn btn-primary btn-lg btnEnviarFormaEventoEdit">
+                  Actualizar</button>
 
               </div>
             </div>
