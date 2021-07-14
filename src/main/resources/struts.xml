@@ -68,7 +68,9 @@
 		</action>
 
 		<action name="notification" class="webCondominio.action.ActionNotification">
-			<result name="success">noti.jsp</result>
+			<result name="success" type="json">
+				<param name="statusCode">200</param>
+			</result>
 		</action>
 	</package>
 

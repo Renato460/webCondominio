@@ -2,8 +2,17 @@
     <h5 class='card-title'>Anuncios</h5>
     <p class='card-category'>Creación de anuncios</p>
 
-    <div id="respuestaAnuncio" class="mt-1">
-
+    <div id="respuestaExitosaAnuncio" class="mt-1">
+        <div class="alert alert-success alert-dismissible fade show position-relative" role="alert">
+            <i class="fas fa-check-circle fs-4"></i><span class="fw-bold position-absolute top-50 start-50 translate-middle">Anuncio ingresado con éxito</span>
+            <button type="button" class="btn-close btn-success" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <div id="respuestaErrorAnuncio" class="mt-1">
+        <div class="alert alert-danger alert-dismissible fade show position-relative" role="alert">
+            <i class="fas fa-times-circle fs-4"></i><span class="fw-bold position-absolute top-50 start-50 translate-middle">Anuncio no se pudo ingresar, confirme datos</span>
+            <button type="button" class="btn-close btn-danger" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
 </div>
 
@@ -12,12 +21,13 @@
         <form id="formAnuncio" method="post" enctype="multipart/form-data">
 
                 <label for="anuncioFoto">Imagen del anuncio</label>
-                <input type="file" class="form-control" id="anuncioFoto">
+                <input type="file" class="form-control" id="anuncioFoto" required>
 
             <div class="form-group mt-2">
-                <label for="descripcionAnuncio">Descripción Anuncio</label>
-                <textarea type="text" class="form-control rutP" name="anuncio"
-                          aria-label="Descripcion" aria-describedby="basic-addon2" id="descripcionAnuncio"></textarea>
+                <label for="summernote">Descripción Anuncio</label>
+                <div class="aviso"></div>
+                <textarea type="text" class="form-control rutP summernote" name="anuncio"
+                          aria-label="Descripcion" aria-describedby="basic-addon2" id="summernote" required></textarea>
             </div>
              <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
@@ -29,3 +39,6 @@
         </div>
     </div>
 </div>
+<script>
+    CKEDITOR.replace( 'anuncio' );
+</script>

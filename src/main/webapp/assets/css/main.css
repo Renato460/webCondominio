@@ -26,3 +26,19 @@ body{
     background-image: url("../../assets/img/reservas/multicancha.jpg");
 }
 */
+#respuestaExitosaAnuncio, #respuestaErrorAnuncio{
+    display: none;
+}
+
+#multicancha, #quincho, #eventos, #estacionamiento{
+    height: 40vh;
+}
+.mailTO{
+    opacity: 0;
+}
+
+@media (max-width: 1000px) {
+    .anuncioBody{
+        display: none;
+    }
+}

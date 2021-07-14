@@ -494,9 +494,14 @@ Coded by www.creative-tim.com
 <script
         src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script
+        src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
+<script
         src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/administrador-js/admin-ajax.js" type="text/javascript"></script>
+<!--<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>-->
+<script src="${ pageContext.request.contextPath }/assets/js/ckeditor/ckeditor.js"></script>
+
 <script
         src="${ pageContext.request.contextPath }/assets/js/administrador-js/setAnuncio.js" type="text/javascript"></script>
 <script
@@ -521,6 +526,7 @@ Coded by www.creative-tim.com
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.bootstrap4.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/js/buttons.print.min.js"></script>
+
 <script type="text/javascript" src="${ pageContext.request.contextPath }/assets/js/rutValidar.js"></script>
 <!--  Notifications Plugin    -->
 <script

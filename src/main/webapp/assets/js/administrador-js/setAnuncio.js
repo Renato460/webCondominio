@@ -1,43 +1,56 @@
 
 function setAnuncio() {
     $('#cuerpo').load('../directiva/views/vistaSetAnuncio.html');
+
+
+
 };
 
 $(document).on('submit','#formAnuncio',function (e) {
     e.preventDefault();
     //console.log($(this));
+
     let data = document.getElementById('formAnuncio');
     let file = ($('#anuncioFoto'))[0].files[0];
     let fileName = file.name;
-    let descripcion = $('#descripcionAnuncio').val();
-    let formData = new FormData();
-    formData.append('file',file);
-    formData.append('fileFileName',fileName);
-    formData.append('descripcion', descripcion);
-    //console.log(formData);
+    //let descripcion = $('#descripcionAnuncio').val();
+    let descripcion = $('#summernote').val();
 
+    if (descripcion.length >= 400) {
+        //val.value = val.value.substring(0, 500);
+        console.log(descripcion.length);
+        $('.aviso').html("<div class=\"alert alert-warning\" role=\"alert\">\n" +
+            "  No puede ser más de 400 caracteres\n" +
+            "</div>");
+    } else {
+        //$('#charNum').text(400 - len);
+        $('.aviso').empty();
+        let formData = new FormData();
+        formData.append('file',file);
+        formData.append('fileFileName',fileName);
+        formData.append('descripcion', descripcion);
+        //console.log(formData);
 
+        $.ajax({
+            url:'setImagenAnuncio.action',
+            type:'POST',
+            data: formData,
+            async:true,
+            cache:false,
+            contentType: false,
+            processData: false
 
+        }).done(function (data) {
+            console.log(data);
+            if(data.resultado===1){
+                $("#respuestaExitosaAnuncio").show( "slow" ).delay(4000).hide( "slow" );
 
+            }else {
 
-    $.ajax({
-        url:'setImagenAnuncio.action',
-        type:'POST',
-        data: formData,
-        async:true,
-        cache:false,
-        contentType: false,
-        processData: false
-
-    }).done(function (data) {
-        console.log(data);
-        if(data.resultado===1){
-            $("#respuestaAnuncio").html("<div class='alert alert-success alert-dismissible fade show position-relative' role='alert'>" +
-                "<i class=\"fas fa-check-circle fs-4\"></i><span class='fw-bold position-absolute top-50 start-50 translate-middle'>Anuncio ingresado con éxito</span>" +
-                "<button type=\"button\" class=\"btn-close btn-success\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>");
-        }
-
-    });
+                $("#respuestaErrorAnuncio").show( "slow" ).delay(4000).hide( "slow" );
+            }
+        });
+    }
 });
 
 

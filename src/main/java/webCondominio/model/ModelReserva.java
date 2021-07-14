@@ -1,17 +1,10 @@
 package webCondominio.model;
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 
-
-@Entity
-@Table(name = "RESERVA", schema= "ESPADMIN")
 public class ModelReserva {
 
-	@Id
 	public int getId_reserva() {
 		return id_reserva;
 	}

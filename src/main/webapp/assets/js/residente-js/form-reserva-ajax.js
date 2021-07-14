@@ -7,7 +7,7 @@ function formButton(){
 	if(validarRut()){
 
 		$('#spin').text(" ").removeAttr('role', 'alert');
-		$("#spin").removeClass("alert alert-success").addClass("spinner-border text-primary");
+		$("#spin").removeClass("alert alert-success").addClass("spinner-border text-white");
 		//$('#spin').removeAttr('role', 'alert');
 		$.ajax({
 			url:	"setReserva.action",
@@ -27,5 +27,4 @@ function formButton(){
 	}else{
 		$('#spin').addClass("alert alert-danger").html("Rut incorrecto");
 	};
-
 };
