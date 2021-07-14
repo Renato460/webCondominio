@@ -11,8 +11,10 @@ public class ActionSetVivienda extends ActionSupport implements ServletRequestAw
     public String execute() throws Exception {
         this.nroVivienda=Integer.parseInt(request.getParameter("nroVivienda"));
         this.idCondominio=Integer.parseInt(request.getParameter("idCondominio"));
+        this.titular=request.getParameter("titular");
+        this.ruttitular=request.getParameter("ruttitular");
         ControllerConexion conexion = new ControllerConexion();
-        this.resultado=conexion.setVivienda(nroVivienda,idCondominio);
+        this.resultado=conexion.setVivienda(nroVivienda,idCondominio,titular,ruttitular);
         conexion.cerrarSession();
         return SUCCESS;
     }
@@ -20,6 +22,24 @@ public class ActionSetVivienda extends ActionSupport implements ServletRequestAw
     private int nroVivienda;
     private int idCondominio;
     private int resultado;
+    private String titular;
+    private String ruttitular;
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public String getRuttitular() {
+        return ruttitular;
+    }
+
+    public void setRuttitular(String ruttitular) {
+        this.ruttitular = ruttitular;
+    }
 
     public int getResultado() {
         return resultado;
