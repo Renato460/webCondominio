@@ -3,15 +3,18 @@ package webCondominio.model;
 import java.sql.Date;
 
 public class ModelEvento {
-    private Integer id;
+    private Integer idEvento;
     private String fecha;
     private String descripcion;
-    public Integer getId() {
-        return id;
+
+    public Integer getIdEvento() {
+        return idEvento;
     }
-    public void setId(Integer id) {
-        this.id = id;
+
+    public void setIdEvento(Integer idEvento) {
+        this.idEvento = idEvento;
     }
+
     public String getFecha() {
         return fecha;
     }
@@ -24,9 +27,8 @@ public class ModelEvento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public ModelEvento(Integer id, String fecha, String descripcion) {
-        super();
-        this.id = id;
+    public ModelEvento(Integer idEvento, String fecha, String descripcion) {
+        this.idEvento = idEvento;
         this.fecha = fecha;
         this.descripcion = descripcion;
     }

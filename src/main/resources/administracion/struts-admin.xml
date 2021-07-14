@@ -161,7 +161,62 @@
                 <param name="namespace">/administracion</param>
             </result>
         </action>
-
+        <action name="setGastoComun" class="webCondominio.action.ActionSetGastoComun">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
+        <action name="getGastosComunes" class="webCondominio.action.ActionGetGastosComunes">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
+        <action name="getMorosos" class="webCondominio.action.ActionGetMorosos">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
+        <action name="updateGastoComun" class="webCondominio.action.ActionUpdateGastoComun">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
+        <action name="updateVivienda" class="webCondominio.action.ActionUpdateVivienda">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
+        <action name="deleteGastoComun" class="webCondominio.action.ActionDeleteGastoComun">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
+        <action name="deleteUsuario" class="webCondominio.action.ActionDeleteUsuario">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/administracion</param>
+            </result>
+        </action>
         <action name="logout"
                 class="webCondominio.controller.LogoutAction">
             <result name="success" type="redirectAction">

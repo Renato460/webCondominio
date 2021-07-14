@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import webCondominio.controller.ControllerConexion;
 import webCondominio.model.ModelCondominio;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 public class ActionCondominios extends ActionSupport {
