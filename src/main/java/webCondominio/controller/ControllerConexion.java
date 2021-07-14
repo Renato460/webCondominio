@@ -347,16 +347,14 @@ public class ControllerConexion {
 		try {
 			query.execute();
 			List<Object[]> cursorHorarios = query.getResultList();
-			ArrayList<ModelHorario> horarios = new ArrayList<ModelHorario>();
-			for (Object[] obj : cursorHorarios) {
-				Integer idHorario = Integer.parseInt(obj[0].toString());
-				System.out.println(idHorario);
-				String hora = obj[1].toString();
-				System.out.println(hora);
+			ArrayList<ModelHorario> horarios = new ArrayList<>();
+			cursorHorarios.forEach(objects -> {
+				int idHorario = Integer.parseInt(objects[0].toString());
+				String hora = objects[1].toString();
 				ModelHorario horario = new ModelHorario(idHorario, hora);
-
 				horarios.add(horario);
-			}
+			});
+
 			return horarios;
 		} catch (Exception ex) {
 			System.out.println(ex);

@@ -133,7 +133,7 @@
 								<div class="input-group mb-2">
 									<span class="input-group-text">RUN</span>
 									<input id="rut" type="text" class="form-control rutP" placeholder="12345678-9" name="rut"
-										aria-label="Rut" aria-describedby="basic-addon1" onfocusout="validarRut()">
+										aria-label="Rut" aria-describedby="basic-addon1" onfocusout="validarRut()" required>
 								</div>
 
 								<div class="input-group mb-2">
@@ -146,12 +146,13 @@
 
 								<div class="input-group mb-2">
 									<span class="input-group-text">Horario</span>
-									<select name="horarios" id="horarios" class="form-select horarios" aria-label="Default select example">
+									<select name="horarios" id="horarios" class="form-select horarios" aria-label="Default select example" required>
 
 									</select>
 
 								</div>
 								<div id="spin" class="col-12"></div>
+								<div class="avisoFecha"></div>
 								<button id="btn" class="btn btn-primary btn-lg" onclick="formButton()">Confirmar
 									Reserva</button>
 							</div>

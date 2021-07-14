@@ -50,6 +50,7 @@
 	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/paper-dashboard.css" />
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"/>
 	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/fontawesome/css/all.min.css"/>
+	<link rel="icon" type="image/png" href="${ pageContext.request.contextPath }/assets/img/logo_condo.png">
 	<!-- CSS Files -->
 	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/main.css"/>
 </head>
@@ -57,8 +58,7 @@
 
 	<main class="form-signin w-25">
 		<form action="login.action" class="needs-validation" novalidate method="post">
-			<img class="mb-4" src="${ pageContext.request.contextPath }/assets/img/logo_condo.jpg"
-				alt="" width="72" height="57">
+			<img src="${ pageContext.request.contextPath }/assets/img/logo_condo.png"	alt="" style="width: 40%; height: 40% ">
 			<h1 class="h3 mb-3 fw-normal">Entra tus datos</h1>
 
 			<div class="form-floating">

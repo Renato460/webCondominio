@@ -2,8 +2,14 @@
  * 
  */
 $(document).on('change', '#fechaDispo', function () {
-	let fecha = $("#fechaDispo").val();
-	if (fecha > new Date()){
+	let fecha = new Date($("#fechaDispo").val());
+	$("#horarios").empty();
+	console.log(fecha.toLocaleDateString());
+
+	let fechaHoy = new Date;
+	console.log(fechaHoy.toLocaleDateString());
+	if (fecha.toLocaleDateString() > fechaHoy.toLocaleDateString()){
+		$(".avisoFecha").empty();
 		let servicio = $(".reservaId").attr("placeholder");
 		console.log(fecha);
 		console.log(servicio);
@@ -12,7 +18,7 @@ $(document).on('change', '#fechaDispo', function () {
 			url: 'dispo.action',
 			type: "POST",
 			data:{
-				fecha:fecha,
+				fecha:$("#fechaDispo").val(),
 				servicio:servicio
 			}
 		}).done(function (data) {
@@ -27,7 +33,9 @@ $(document).on('change', '#fechaDispo', function () {
 			}
 		});
 	}else {
-
+		$(".avisoFecha").append("<div class=\"alert alert-danger\" role=\"alert\">\n" +
+			"  Fecha debe ser mayor a la de Hoy!!!\n" +
+			"</div>")
 	}
 
 
