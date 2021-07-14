@@ -40,9 +40,14 @@
             </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <hr>
 =======
 <hr><s:property value="#session['user'].nombre" />
+=======
+            <hr>
+            <div class="text-center fs-3"><s:property value="#session['user'].nombre" /></div>
+>>>>>>> 66f27f309a7e9bf53350c2aa9f0c271e9b448d46
 =======
             <hr>
             <div class="text-center fs-3"><s:property value="#session['user'].nombre" /></div>
@@ -63,6 +68,7 @@
                         <tr>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <th scope="row" class="d-flex justify-content-center"><p>Motivo: <s:property value="#session['user'].pagos.tipo"/></p></th>
                         </tr>
                         <tr>
@@ -75,14 +81,21 @@
 =======
                             <td class="text-center"><p>Motivo: <s:property value="#session['user'].pagos['tipo']"/></p></td>
 >>>>>>> 66f27f309a7e9bf53350c2aa9f0c271e9b448d46
+=======
+                            <td class="text-center"><p>Motivo: <s:property value="#session['user'].pagos['tipo']"/></p></td>
+>>>>>>> 66f27f309a7e9bf53350c2aa9f0c271e9b448d46
                         </tr>
                         <tr>
                             <td class="text-center"><p>Descripción: <s:property value="#session['user'].pagos['descripcion']"/></p></td>
                         </tr>
                         <tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <th scope="row" class="d-flex justify-content-center"><p>Monto: $ <s:property value="#session['user'].pagos['monto']"/></p></th>
 >>>>>>> 09f75bf8e5459fc744bdc95e9cf099fab9929ce5
+=======
+                            <td class="text-center"><p>Monto: $ <s:property value="#session['user'].pagos['monto']"/></p></td>
+>>>>>>> 66f27f309a7e9bf53350c2aa9f0c271e9b448d46
 =======
                             <td class="text-center"><p>Monto: $ <s:property value="#session['user'].pagos['monto']"/></p></td>
 >>>>>>> 66f27f309a7e9bf53350c2aa9f0c271e9b448d46
