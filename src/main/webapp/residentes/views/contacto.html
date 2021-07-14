@@ -1,0 +1,50 @@
+<div class='card-header'>
+    <h5 class='card-title'>Contacto</h5>
+    <p class='card-category'>Formulario de contacto</p>
+</div>
+
+<div class="card-body formularioContacto" >
+    <form method="post" id="formularioContacto">
+        <div class="form-group">
+            <label for="nombre" class="colocar_nombre">Nombre
+                <span class="obligatorio">*</span>
+            </label>
+            <input type="text" class="form-control" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+        </div>
+
+
+            <label for="emailContacto" class="colocar_email">Email
+                <span class="obligatorio">*</span>
+            </label>
+            <input type="email" class="form-control" name="introducir_email" id="emailContacto" required="obligatorio" placeholder="Escribe tu Email">
+
+
+
+            <label for="telefono" class="colocar_telefono">Teléfono
+            </label>
+            <input type="tel" class="form-control" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
+
+
+
+            <label for="assunto" class="colocar_asunto">Asunto
+                <span class="obligatorio">*</span>
+            </label>
+            <input type="text" class="form-control" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
+
+
+
+            <label for="mensaje" class="colocar_mensaje">Mensaje
+                <span class="obligatorio">*</span>
+            </label>
+            <textarea name="introducir_mensaje" class="texto_mensaje form-control" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea>
+
+
+        <button type="submit" class="btn btn-primary" name="enviar_formulario" id="enviar">Enviar</button>
+
+    </form>
+
+</div>
+<a href="" class="mailTO" style=""></a>
+<div class='card-footer '>
+    <hr>
+</div>

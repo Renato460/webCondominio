@@ -22,7 +22,11 @@
 	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/Buttons-1.7.0/css/buttons.bootstrap4.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/dataTable/DataTables-1.10.24/css/dataTables.bootstrap5.min.css"/>
-
+	<link rel="stylesheet" type="text/css" href="${ pageContext.request.contextPath }/assets/js/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css"/>
+	<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+	/>
 	<!-- CSS Just for demo purpose, don't include it in your project <link href="../assets/demo/demo.css" rel="stylesheet" />-->
 
 </head>
@@ -31,13 +35,13 @@
 <div class="wrapper ">
 	<div class="sidebar" data-color="white" data-active-color="danger">
 		<div class="logo">
-			<a href="https://www.creative-tim.com" class="simple-text logo-mini">
+			<a href="javascript:location.reload()" class="simple-text logo-mini">
 				<div class="logo-image-small">
 					<img src="${ pageContext.request.contextPath }/assets/img/logo-small.png">
 				</div>
 				<!-- <p>CT</p> -->
 			</a>
-			<a href="https://www.creative-tim.com" class="simple-text logo-normal">
+			<a href="javascript:location.reload()" class="simple-text logo-normal">
 				<s:property value="#session['user'].nombre" />
 <<<<<<< HEAD
 =======
@@ -51,21 +55,34 @@
 		<div class="sidebar-wrapper">
 			<ul class="nav">
 				<li class="active ">
-					<a href="./dashboard.html">
+					<a href="javascript:location.reload()">
 						<i class="nc-icon nc-bank"></i>
-						<p>Dashboard</p>
+						<p>Home</p>
 					</a>
 				</li>
 				<li id="opcResidentes">
 					<a href="javascript:getMenuReservas()">
-						<i class="nc-icon nc-circle-10"></i>
+						<i class="fas fa-car"></i>
 						<p>Reservas</p>
 					</a>
 				</li>
 				<li id="opcMultas">
 					<a href="javascript:setTablaMulta()">
-						<i class="nc-icon nc-map-big"></i>
+						<!--<i class="nc-icon nc-map-big"></i>-->
+						<i class="fas fa-exclamation"></i>
 						<p>Multas</p>
+					</a>
+				</li>
+				<li id="opcGastosComunes">
+					<a href="javascript:setTablaGastoComunResidente()">
+						<i class="far fa-money-bill-alt"></i>
+						<p>Gastos Comunes</p>
+					</a>
+				</li>
+				<li id="formContacto">
+					<a href="javascript:contacto()">
+						<i class="far fa-envelope"></i>
+						<p>Contacto</p>
 					</a>
 				</li>
 			</ul>
@@ -83,7 +100,7 @@
 							<span class="navbar-toggler-bar bar3"></span>
 						</button>
 					</div>
-					<h2>Dashboard</h2>
+					<!--<h2>Dashboard</h2>-->
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-bar navbar-kebab"></span>
@@ -103,20 +120,23 @@
 		</nav>
 		<!-- End Navbar -->
 		<div class="content">
-			<!--<div class="row">
+			<div class="alertaMorosidad"></div>
+			<div class="moroso"></div>
+			<div class="row d-flex justify-content-center">
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="card card-stats">
 						<div class="card-body ">
 							<div class="row">
 								<div class="col-5 col-md-4">
 									<div class="icon-big text-center icon-warning">
-										<i class="nc-icon nc-globe text-warning"></i>
+										<!--<i class="nc-icon nc-globe text-warning"></i>-->
+										<i class="fas fa-money-bill-alt text-success"></i>
 									</div>
 								</div>
 								<div class="col-7 col-md-8">
 									<div class="numbers">
-										<p class="card-category">Capacity</p>
-										<p class="card-title">150GB<p>
+										<p class="card-category">Monto Adeudado</p>
+										<p class="card-title gastoCard"><p>
 									</div>
 								</div>
 							</div>
@@ -130,19 +150,21 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="card card-stats">
 						<div class="card-body ">
 							<div class="row">
 								<div class="col-5 col-md-4">
 									<div class="icon-big text-center icon-warning">
-										<i class="nc-icon nc-money-coins text-success"></i>
+										<!--<i class="nc-icon nc-money-coins text-success"></i>-->
+										<i class="fas fa-clock text-danger"></i>
 									</div>
 								</div>
 								<div class="col-7 col-md-8">
 									<div class="numbers">
-										<p class="card-category">Revenue</p>
-										<p class="card-title">$ 1,345<p>
+										<p class="card-category">Cantidad Multas</p>
+										<p class="card-title morosoCard"><p>
 									</div>
 								</div>
 							</div>
@@ -156,59 +178,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="card card-stats">
-						<div class="card-body ">
-							<div class="row">
-								<div class="col-5 col-md-4">
-									<div class="icon-big text-center icon-warning">
-										<i class="nc-icon nc-vector text-danger"></i>
-									</div>
-								</div>
-								<div class="col-7 col-md-8">
-									<div class="numbers">
-										<p class="card-category">Errors</p>
-										<p class="card-title">23<p>
-									</div>
-								</div>
-							</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div id="cuerpo0">
+						<div class="owl-carousel d-flex justify-content-center">
+
 						</div>
-						<div class="card-footer ">
-							<hr>
-							<div class="stats">
-								<i class="fa fa-clock-o"></i>
-								In the last hour
-							</div>
-						</div>
+
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="card card-stats">
-						<div class="card-body ">
-							<div class="row">
-								<div class="col-5 col-md-4">
-									<div class="icon-big text-center icon-warning">
-										<i class="nc-icon nc-favourite-28 text-primary"></i>
-									</div>
-								</div>
-								<div class="col-7 col-md-8">
-									<div class="numbers">
-										<p class="card-category">Followers</p>
-										<p class="card-title">+45K<p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer ">
-							<hr>
-							<div class="stats">
-								<i class="fa fa-refresh"></i>
-								Update now
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>-->
+			</div>
 
 			<!-- CUERPO-->
 			<div class="row">
@@ -258,7 +239,8 @@
         src="${ pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script
         src="${ pageContext.request.contextPath }/assets/js/plugins/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-
+<script
+		src="${ pageContext.request.contextPath }/assets/js/residente-js/cards.js"></script>
 <script
 		src="${ pageContext.request.contextPath }/assets/js/directiva-js/pago-ajax.js"></script>
 
@@ -268,8 +250,16 @@
 		src="${ pageContext.request.contextPath }/assets/js/residente-js/form-reserva-ajax.js"></script>
 <script
 		src="${ pageContext.request.contextPath }/assets/js/administrador-js/multa-ajax.js"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/residente-js/anuncio-ajax.js"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/residente-js/tablaGastoComun.js"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/residente-js/contacto.js"></script>
+<script
+		src="${ pageContext.request.contextPath }/assets/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
 
 
@@ -293,7 +283,7 @@
 <script
         src="${ pageContext.request.contextPath }/assets/js/rutValidar.js" type="text/javascript"></script>
 
-
+<script></script>
 
 </body>
 </html>

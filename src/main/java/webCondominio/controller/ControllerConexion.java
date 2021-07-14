@@ -1,8 +1,7 @@
 package webCondominio.controller;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureQuery;
 import org.hibernate.Session;
@@ -48,6 +47,94 @@ public class ControllerConexion {
 	}
 	//*******
 
+	//Ingresa nuevos anuncios
+	public ArrayList<ModelReservaLista> getReservas(String rut){
+
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_RESERVAS.GETRESERVAUSUARIO")
+				.registerStoredProcedureParameter("p_run", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_reserva", Class.class, ParameterMode.REF_CURSOR)
+				.setParameter("p_run", rut);
+		try {
+			query.execute();
+			List<Object[]> queryPlanilla = query.getResultList();
+			ArrayList<ModelReservaLista> reservaListas = new ArrayList<>();
+			queryPlanilla.forEach(objects -> {
+				ModelReservaLista modelReservaLista = new ModelReservaLista();
+				modelReservaLista.setId(Integer.parseInt(objects[0].toString()));
+				modelReservaLista.setFecha(objects[1].toString());
+				modelReservaLista.setHorario(objects[2].toString());
+				modelReservaLista.setNombreServicio(objects[3].toString());
+				modelReservaLista.setCosto(Double.parseDouble(objects[4].toString()));
+				reservaListas.add(modelReservaLista);
+			});
+
+
+			return reservaListas;
+		}catch (Exception e){
+			return null;
+		}
+	}
+	//*********
+
+
+	//Generar Pago Respuesta
+	public boolean setPagoResponse(String paymentId, double monto, Integer id_planilla, String tipo){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.SETPAGORESPUESTA")
+				.registerStoredProcedureParameter("p_paymentid", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_monto", Double.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_idplanilla",Integer.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("p_tipo",String.class,ParameterMode.IN)
+				.setParameter("p_paymentid", paymentId)
+				.setParameter("p_monto", monto)
+				.setParameter("p_idplanilla", id_planilla)
+				.setParameter("p_tipo", tipo);
+		try {
+			query.execute();
+			return true;
+		}catch (Exception e){
+			return false;
+		}
+	}
+	//********
+
+	//Generar Pago Respuesta
+	public Map<String,String> getPagoResponse(String paymentId){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.GETPAGORESPUESTA")
+				.registerStoredProcedureParameter("p_paymentid", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_monto", Double.class, ParameterMode.OUT)
+				.registerStoredProcedureParameter("p_idplanilla",Integer.class,ParameterMode.OUT)
+				.registerStoredProcedureParameter("p_tipo",String.class,ParameterMode.OUT)
+				.setParameter("p_paymentid", paymentId);
+		try {
+			query.execute();
+			String montoRespuesta = query.getOutputParameterValue("p_monto").toString();
+			String idPlanillaRespuesta = query.getOutputParameterValue("p_idplanilla").toString();
+			String tipoRespuesta = query.getOutputParameterValue("p_tipo").toString();
+			Map<String,String> respuesta = new LinkedHashMap<>();
+			respuesta.put("monto",montoRespuesta);
+			respuesta.put("id_plantilla", idPlanillaRespuesta);
+			respuesta.put("tipo",tipoRespuesta);
+			return respuesta;
+		}catch (Exception e){
+			return null;
+		}
+	}
+	//********
+
+	public Integer getStatusPago(Integer pagoId){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.GETSTATUSPAGO")
+				.registerStoredProcedureParameter("p_idpago", Integer.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("p_status", Integer.class, ParameterMode.OUT)
+				.setParameter("p_idpago", pagoId);
+		try {
+			query.execute();
+			return Integer.parseInt(query.getOutputParameterValue("p_status").toString());
+
+		}catch (Exception e){
+			return 0;
+		}
+	}
+	//********
 	//Setear Multas
 	public int setMulta(String rut, String descripcion, Integer monto){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_multas.setmulta")
@@ -67,6 +154,90 @@ public class ControllerConexion {
 
 	}
 	//********
+
+	//Historial de Pagos GC
+	public ArrayList<ModelPlanillaGC> getPlanillaByRut(String rut){
+
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.getplanillasusuario")
+				.registerStoredProcedureParameter("p_rut",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("c_curplanillasusu",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_rut",rut);
+
+		try {
+			query.execute();
+			List<Object[]> queryPlanilla = query.getResultList();
+			ArrayList<ModelPlanillaGC> planillaGCS = new ArrayList<>();
+			queryPlanilla.forEach(objects -> {
+				ModelPlanillaGC modelPlanillaGC = new ModelPlanillaGC();
+				modelPlanillaGC.setIdPlanilla(Integer.parseInt(objects[0].toString()));
+				modelPlanillaGC.setFecha(objects[1].toString());
+				modelPlanillaGC.setMontoTotal(Integer.parseInt(objects[2].toString()));
+				modelPlanillaGC.setFechavenc(objects[3].toString());
+				String valido;
+				if(objects[4].toString().equals("0")){
+					valido = "Pagado";
+				}else {
+					valido = "Por Pagar";
+				}
+				modelPlanillaGC.setIsvalid(valido);
+				modelPlanillaGC.setMontoReserva(Integer.parseInt(objects[5].toString()));
+				if (objects[6]==null){
+					modelPlanillaGC.setFechaPago("");
+				}else{
+					modelPlanillaGC.setFechaPago(objects[6].toString());
+				}
+				modelPlanillaGC.setMontoGastoComun(Integer.parseInt(objects[7].toString()));
+				planillaGCS.add(modelPlanillaGC);
+			});
+			return planillaGCS;
+		}catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+	}
+	//*******
+
+	//Historial de Pagos GC
+	public ArrayList<ModelPlanillaGC> getPlanillaPagada(String rut){
+
+		StoredProcedureQuery query = session.createStoredProcedureQuery("PKG_PAGO_GC.GETPLANILLASUSUARIONOVALID")
+				.registerStoredProcedureParameter("p_rut",String.class,ParameterMode.IN)
+				.registerStoredProcedureParameter("c_curplanillasusu",Class.class,ParameterMode.REF_CURSOR)
+				.setParameter("p_rut",rut);
+
+		try {
+			query.execute();
+			List<Object[]> queryPlanilla = query.getResultList();
+			ArrayList<ModelPlanillaGC> planillaGCS = new ArrayList<>();
+			queryPlanilla.forEach(objects -> {
+				ModelPlanillaGC modelPlanillaGC = new ModelPlanillaGC();
+				modelPlanillaGC.setIdPlanilla(Integer.parseInt(objects[0].toString()));
+				modelPlanillaGC.setFecha(objects[1].toString());
+				modelPlanillaGC.setMontoTotal(Integer.parseInt(objects[2].toString()));
+				modelPlanillaGC.setFechavenc(objects[3].toString());
+				String valido;
+				if(objects[4].toString().equals("0")){
+					valido = "Pagado";
+				}else {
+					valido = "Por Pagar";
+				}
+				modelPlanillaGC.setIsvalid(valido);
+				modelPlanillaGC.setMontoReserva(Integer.parseInt(objects[5].toString()));
+				if (objects[6]==null){
+					modelPlanillaGC.setFechaPago("");
+				}else{
+					modelPlanillaGC.setFechaPago(objects[6].toString());
+				}
+				modelPlanillaGC.setMontoGastoComun(Integer.parseInt(objects[7].toString()));
+				planillaGCS.add(modelPlanillaGC);
+			});
+			return planillaGCS;
+		}catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+	}
+	//*******
 
 	//Listas de residentes y usuarios
 	public ArrayList<ModelPerfilUsuario> getResidentes(Integer idRol){
@@ -102,6 +273,7 @@ public class ControllerConexion {
 		}
 	}
 	//*******
+
 	//Retorna la lista del total de pagos Gastos Comunes + Multas + Reservas
 	public ArrayList<ModelPago> getPagos(Date fecha, String rut) {
 
@@ -230,7 +402,6 @@ public class ControllerConexion {
 	//Retorna los anuncios creados por el Administrador o Directiva
 	public ArrayList<ModelAnuncios> anuncios() {
 
-		System.out.println("-------------------->Anuncios");
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_anuncios.getanuncios")
 				.registerStoredProcedureParameter("p_cursoranuncios", Class.class, ParameterMode.REF_CURSOR);
 
@@ -244,9 +415,9 @@ public class ControllerConexion {
 
 				int idAnuncio = Integer.parseInt(obj[0].toString());
 				String descripcion = obj[1].toString();
-				System.out.println(descripcion);
-				String url = obj[2].toString();
-				System.out.println(url);
+
+				String url = "../assets/img/anuncios/"+obj[2].toString();
+
 				ModelAnuncios anuncio = new ModelAnuncios(idAnuncio, descripcion, url);
 				anuncios.add(anuncio);
 			}
@@ -277,6 +448,9 @@ public class ControllerConexion {
 			return false;
 		}
 	}
+	//*********
+
+
 	//Retorna Los datos de un usuario si se encuentra registrado
 	public List<String> login(String user, String pass) {
 
@@ -392,6 +566,18 @@ public class ControllerConexion {
 	}
 	public int setPagoManual(int idPlanilla){
 		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_pago_gc.setpagomanual")
+				.registerStoredProcedureParameter("p_idplanilla",Integer.class,ParameterMode.IN)
+				.setParameter("p_idplanilla",idPlanilla);
+		try{
+			query.execute();
+			return 1;
+		}
+		catch(Exception ex){
+			return 0;
+		}
+	}
+	public int setPagoAuto(int idPlanilla){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_pago_gc.SETPAGOAUTO")
 				.registerStoredProcedureParameter("p_idplanilla",Integer.class,ParameterMode.IN)
 				.setParameter("p_idplanilla",idPlanilla);
 		try{
@@ -597,8 +783,14 @@ public class ControllerConexion {
 				String fecha = obj[5].toString();
 				int montoTotal = Integer.parseInt(obj[6].toString());
 				String fechavenc = obj[7].toString();
-				int isvalid =Integer.parseInt(obj[8].toString());
-				ModelPlanillaGC planilla = new ModelPlanillaGC(nroVivienda, fecha, montoTotal, fechavenc, isvalid, rut,  nombre,  apaterno,idPlanilla);
+				String valido;
+				if(obj[8].toString().equals("0")){
+					valido = "Pagado";
+				}else {
+					valido = "Por Pagar";
+				}
+				//int isvalid =Integer.parseInt(obj[8].toString());
+				ModelPlanillaGC planilla = new ModelPlanillaGC(nroVivienda, fecha, montoTotal, fechavenc, valido, rut,  nombre,  apaterno,idPlanilla);
 				planillas.add(planilla);
 			}
 			return planillas;

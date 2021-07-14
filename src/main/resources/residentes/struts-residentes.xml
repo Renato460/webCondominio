@@ -38,6 +38,26 @@
             </result>
         </action>
 
+        <action name="getPlanillaByRut"
+                class="webCondominio.action.ActionGetPlanillaByRut" method="execute">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/residentes</param>
+            </result>
+        </action>
+
+        <action name="planillaPagada"
+                class="webCondominio.action.ActionPlanillaPagada" method="execute">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/residentes</param>
+            </result>
+        </action>
+
         <action name="getPagoView"
                 class="webCondominio.action.ActionPago" method="execute">
             <interceptor-ref name="secureStack" />
@@ -45,6 +65,13 @@
             <result name="login" type="redirectAction">
                 <param name="actionName">logout</param>
                 <param name="namespace">/residentes</param>
+            </result>
+        </action>
+
+        <action name="pagoExitoso">
+            <result type="redirectAction">
+                <param name="actionName">pagoExitosoChain</param>
+                <param name="namespace">/</param>
             </result>
         </action>
 
@@ -80,22 +107,25 @@
         <action name="anuncio"
                 class="webCondominio.action.ActionAnuncio">
             <interceptor-ref name="secureStack" />
-            <result name="success">../residentes/views/anuncios.jsp</result>
+            <result type="json"/>
             <result name="login" type="redirectAction">
                 <param name="actionName">logout</param>
                 <param name="namespace">/residentes</param>
             </result>
         </action>
 
-        <action name="pagoExitoso">
-            <result type="redirectAction">
-                <param name="actionName">pagoExitosoChain</param>
-                <param name="namespace">/</param>
+        <action name="dispo"
+                class="webCondominio.action.ActionDisponibilidad">
+            <interceptor-ref name="secureStack" />
+            <result type="json"/>
+            <result name="login" type="redirectAction">
+                <param name="actionName">logout</param>
+                <param name="namespace">/residentes</param>
             </result>
         </action>
 
-        <action name="dispo"
-                class="webCondominio.action.ActionDisponibilidad">
+        <action name="getReserva"
+                class="webCondominio.action.ActionGetReserva">
             <interceptor-ref name="secureStack" />
             <result type="json"/>
             <result name="login" type="redirectAction">

@@ -8,12 +8,12 @@
 
 
 	<div class="row row-cols-1 row-cols-md-2 g-4">
-		<div class="col">
-			<div class="card h-100">
-				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/quincho.jpg" class="card-img-top" id="quincho" alt="quincho">
+		<div class="col col-lg-3 col-sm-12">
+			<div class="card h-100 reservasCards">
+				<img src="../assets/img/reservas/quincho.jpg" class="card-img-top" id="quincho" alt="quincho">
 				<div class="card-body">
 					<h5 class="card-title">Quincho</h5>
-					<p class="card-text">$ 10.000</p>
+					<p class="fs-3"><strong>$ 10.000</strong></p>
 				</div>
 				<div class="card-footer">
 					<hr>
@@ -26,12 +26,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col">
-			<div class="card h-100">
-				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/multicancha.jpg" class="card-img-top" id="multicancha" alt="Multicancha">
+		<div class="col col-lg-3 col-sm-12">
+			<div class="card h-100 reservasCards">
+				<img src="../assets/img/reservas/multicancha.jpg" class="card-img-top" id="multicancha" alt="Multicancha">
 				<div class="card-body">
 					<h5 class="card-title">Multicancha</h5>
-					<p class="card-text">$ 8.000</p>
+					<p class="fs-3"><strong>$ 8.000</strong></p>
 				</div>
 				<div class="card-footer">
 					<hr>
@@ -44,12 +44,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col">
-			<div class="card h-100">
-				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/eventos.jpg" class="card-img-top" id="eventos" alt="eventos">
+		<div class="col col-lg-3 col-sm-12">
+			<div class="card h-100 reservasCards">
+				<img src="../assets/img/reservas/eventos.jpg" class="card-img-top" id="eventos" alt="eventos">
 				<div class="card-body">
 					<h5 class="card-title">Sala de Eventos</h5>
-					<p class="card-text">$ 20.000</p>
+					<p class="fs-3"><strong>$ 20.000</strong></p>
 				</div>
 				<div class="card-footer">
 					<hr>
@@ -62,12 +62,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col">
-			<div class="card h-100">
-				<img src="http://localhost:8081/webCondominio_war_exploded/assets/img/reservas/estacionamiento.jpg" class="card-img-top" id="estacionamiento" alt="estacionamiento">
+		<div class="col col-lg-3 col-sm-12">
+			<div class="card h-100 reservasCards">
+				<img src="../assets/img/reservas/estacionamiento.jpg" class="card-img-top w-100" id="estacionamiento" alt="estacionamiento">
 				<div class="card-body">
 					<h5 class="card-title">Estacionamiento</h5>
-					<p class="card-text">$ 1.000</p>
+					<p class="fs-3"><strong>$ 1.000</strong></p>
 				</div>
 				<div class="card-footer">
 					<hr>
@@ -84,6 +84,27 @@
 	</div>
 </div>
 
+<div class='card-header'>
+	<h5 class='card-title'>Reservas</h5>
+	<p class='card-category'>Información sus reservas</p>
+</div>
+<div class='card-body residenteReservasT'>
+	<div class='table-responsive row'>
+		<table class=' col-12 table table-striped tablaReservas' id='tablaReservas' style='width: 100%'>
+			<thead class='text-primary'><tr>
+				<th scope='col'>Id</th>
+				<th scope='col'>Fecha</th>
+				<th scope='col'>Horario</th>
+				<th scope='col'>Nombre Servicio</th>
+				<th scope='col'>Costo</th>
+			</tr></thead>
+			<tbody></tbody>
+		</table>
+	</div>
+</div>
+<div class='card-footer '>
+	<hr>
+</div>
 
 
 <div class="modal fade" id="datosResidente" tabindex="-1"

@@ -23,22 +23,13 @@ import webCondominio.model.ModelPago;
 public class ControllerPago extends ActionSupport implements SessionAware, ServletRequestAware{
 
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -7371405797191879037L;
-
-
 	public String execute() throws ApiException {
 		
-
-
-
 		String rut = ((ModelLoginUsuario)session.get("user")).getRut();
 		System.out.println("<<<<<<<<<<<<"+rut);
 
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		Double monto = Double.parseDouble(request.getParameter("monto"));
+		double monto = Double.parseDouble(request.getParameter("monto"));
 		String descripcion = request.getParameter("desc");
 		String tipo = request.getParameter("tipo");
 
@@ -48,9 +39,13 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		pagos.put("tipo", tipo);
 		pagos.put("monto",monto);
 
-		//((ModelLoginUsuario)session.get("user")).getPagos().clear();
+
+
+		if(((ModelLoginUsuario)session.get("user")).getPagos()!=null){
+			((ModelLoginUsuario)session.get("user")).getPagos().clear();
+		}
 		((ModelLoginUsuario)session.get("user")).setPagos(pagos);
-		System.out.println(((ModelLoginUsuario)session.get("user")).getPagos().get("tipo"));
+		//System.out.println(((ModelLoginUsuario)session.get("user")).getPagos().get("tipo"));
 		int receiverId = 381468;
 		String secretKey = "d749349a39c35148ea43352381b2c9ff60bbb6ce";
 
@@ -63,23 +58,25 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 
 		Map<String, Object> options = new HashMap<>();
 		options.put("transactionId", "Gastos Condominio");//Cambiar
-		options.put("returnUrl", "http://localhost:8081/webCondominio_war_exploded/pagoExitosoChain.action");
-		options.put("cancelUrl", "http://localhost:8081/webCondominio_war_exploded/return.action#");
+		options.put("returnUrl", "http://186.78.176.254:8081/webCondominio_war_exploded/pagoExitosoChain.action");
+		options.put("cancelUrl", "http://186.78.176.254:8081/webCondominio_war_exploded/return.action");
 		options.put("pictureUrl", "https://media.revistagq.com/photos/5f45010acb266484bb785c78/16:9/w_1920%2cc_limit/dragon-ball-z.jpg");
-		options.put("notifyUrl", "https://condo-web-test.herokuapp.com/api/notification");
+		options.put("notifyUrl", "http://186.78.176.254:8081/webCondominio_war_exploded/notification.action");
 		options.put("notifyApiVersion", "1.3");
 
 		PaymentsCreateResponse response;
 
-		response = paymentsApi.paymentsPost(descripcion //Motivo de la compra
+		response = paymentsApi.paymentsPost(
+				descripcion //Motivo de la compra
 				, "CLP" //Monedas disponibles CLP, USD, ARS, BOB
 				, monto //Monto
 				, options    //campos opcionales
 		);
-
-
+		ControllerConexion conexion = new ControllerConexion();
+		conexion.setPagoResponse(response.getPaymentId(),monto,id,tipo);
+		conexion.cerrarSession();
 		System.out.println(response);
-		urlPago = response.getPaymentUrl();
+		this.urlPago = response.getPaymentUrl();
 		return SUCCESS;
 	}
 

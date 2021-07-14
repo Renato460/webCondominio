@@ -2,14 +2,21 @@ package webCondominio.action;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.khipu.ApiClient;
+import com.khipu.api.client.PaymentsApi;
+import com.khipu.api.model.PaymentsCreateResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import webCondominio.controller.ControllerConexion;
+import webCondominio.model.ModelLoginUsuario;
 
 public class ActionReserva extends ActionSupport implements ServletRequestAware{
 	/**
@@ -31,42 +38,47 @@ public class ActionReserva extends ActionSupport implements ServletRequestAware{
 			String servicioNombre = request.getParameter("servicio");
 			System.out.println(servicioNombre);
 			
-			String rutPersona = request.getParameter("rut");
-			System.out.println(rutPersona);
+			String rut = request.getParameter("rut");
+			System.out.println(rut);
 			
 			Integer idHorario = Integer.parseInt(request.getParameter("horarios"));
 			
 			System.out.println(idHorario);
 	    	
-			Integer idServicio;
-			switch (servicioNombre) {
-			case "QUINCHO":
-				idServicio = 1;
-				break;
-			case "ESTACIONAMIENTO":
-				idServicio = 2;
-				break;
-			case "SALE EVENTOS":
-				idServicio = 3;
-				break;
-			case "MULTICANCHA":
-				idServicio = 4;
-				break;
-			default: idServicio =0;break;
-			};
+			int idServicio = idServicio(servicioNombre);
+
 			
-			exito = setReserva.setReservaUsuario(fechaConv, rutPersona, idServicio , idHorario);
+			exito = setReserva.setReservaUsuario(fechaConv, rut, idServicio , idHorario);
 			setReserva.cerrarSession();
 			System.out.println();
-			
+
 			return SUCCESS;
+
 		}catch(Exception ex) {
 			System.out.println(ex);
 
 			return ERROR;
 		}
+	}
 
+	private int idServicio(String servicioNombre){
+		switch (servicioNombre) {
+			case "QUINCHO":
+				return 1;
 
+			case "ESTACIONAMIENTO":
+				return 2;
+
+			case "SALE EVENTOS":
+				return 3;
+
+			case "MULTICANCHA":
+				return 4;
+
+			default:
+				return 0;
+
+		}
 	}
 
 	

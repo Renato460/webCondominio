@@ -33,6 +33,7 @@ public class ModelAnuncios {
 		this.descripcion = descripcion;
 		this.url = url;
 	}
-	
-	
+
+	public ModelAnuncios() {
+	}
 }

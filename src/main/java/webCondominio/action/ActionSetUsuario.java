@@ -2,8 +2,10 @@ package webCondominio.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import webCondominio.controller.ControllerConexion;
 
+import javax.crypto.EncryptedPrivateKeyInfo;
 import javax.servlet.http.HttpServletRequest;
 
 public class ActionSetUsuario extends ActionSupport implements ServletRequestAware {
@@ -11,6 +13,7 @@ public class ActionSetUsuario extends ActionSupport implements ServletRequestAwa
     public String execute() throws Exception {
         this.usuario=request.getParameter("usuario");
         this.password=request.getParameter("password");
+        //String encPasw= BCrypt.hashpw(password,BCrypt.gensalt(10));
         this.idrol=Integer.parseInt(request.getParameter("idrol"));
         this.nombre=request.getParameter("nombre");
         this.apaterno=request.getParameter("apaterno");

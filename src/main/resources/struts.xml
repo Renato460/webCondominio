@@ -66,6 +66,12 @@
 		<action name="test">
 			<result>/WEB-INF/test/test.jsp</result>
 		</action>
+
+		<action name="notification" class="webCondominio.action.ActionNotification">
+			<result name="success" type="json">
+				<param name="statusCode">200</param>
+			</result>
+		</action>
 	</package>
 
 
@@ -76,6 +82,5 @@
 	<include file="directiva/struts-directiva.xml"/>
 
 	<include file="residentes/struts-residentes.xml"/>
-
 
 </struts>
