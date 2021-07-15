@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import static org.apache.struts2.ServletActionContext.getServletContext;
+
 
 public class ActionSetAnuncio extends ActionSupport {
 
@@ -17,7 +19,9 @@ public class ActionSetAnuncio extends ActionSupport {
     public String execute() throws Exception {
 
         if((!this.descripcion.equals("")) && (this.fileFileName != null)){
-            String file_dirs_path = "C:\\Users\\rerey\\eclipse-workspace\\webCondominio\\src\\main\\webapp\\assets\\img\\anuncios"+File.separator;
+            String web= getServletContext().getRealPath("\\")+"\\assets\\img\\anuncios";
+            //String file_dirs_path = "C:\\Users\\rerey\\eclipse-workspace\\webCondominio\\src\\main\\webapp\\assets\\img\\anuncios"+File.separator;
+            String file_dirs_path = web+File.separator;
 
             File dirs = new File(file_dirs_path);
             if (!dirs.exists()) {

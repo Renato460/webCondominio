@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import webCondominio.model.ModelLoginUsuario;
 
-
+import static org.apache.struts2.ServletActionContext.getServletContext;
 
 
 public class ControllerVistas extends ActionSupport implements SessionAware{
@@ -36,6 +36,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 
 	@Override
 	public String execute() {
+
 		vistas.put("1","admin");
 		vistas.put("2","conserje");
 		vistas.put("3","directiva");
@@ -45,7 +46,7 @@ public class ControllerVistas extends ActionSupport implements SessionAware{
 				ModelLoginUsuario nuevoUsuario= new ModelLoginUsuario(usuario,pass,nombre,rut,rol);
 				session.put("user", nuevoUsuario);
 				System.out.println(((ModelLoginUsuario)session.get("user")).getPassword());
-				
+
 				return vistas.getOrDefault(this.rol,"LOGIN");
 			}else{
 				return INPUT;

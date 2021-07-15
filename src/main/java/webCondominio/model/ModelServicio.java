@@ -4,14 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "SERVICIO", schema= "ESPADMIN")
+
 public class ModelServicio {
 	
 	
 	private int id_servicio;
-	
-	@Id
+	private String nombre_servicio;
+	private double costo;
+
+	public ModelServicio() {
+	}
+
 	public int getId_servicio() {
 		return id_servicio;
 	}
@@ -24,12 +27,11 @@ public class ModelServicio {
 	public void setNombre_servicio(String nombre_servicio) {
 		this.nombre_servicio = nombre_servicio;
 	}
-	public int getCosto() {
+	public double getCosto() {
 		return costo;
 	}
-	public void setCosto(int costo) {
+	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-	private String nombre_servicio;
-	private int costo;
+
 }

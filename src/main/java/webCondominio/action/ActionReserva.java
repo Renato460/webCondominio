@@ -69,7 +69,7 @@ public class ActionReserva extends ActionSupport implements ServletRequestAware{
 			case "ESTACIONAMIENTO":
 				return 2;
 
-			case "SALE EVENTOS":
+			case "SALA EVENTOS":
 				return 3;
 
 			case "MULTICANCHA":

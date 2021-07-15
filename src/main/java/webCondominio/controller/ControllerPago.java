@@ -57,10 +57,10 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		paymentsApi.setApiClient(apiClient);
 
 		Map<String, Object> options = new HashMap<>();
-		options.put("transactionId", "Gastos Condominio");//Cambiar
+		options.put("transactionId", id + descripcion);//Cambiar
 		options.put("returnUrl", "http://186.78.176.254:8081/webCondominio_war_exploded/pagoExitosoChain.action");
 		options.put("cancelUrl", "http://186.78.176.254:8081/webCondominio_war_exploded/return.action");
-		options.put("pictureUrl", "https://media.revistagq.com/photos/5f45010acb266484bb785c78/16:9/w_1920%2cc_limit/dragon-ball-z.jpg");
+		options.put("pictureUrl", "https://icha.cl/wp-content/uploads/2017/06/Soho_general_hi_gl-1024x921.jpg");
 		options.put("notifyUrl", "http://186.78.176.254:8081/webCondominio_war_exploded/notification.action");
 		options.put("notifyApiVersion", "1.3");
 
@@ -75,7 +75,6 @@ public class ControllerPago extends ActionSupport implements SessionAware, Servl
 		ControllerConexion conexion = new ControllerConexion();
 		conexion.setPagoResponse(response.getPaymentId(),monto,id,tipo);
 		conexion.cerrarSession();
-		System.out.println(response);
 		this.urlPago = response.getPaymentUrl();
 		return SUCCESS;
 	}

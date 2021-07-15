@@ -2,12 +2,21 @@ package webCondominio.model;
 
 public class ModelReservaLista {
     private int id;
+    private String nombre;
     private String fecha;
     private String horario;
     private String nombreServicio;
     private double costo;
 
     public ModelReservaLista() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getId() {

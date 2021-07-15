@@ -6,6 +6,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import webCondominio.controller.ControllerConexion;
+import webCondominio.model.ModelReservaLista;
 import webCondominio.model.ModelServicio;
 
 public class ActionServicio extends ActionSupport {
@@ -17,10 +18,9 @@ public class ActionServicio extends ActionSupport {
 
 	@Override
 	public String execute() {
-		ControllerConexion reserva = new ControllerConexion();
-		reservas= reserva.getServicios();
-		reserva.cerrarSession();
-		System.out.println(reservas.get(0).getNombre_servicio());
+		ControllerConexion conexion = new ControllerConexion();
+		reservas= conexion.getServicios();
+		conexion.cerrarSession();
 		return SUCCESS;
 	}
 	

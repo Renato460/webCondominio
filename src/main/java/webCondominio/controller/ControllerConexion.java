@@ -3,12 +3,15 @@ package webCondominio.controller;
 import java.sql.Date;
 import java.util.*;
 import javax.persistence.ParameterMode;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.loader.custom.sql.SQLCustomQuery;
 import org.hibernate.procedure.ProcedureOutputs;
 
 import webCondominio.model.*;
@@ -149,6 +152,48 @@ public class ControllerConexion {
 			return 1;
 		}catch (Exception e){
 			System.out.println("<<<<<<<"+e);
+			return 0;
+		}
+
+	}
+	//********
+
+	//Update Multas
+	public int updateMulta(int id_multa, String descripcion, Integer monto){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_multas.UPDATEMULTA")
+				.registerStoredProcedureParameter("P_IDMULTA", Integer.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("P_DESCRIPCION", String.class, ParameterMode.IN)
+				.registerStoredProcedureParameter("P_MONTO", Integer.class, ParameterMode.IN)
+				.setParameter("P_IDMULTA", id_multa)
+				.setParameter("P_DESCRIPCION", descripcion)
+				.setParameter("P_MONTO", monto);
+		try {
+
+			query.execute();
+
+			return 1;
+		}catch (Exception e){
+			System.out.println("<<<<<<<"+e);
+
+			return 0;
+		}
+
+	}
+	//********
+
+	//Update Multas
+	public int deleteMulta(int id_multa){
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_multas.DELETEMULTA")
+				.registerStoredProcedureParameter("P_IDMULTA", Integer.class, ParameterMode.IN)
+				.setParameter("P_IDMULTA", id_multa);
+		try {
+
+			query.execute();
+
+			return 1;
+		}catch (Exception e){
+			System.out.println("<<<<<<<"+e);
+
 			return 0;
 		}
 
@@ -397,6 +442,36 @@ public class ControllerConexion {
 	}
 	//*******
 
+	//Retorna la lista de multas de un usuario Residente
+	public ArrayList<ModelReservaLista> getAllReservas() {
+
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reservas.getallreservas")
+								.registerStoredProcedureParameter("p_reservas", Class.class, ParameterMode.REF_CURSOR);
+
+		try {
+			query.execute();
+
+			List<Object[]> cursorReservas = query.getResultList();
+			ArrayList<ModelReservaLista> reservas = new ArrayList<>();
+
+			cursorReservas.forEach(objects -> {
+				ModelReservaLista modelReservaLista = new ModelReservaLista();
+				modelReservaLista.setId(Integer.parseInt(objects[0].toString()));
+				modelReservaLista.setFecha(objects[1].toString());
+				modelReservaLista.setNombre(objects[2].toString());
+				modelReservaLista.setHorario(objects[3].toString());
+				modelReservaLista.setNombreServicio(objects[4].toString());
+				modelReservaLista.setCosto(Integer.parseInt(objects[5].toString()));
+				reservas.add(modelReservaLista);
+			});
+
+			return reservas;
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return null;
+		}
+	}
+	//*******
 	//Retorna los anuncios creados por el Administrador o Directiva
 	public ArrayList<ModelAnuncios> anuncios() {
 
@@ -736,10 +811,44 @@ public class ControllerConexion {
 
 	//Retorna los servicios que ofrece el condominio
 	public List<ModelServicio> getServicios() {
-		List<ModelServicio> reserva = session.createQuery("from ModelServicio").list();
 
-		System.out.println(reserva.get(0));
-		return reserva;
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reservas.GETSERVICIO")
+				.registerStoredProcedureParameter("p_servicio", Class.class, ParameterMode.REF_CURSOR);
+		try {
+			query.execute();
+			List<Object[]> reservas = query.getResultList();
+			ArrayList<ModelServicio> reservaListas= new ArrayList<>();
+			reservas.forEach(objects -> {
+				ModelServicio reservaLista = new ModelServicio();
+
+				reservaLista.setId_servicio(Integer.parseInt(objects[0].toString()));
+				reservaLista.setNombre_servicio(objects[1].toString());
+				reservaLista.setCosto(Double.parseDouble(objects[2].toString()));
+				reservaListas.add(reservaLista);
+			});
+			return reservaListas;
+		}catch (Exception e){
+			return null;
+		}
+	}
+	//*******
+
+	//update los servicios que ofrece el condominio
+	public int updateServicio(int id, String nombre, int costo) {
+
+		StoredProcedureQuery query = session.createStoredProcedureQuery("pkg_reservas.updateservicio")
+				.registerStoredProcedureParameter("p_id", Integer.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("p_nombre", String.class, ParameterMode.IN)
+		.registerStoredProcedureParameter("p_monto", Integer.class, ParameterMode.IN)
+		.setParameter("p_id",id)
+				.setParameter("p_nombre",nombre)
+				.setParameter("p_monto",costo);
+		try {
+			query.execute();
+			return 1;
+		}catch (Exception e){
+			return 0;
+		}
 	}
 	//*******
 
